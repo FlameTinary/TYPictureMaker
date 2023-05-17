@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0870C2F12A14A0AC00AC1793 /* TYMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F02A14A0AC00AC1793 /* TYMainViewController.swift */; };
 		0880101B2A1489B100FFCA18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880101A2A1489B100FFCA18 /* AppDelegate.swift */; };
-		0880101F2A1489B100FFCA18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880101E2A1489B100FFCA18 /* ViewController.swift */; };
 		088010242A1489B100FFCA18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088010232A1489B100FFCA18 /* Assets.xcassets */; };
 		088010272A1489B100FFCA18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 088010252A1489B100FFCA18 /* LaunchScreen.storyboard */; };
 		49D558BA9DDB2F6052E7CD9F /* Pods_TYPictureMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */; };
@@ -16,9 +16,9 @@
 
 /* Begin PBXFileReference section */
 		05264E615431AA850528777C /* Pods-TYPictureMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.debug.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.debug.xcconfig"; sourceTree = "<group>"; };
+		0870C2F02A14A0AC00AC1793 /* TYMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYMainViewController.swift; sourceTree = "<group>"; };
 		088010172A1489B100FFCA18 /* TYPictureMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TYPictureMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0880101A2A1489B100FFCA18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0880101E2A1489B100FFCA18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		088010232A1489B100FFCA18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		088010262A1489B100FFCA18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		088010282A1489B100FFCA18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,6 +38,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0870C2EC2A14A03B00AC1793 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0870C2ED2A14A04600AC1793 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0870C2EE2A14A04C00AC1793 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0870C2F02A14A0AC00AC1793 /* TYMainViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0870C2EF2A14A05500AC1793 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0880101A2A1489B100FFCA18 /* AppDelegate.swift */,
+				088010282A1489B100FFCA18 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		0870C2F22A14A0F800AC1793 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				088010232A1489B100FFCA18 /* Assets.xcassets */,
+				088010252A1489B100FFCA18 /* LaunchScreen.storyboard */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		0880100E2A1489B000FFCA18 = {
 			isa = PBXGroup;
 			children = (
@@ -59,11 +99,11 @@
 		088010192A1489B100FFCA18 /* TYPictureMaker */ = {
 			isa = PBXGroup;
 			children = (
-				0880101A2A1489B100FFCA18 /* AppDelegate.swift */,
-				0880101E2A1489B100FFCA18 /* ViewController.swift */,
-				088010232A1489B100FFCA18 /* Assets.xcassets */,
-				088010252A1489B100FFCA18 /* LaunchScreen.storyboard */,
-				088010282A1489B100FFCA18 /* Info.plist */,
+				0870C2EF2A14A05500AC1793 /* App */,
+				0870C2EE2A14A04C00AC1793 /* Controllers */,
+				0870C2ED2A14A04600AC1793 /* Models */,
+				0870C2EC2A14A03B00AC1793 /* Views */,
+				0870C2F22A14A0F800AC1793 /* Sources */,
 			);
 			path = TYPictureMaker;
 			sourceTree = "<group>";
@@ -82,7 +122,6 @@
 				05264E615431AA850528777C /* Pods-TYPictureMaker.debug.xcconfig */,
 				484BF3AB2319ECA8E46487F6 /* Pods-TYPictureMaker.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -115,6 +154,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = TY;
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
@@ -200,7 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0880101F2A1489B100FFCA18 /* ViewController.swift in Sources */,
+				0870C2F12A14A0AC00AC1793 /* TYMainViewController.swift in Sources */,
 				0880101B2A1489B100FFCA18 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,7 +383,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CJ5L2XW65B;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TYPictureMaker/Info.plist;
+				INFOPLIST_FILE = TYPictureMaker/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -375,7 +415,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CJ5L2XW65B;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TYPictureMaker/Info.plist;
+				INFOPLIST_FILE = TYPictureMaker/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
