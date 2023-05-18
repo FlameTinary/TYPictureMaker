@@ -24,8 +24,8 @@ class TYUpdownView: UIView {
     }
     
     func setupSubViews() {
-        let topImageView = UIImageView(image: self.topImage)
-        let bottomImageView = UIImageView(image: self.bottomImage)
+        let topImageView = TYImageCollectView(with: topImage)
+        let bottomImageView = TYImageCollectView(with: bottomImage)
         self.addSubview(topImageView)
         self.addSubview(bottomImageView)
         topImageView.snp.makeConstraints { make in
