@@ -5,22 +5,28 @@ PODS:
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - SnapKit (5.6.0)
+  - ZLPhotoBrowser (4.4.1):
+    - ZLPhotoBrowser/Core (= 4.4.1)
+  - ZLPhotoBrowser/Core (4.4.1)
 
 DEPENDENCIES:
   - Moya (~> 15.0)
   - SnapKit (~> 5.6.0)
+  - ZLPhotoBrowser
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Moya
     - SnapKit
+    - ZLPhotoBrowser
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  ZLPhotoBrowser: dd045d229bf0d966e05a06a97ea428aace0303c7
 
-PODFILE CHECKSUM: 43d60e0f69203af092e2dec002fc2760843c99a9
+PODFILE CHECKSUM: 2707cdeddcbc5ed317c0edc567e8e59018421264
 
 COCOAPODS: 1.11.3
