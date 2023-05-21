@@ -12,6 +12,16 @@ class TYPictureStitchController: UIViewController {
     
     var images: [UIImage]?
     
+    private lazy var slider : UISlider = {
+        let s = UISlider(frame: .zero)
+        s.minimumValue = 0
+        s.maximumValue = 20
+        s.value = 0
+        s.addTarget(self, action: #selector(sliderDidChanged), for: .valueChanged)
+        view.addSubview(s)
+        return s
+    }()
+    
     // 比例item选中的row
     private var proportionSelectedItem = 0
     
@@ -21,7 +31,7 @@ class TYPictureStitchController: UIViewController {
     // 图片展示底视图，用于约束图片展示视图不超过屏幕
     private lazy var bgView : UIView = {
         let bgView = UIView()
-        bgView.backgroundColor = .white
+        bgView.backgroundColor = .black
         view.addSubview(bgView)
         bgView.snp.makeConstraints { make in
             make.centerX.equalTo(view)
@@ -59,7 +69,7 @@ class TYPictureStitchController: UIViewController {
     }
     
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         setupSubViews()
     }
     
@@ -76,6 +86,14 @@ class TYPictureStitchController: UIViewController {
             make.edges.equalTo(bgView)
         }
         
+        slider.snp.makeConstraints { make in
+            make.top.equalTo(bgView.snp.bottom).offset(20)
+            make.left.equalTo(view).offset(20)
+            make.right.equalTo(view).offset(-20)
+        }
+        
+        updownView.pandding = CGFloat(slider.value)
+        
         proportionListView.delegate = self
         proportionListView.dataSource = self
         view.addSubview(proportionListView)
@@ -86,6 +104,11 @@ class TYPictureStitchController: UIViewController {
             make.left.right.equalTo(view)
             make.bottom.equalTo(-100)
         }
+    }
+    
+    @objc func sliderDidChanged(slider: UISlider) {
+        print(slider.value)
+        updownView?.imagePandding = CGFloat(slider.value)
     }
 }
 

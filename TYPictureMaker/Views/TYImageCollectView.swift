@@ -11,6 +11,12 @@ class TYImageCollectView : UIView {
     
     var image: UIImage?
     
+    var pandding : CGFloat = 0 {
+        didSet {
+            updateSubViews()
+        }
+    }
+    
     private lazy var imageScrollView : TYImageScrollView = {
         let scrollView = TYImageScrollView(with: UIImage(named: "blend")!)
         addSubview(scrollView)
@@ -25,7 +31,11 @@ class TYImageCollectView : UIView {
         super.init(frame: .zero)
         if let img = image {
             self.image = img
+            // TODO: 这里后期需要改成imageScrollView中的image非必选
             imageScrollView.image = image!
+            imageScrollView.snp.makeConstraints { make in
+                make.edges.equalTo(self).inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
+            }
         }
         backgroundColor = .lightGray
     }
@@ -36,8 +46,13 @@ class TYImageCollectView : UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageScrollView.snp.makeConstraints { make in
-            make.edges.equalTo(self).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        
+    }
+    
+    func updateSubViews() {
+        imageScrollView.snp.remakeConstraints { make in
+            make.edges.equalTo(self).inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
         }
+        layoutIfNeeded()
     }
 }
