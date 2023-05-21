@@ -84,13 +84,13 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		0870C2F22A14A0F800AC1793 /* Sources */ = {
+		0870C2F22A14A0F800AC1793 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				088010232A1489B100FFCA18 /* Assets.xcassets */,
 				088010252A1489B100FFCA18 /* LaunchScreen.storyboard */,
 			);
-			path = Sources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		0880100E2A1489B000FFCA18 = {
@@ -118,7 +118,7 @@
 				0870C2EE2A14A04C00AC1793 /* Controllers */,
 				0870C2ED2A14A04600AC1793 /* Models */,
 				0870C2EC2A14A03B00AC1793 /* Views */,
-				0870C2F22A14A0F800AC1793 /* Sources */,
+				0870C2F22A14A0F800AC1793 /* Resources */,
 			);
 			path = TYPictureMaker;
 			sourceTree = "<group>";
