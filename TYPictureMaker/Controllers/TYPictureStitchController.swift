@@ -23,69 +23,27 @@ class TYPictureStitchController: UIViewController {
     }()
     
     // 操作item选中row
-    private var oprationSelectedItem = 0
+    private var oprationSelectedItem: TYOpration = .proportion
     
     // 比例item选中的row
-    private var proportionSelectedItem = 0 {
+    private var proportionSelectedItem : TYProportion = .oneToOne {
         didSet {
             // 选中item后按照选中的比例调整updownView视图的显示
-            switch proportionSelectedItem {
-            case 0:
-                self.updownView!.snp.remakeConstraints { make in
-                    make.edges.equalTo(bgView)
-                }
-            case 1:
-                self.updownView!.snp.remakeConstraints { make in
-                    make.center.equalTo(bgView)
-                    make.height.equalTo(bgView)
-                    make.width.equalTo(bgView).multipliedBy(0.8)
-                    
-                }
-            case 2:
-                self.updownView!.snp.remakeConstraints { make in
-                    make.center.equalTo(bgView)
-                    make.width.equalTo(bgView)
-                    make.height.equalTo(bgView).multipliedBy(0.5)
-                }
-            case 3:
-                self.updownView!.snp.remakeConstraints { make in
-                    make.center.equalTo(bgView)
-                    make.width.equalTo(bgView)
-                    make.height.equalTo(bgView).multipliedBy(0.75)
-                }
-            case 4:
-                self.updownView!.snp.remakeConstraints { make in
-                    make.center.equalTo(bgView)
-                    make.height.equalTo(bgView)
-                    make.width.equalTo(bgView).multipliedBy(0.667)
-                }
-            case 5:
-                self.updownView!.snp.remakeConstraints { make in
-                    make.center.equalTo(bgView)
-                    make.height.equalTo(bgView)
-                    make.width.equalTo(bgView).multipliedBy(0.5625)
-                }
-            case 6:
-                self.updownView!.snp.remakeConstraints { make in
-                    make.center.equalTo(bgView)
-                    make.width.equalTo(bgView)
-                    make.height.equalTo(bgView).multipliedBy(0.5625)
+            let radio = proportionSelectedItem.toRadio()
+            self.updownView!.snp.remakeConstraints { make in
+                make.center.equalToSuperview()
+                if radio > 1 {
+                    make.width.equalToSuperview()
+                    make.height.equalToSuperview().dividedBy(radio)
+                } else {
+                    make.height.equalToSuperview()
+                    make.width.equalToSuperview().multipliedBy(radio)
                 }
                 
-            default:
-                updownView!.snp.remakeConstraints { make in
-                    make.edges.equalTo(bgView)
-                }
             }
             view.layoutIfNeeded()
         }
     }
-    
-    // 操作列表数据
-    private let oprationList = ["布局", "比例", "边框", "背景", "滤镜", "纹理", "文字", "贴纸", "画框", "添加照片"]
-    
-    // 比例列表
-    private let proportionList = ["1:1", "4:5", "2:1", "4:3", "2:3", "9:16", "16:9"]
     
     // 图片展示底视图，用于约束图片展示视图不超过屏幕
     private lazy var bgView : UIView = {
@@ -200,30 +158,30 @@ class TYPictureStitchController: UIViewController {
 extension TYPictureStitchController: UICollectionViewDelegate & UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (collectionView.tag == 2) {
-            return oprationList.count
+            return TYOpration.allCases.count
         }
-        return proportionList.count
+        return TYProportion.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if (collectionView.tag == 2) {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oprationCellId", for: indexPath) as! TYOprationCell
-            cell.text = oprationList[indexPath.item]
-            cell.isSelected = indexPath.item == oprationSelectedItem
+            cell.text = TYOpration.oprationName(rawValue: indexPath.item)
+            cell.isSelected = indexPath.item == oprationSelectedItem.rawValue
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! TYProportionCell
-            cell.text = proportionList[indexPath.item]
-            cell.isSelected = indexPath.item == proportionSelectedItem
+            cell.text = TYProportion(rawValue: indexPath.item)?.toName()
+            cell.isSelected = indexPath.item == proportionSelectedItem.rawValue
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (collectionView.tag == 2) {
-            oprationSelectedItem = indexPath.item
+            oprationSelectedItem = TYOpration(rawValue: indexPath.item)!
         }else {
-            proportionSelectedItem = indexPath.item
+            proportionSelectedItem = TYProportion(rawValue: indexPath.item)!
         }
     }
      
