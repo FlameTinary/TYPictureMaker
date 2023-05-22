@@ -22,8 +22,67 @@ class TYPictureStitchController: UIViewController {
         return s
     }()
     
+    // 操作item选中row
+    private var oprationSelectedItem = 0
+    
     // 比例item选中的row
-    private var proportionSelectedItem = 0
+    private var proportionSelectedItem = 0 {
+        didSet {
+            // 选中item后按照选中的比例调整updownView视图的显示
+            switch proportionSelectedItem {
+            case 0:
+                self.updownView!.snp.remakeConstraints { make in
+                    make.edges.equalTo(bgView)
+                }
+            case 1:
+                self.updownView!.snp.remakeConstraints { make in
+                    make.center.equalTo(bgView)
+                    make.height.equalTo(bgView)
+                    make.width.equalTo(bgView).multipliedBy(0.8)
+                    
+                }
+            case 2:
+                self.updownView!.snp.remakeConstraints { make in
+                    make.center.equalTo(bgView)
+                    make.width.equalTo(bgView)
+                    make.height.equalTo(bgView).multipliedBy(0.5)
+                }
+            case 3:
+                self.updownView!.snp.remakeConstraints { make in
+                    make.center.equalTo(bgView)
+                    make.width.equalTo(bgView)
+                    make.height.equalTo(bgView).multipliedBy(0.75)
+                }
+            case 4:
+                self.updownView!.snp.remakeConstraints { make in
+                    make.center.equalTo(bgView)
+                    make.height.equalTo(bgView)
+                    make.width.equalTo(bgView).multipliedBy(0.667)
+                }
+            case 5:
+                self.updownView!.snp.remakeConstraints { make in
+                    make.center.equalTo(bgView)
+                    make.height.equalTo(bgView)
+                    make.width.equalTo(bgView).multipliedBy(0.5625)
+                }
+            case 6:
+                self.updownView!.snp.remakeConstraints { make in
+                    make.center.equalTo(bgView)
+                    make.width.equalTo(bgView)
+                    make.height.equalTo(bgView).multipliedBy(0.5625)
+                }
+                
+            default:
+                updownView!.snp.remakeConstraints { make in
+                    make.edges.equalTo(bgView)
+                }
+            }
+            view.layoutIfNeeded()
+        }
+    }
+    
+    // 操作列表数据
+    private let oprationList = ["布局", "比例", "边框", "背景", "滤镜", "纹理", "文字", "贴纸", "画框", "添加照片"]
     
     // 比例列表
     private let proportionList = ["1:1", "4:5", "2:1", "4:3", "2:3", "9:16", "16:9"]
@@ -46,6 +105,22 @@ class TYPictureStitchController: UIViewController {
     private var updownView :TYUpdownView?
     
     private var heightConstraint : Constraint?
+    
+    // 底部操作列表
+    private lazy var oprationListView : UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.tag = 2
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(TYOprationCell.self, forCellWithReuseIdentifier: "oprationCellId")
+        view.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        return collectionView
+    }()
     
     // 图片比例列表
     private lazy var proportionListView : UICollectionView = {
@@ -94,6 +169,15 @@ class TYPictureStitchController: UIViewController {
         
         updownView.pandding = CGFloat(slider.value)
         
+        // 操作列表
+        // 进入页面默认选中第一个
+        oprationListView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .top)
+        oprationListView.snp.makeConstraints { make in
+            make.height.equalTo(44)
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+        // 比例列表
         proportionListView.delegate = self
         proportionListView.dataSource = self
         view.addSubview(proportionListView)
@@ -101,83 +185,46 @@ class TYPictureStitchController: UIViewController {
         proportionListView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .top)
         proportionListView.snp.makeConstraints { make in
             make.height.equalTo(30)
-            make.left.right.equalTo(view)
-            make.bottom.equalTo(-100)
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(oprationListView.snp_topMargin)
         }
     }
     
+    // 滑块滑动
     @objc func sliderDidChanged(slider: UISlider) {
-        print(slider.value)
         updownView?.imagePandding = CGFloat(slider.value)
     }
 }
 
+// collection view delegate & data source
 extension TYPictureStitchController: UICollectionViewDelegate & UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if (collectionView.tag == 2) {
+            return oprationList.count
+        }
         return proportionList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! TYProportionCell
-        cell.text = proportionList[indexPath.item]
-        cell.isSelected = indexPath.item == proportionSelectedItem
-        return cell
+        if (collectionView.tag == 2) {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oprationCellId", for: indexPath) as! TYOprationCell
+            cell.text = oprationList[indexPath.item]
+            cell.isSelected = indexPath.item == oprationSelectedItem
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! TYProportionCell
+            cell.text = proportionList[indexPath.item]
+            cell.isSelected = indexPath.item == proportionSelectedItem
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        proportionSelectedItem = indexPath.item
-        
-        // 选中item后按照选中的比例调整updownView视图的显示
-        switch proportionSelectedItem {
-        case 0:
-            self.updownView!.snp.remakeConstraints { make in
-                make.edges.equalTo(bgView)
-            }
-        case 1:
-            self.updownView!.snp.remakeConstraints { make in
-                make.center.equalTo(bgView)
-                make.height.equalTo(bgView)
-                make.width.equalTo(bgView).multipliedBy(0.8)
-                
-            }
-        case 2:
-            self.updownView!.snp.remakeConstraints { make in
-                make.center.equalTo(bgView)
-                make.width.equalTo(bgView)
-                make.height.equalTo(bgView).multipliedBy(0.5)
-            }
-        case 3:
-            self.updownView!.snp.remakeConstraints { make in
-                make.center.equalTo(bgView)
-                make.width.equalTo(bgView)
-                make.height.equalTo(bgView).multipliedBy(0.75)
-            }
-        case 4:
-            self.updownView!.snp.remakeConstraints { make in
-                make.center.equalTo(bgView)
-                make.height.equalTo(bgView)
-                make.width.equalTo(bgView).multipliedBy(0.667)
-            }
-        case 5:
-            self.updownView!.snp.remakeConstraints { make in
-                make.center.equalTo(bgView)
-                make.height.equalTo(bgView)
-                make.width.equalTo(bgView).multipliedBy(0.5625)
-            }
-        case 6:
-            self.updownView!.snp.remakeConstraints { make in
-                make.center.equalTo(bgView)
-                make.width.equalTo(bgView)
-                make.height.equalTo(bgView).multipliedBy(0.5625)
-            }
-            
-        default:
-            updownView!.snp.remakeConstraints { make in
-                make.edges.equalTo(bgView)
-            }
+        if (collectionView.tag == 2) {
+            oprationSelectedItem = indexPath.item
+        }else {
+            proportionSelectedItem = indexPath.item
         }
-        view.layoutIfNeeded()
-        
     }
      
 }

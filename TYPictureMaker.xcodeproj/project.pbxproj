@@ -13,6 +13,7 @@
 		0870C2F82A14E64800AC1793 /* TYProportionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F72A14E64800AC1793 /* TYProportionCell.swift */; };
 		0870C2FA2A15D52500AC1793 /* TYImageCollectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F92A15D52500AC1793 /* TYImageCollectView.swift */; };
 		0870C2FC2A15DF4300AC1793 /* TYImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2FB2A15DF4300AC1793 /* TYImageScrollView.swift */; };
+		0870C2FE2A1B1E3600AC1793 /* TYOprationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2FD2A1B1E3600AC1793 /* TYOprationCell.swift */; };
 		0880101B2A1489B100FFCA18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880101A2A1489B100FFCA18 /* AppDelegate.swift */; };
 		088010242A1489B100FFCA18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088010232A1489B100FFCA18 /* Assets.xcassets */; };
 		088010272A1489B100FFCA18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 088010252A1489B100FFCA18 /* LaunchScreen.storyboard */; };
@@ -27,6 +28,7 @@
 		0870C2F72A14E64800AC1793 /* TYProportionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYProportionCell.swift; sourceTree = "<group>"; };
 		0870C2F92A15D52500AC1793 /* TYImageCollectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYImageCollectView.swift; sourceTree = "<group>"; };
 		0870C2FB2A15DF4300AC1793 /* TYImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYImageScrollView.swift; sourceTree = "<group>"; };
+		0870C2FD2A1B1E3600AC1793 /* TYOprationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYOprationCell.swift; sourceTree = "<group>"; };
 		088010172A1489B100FFCA18 /* TYPictureMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TYPictureMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0880101A2A1489B100FFCA18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		088010232A1489B100FFCA18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				0870C2F52A14CEFA00AC1793 /* TYUpdownView.swift */,
 				0870C2F72A14E64800AC1793 /* TYProportionCell.swift */,
+				0870C2FD2A1B1E3600AC1793 /* TYOprationCell.swift */,
 				0870C2F92A15D52500AC1793 /* TYImageCollectView.swift */,
 				0870C2FB2A15DF4300AC1793 /* TYImageScrollView.swift */,
 			);
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0870C2FE2A1B1E3600AC1793 /* TYOprationCell.swift in Sources */,
 				0870C2F12A14A0AC00AC1793 /* TYMainViewController.swift in Sources */,
 				0870C2FC2A15DF4300AC1793 /* TYImageScrollView.swift in Sources */,
 				0870C2F42A14C55000AC1793 /* TYPictureStitchController.swift in Sources */,
