@@ -80,7 +80,7 @@ class TYPictureStitchController: UIViewController {
     }()
     
     // 图片展示视图
-    private var updownView :TYVerticalLayoutView?
+    private var updownView :TYNormalLayoutView?
     
     private var heightConstraint : Constraint?
     
@@ -133,7 +133,8 @@ class TYPictureStitchController: UIViewController {
     }
     
     func setupSubViews() {
-        let updownView = TYVerticalLayoutView(topImage: images.first!, bottomImage: images.last!)
+        let updownView = TYNormalLayoutView(images: images)
+        updownView.axis = .horizontal
         updownView.pandding = CGFloat(editInfo.borderCorner.pictureBorder)
         updownView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
         updownView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
