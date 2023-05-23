@@ -15,6 +15,13 @@ class TYImageScrollView : UIView {
         }
     }
     
+    var cornerRadio : CGFloat = 0 {
+        didSet {
+            scrollView.layer.cornerRadius = cornerRadio
+            scrollView.layer.masksToBounds = true
+        }
+    }
+    
     private lazy var scrollView: UIScrollView = {
         let sv = UIScrollView(frame: bounds)
         sv.showsHorizontalScrollIndicator = false

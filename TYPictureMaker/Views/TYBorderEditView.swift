@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class TYBorderEditView : UIView {
+    
+    var pictureObserver : Observable<Float>!
+    var imageBorderObserver : Observable<Float>!
+    var imageCornerRadioObserver : Observable<Float>!
     
     lazy var pictureSliderView : TYTextSliderView = {
         let v = TYTextSliderView()
@@ -39,6 +45,9 @@ class TYBorderEditView : UIView {
     init() {
         super.init(frame: .zero)
         setupSubviews()
+        pictureObserver = pictureSliderView.sliderObserver
+        imageBorderObserver = imageSliderView.sliderObserver
+        imageCornerRadioObserver = imageRadioSliderView.sliderObserver
     }
     
     required init?(coder: NSCoder) {
@@ -68,5 +77,9 @@ class TYBorderEditView : UIView {
             make.right.equalToSuperview().offset(-16)
             make.height.equalTo(44)
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("点击了TYBorderEditView")
     }
 }

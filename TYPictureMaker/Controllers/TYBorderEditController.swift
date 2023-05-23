@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class TYBorderEditController: UIViewController {
         
     var pictureBorderValue : Float
     var imageBorderValue : Float
     var imageCornerRadioValue : Float
+    
+    var pictureBorderObserver : Observable<Float>!
+    var imageBorderObserver : Observable<Float>!
+    var imageCornerRadioObserver : Observable<Float>!
     
     private lazy var borderEditView : TYBorderEditView = {
         let v = TYBorderEditView()
@@ -39,6 +45,11 @@ class TYBorderEditController: UIViewController {
         borderEditView.pictureSliderView.slider.value = pictureBorderValue
         borderEditView.imageSliderView.slider.value = imageBorderValue
         borderEditView.imageRadioSliderView.slider.value = imageCornerRadioValue
+        
+        pictureBorderObserver = borderEditView.pictureObserver
+        imageBorderObserver = borderEditView.imageBorderObserver
+        imageCornerRadioObserver = borderEditView.imageCornerRadioObserver
+        
         borderEditView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
             make.height.equalTo(200)

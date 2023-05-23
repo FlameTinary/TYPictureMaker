@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class TYPictureStitchController: UIViewController {
     
@@ -14,12 +16,30 @@ class TYPictureStitchController: UIViewController {
     
     private var editInfo : TYEditInfo!
     
+    private var disposeBag = DisposeBag()
+    
     // 操作item选中row
     private var oprationSelectedItem: TYOpration = .proportion {
         didSet {
             print("选中了\(oprationSelectedItem.toName())操作")
             if oprationSelectedItem == .border {
-                let vc = TYBorderEditController(pictureBorderValue: editInfo.borderCorner.pictureBorder, imageBorderValue: 5, imageCornerRadioValue: 20)
+                let vc = TYBorderEditController(pictureBorderValue: editInfo.borderCorner.pictureBorder, imageBorderValue: editInfo.borderCorner.imageBorder, imageCornerRadioValue: editInfo.borderCorner.imageCornerRadio)
+                
+                vc.pictureBorderObserver.subscribe(onNext: {[weak self] value in
+                    self?.updownView?.pandding = CGFloat(value)
+                    self?.editInfo.borderCorner.pictureBorder = value
+                }).disposed(by: self.disposeBag)
+                
+                vc.imageBorderObserver.subscribe(onNext: {[weak self] value in
+                    self?.updownView?.imagePandding = CGFloat(value)
+                    self?.editInfo.borderCorner.imageBorder = value
+                }).disposed(by: self.disposeBag)
+                
+                vc.imageCornerRadioObserver.subscribe(onNext: {[weak self] value in
+                    self?.updownView?.imageCornerRadio = CGFloat(value)
+                    self?.editInfo.borderCorner.imageCornerRadio = value
+                }).disposed(by: self.disposeBag)
+                
                 self.present(vc, animated: true)
             }
         }
@@ -107,9 +127,16 @@ class TYPictureStitchController: UIViewController {
         setupSubViews()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.disposeBag = DisposeBag()
+    }
+    
     func setupSubViews() {
         let updownView: TYUpdownView = TYUpdownView(topImage: images.first!, bottomImage: images.last!)
         updownView.pandding = CGFloat(editInfo.borderCorner.pictureBorder)
+        updownView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
+        updownView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
         bgView.addSubview(updownView)
         self.updownView = updownView
         // 按照默认选中的显示比例调整视图

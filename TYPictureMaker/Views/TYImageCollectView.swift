@@ -17,6 +17,12 @@ class TYImageCollectView : UIView {
         }
     }
     
+    var cornerRaido : CGFloat = 0 {
+        didSet {
+            imageScrollView.cornerRadio = cornerRaido
+        }
+    }
+    
     private lazy var imageScrollView : TYImageScrollView = {
         let scrollView = TYImageScrollView(with: UIImage(named: "blend")!)
         addSubview(scrollView)
@@ -37,7 +43,7 @@ class TYImageCollectView : UIView {
                 make.edges.equalToSuperview().inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
             }
         }
-        backgroundColor = .lightGray
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
@@ -53,6 +59,5 @@ class TYImageCollectView : UIView {
         imageScrollView.snp.remakeConstraints { make in
             make.edges.equalTo(self).inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
         }
-        layoutIfNeeded()
     }
 }

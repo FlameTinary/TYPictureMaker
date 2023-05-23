@@ -9,9 +9,9 @@ import Foundation
 
 class TYBorderCornerModel {
     
-    var imageBorder: Float = 2.0
-    var pictureBorder: Float = 1.0
-    var imageCornerRadio : Float = 4.0
+    var imageBorder: Float = 0.0
+    var pictureBorder: Float = 0.0
+    var imageCornerRadio : Float = 0.0
     
     init(imageBorder: Float, pictureBorder: Float, imageCornerRadio: Float) {
         self.imageBorder = imageBorder

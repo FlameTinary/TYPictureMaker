@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class TYTextSliderView : UIView {
         
+    var sliderObserver : Observable<Float>!
+    
     lazy var textLbl : UILabel = {
         let lbl = UILabel(frame: .zero)
         addSubview(lbl)
@@ -24,6 +28,7 @@ class TYTextSliderView : UIView {
     init() {
         super.init(frame: .zero)
         setupSubviews()
+        sliderObserver = slider.rx.value.asObservable()
     }
     
     required init?(coder: NSCoder) {

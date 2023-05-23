@@ -26,6 +26,12 @@ class TYUpdownView: UIView {
         }
     }
     
+    var imageCornerRadio : CGFloat = 0 {
+        didSet {
+            updateSubView(cornerRadio: imageCornerRadio)
+        }
+    }
+    
     init(topImage: UIImage, bottomImage: UIImage) {
         bgView = UIView(frame: .zero)
         
@@ -75,6 +81,16 @@ class TYUpdownView: UIView {
             if (imageView is TYImageCollectView) {
                 let imgView = imageView as! TYImageCollectView
                 imgView.pandding = pandding
+            }
+            
+        }
+    }
+    
+    func updateSubView(cornerRadio: CGFloat) {
+        bgView.subviews.forEach { imageView in
+            if (imageView is TYImageCollectView) {
+                let imgView = imageView as! TYImageCollectView
+                imgView.cornerRaido = cornerRadio
             }
             
         }
