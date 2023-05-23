@@ -19,6 +19,11 @@
 		088010272A1489B100FFCA18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 088010252A1489B100FFCA18 /* LaunchScreen.storyboard */; };
 		0887279E2A1B4ADF00F77D81 /* TYOprationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0887279D2A1B4ADF00F77D81 /* TYOprationEnum.swift */; };
 		088727A12A1B5C7E00F77D81 /* TYProportionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727A02A1B5C7E00F77D81 /* TYProportionEnum.swift */; };
+		088727A32A1B668E00F77D81 /* TYEditInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727A22A1B668E00F77D81 /* TYEditInfo.swift */; };
+		088727A52A1B6DC100F77D81 /* TYBorderEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727A42A1B6DC100F77D81 /* TYBorderEditController.swift */; };
+		088727A92A1B8D4800F77D81 /* TYBorderEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727A82A1B8D4800F77D81 /* TYBorderEditView.swift */; };
+		088727AB2A1B8EC200F77D81 /* TYTextSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727AA2A1B8EC200F77D81 /* TYTextSliderView.swift */; };
+		088727B02A1C9EB200F77D81 /* TYBorderCornerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727AF2A1C9EB200F77D81 /* TYBorderCornerModel.swift */; };
 		49D558BA9DDB2F6052E7CD9F /* Pods_TYPictureMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +43,11 @@
 		088010282A1489B100FFCA18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0887279D2A1B4ADF00F77D81 /* TYOprationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYOprationEnum.swift; sourceTree = "<group>"; };
 		088727A02A1B5C7E00F77D81 /* TYProportionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYProportionEnum.swift; sourceTree = "<group>"; };
+		088727A22A1B668E00F77D81 /* TYEditInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYEditInfo.swift; sourceTree = "<group>"; };
+		088727A42A1B6DC100F77D81 /* TYBorderEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYBorderEditController.swift; sourceTree = "<group>"; };
+		088727A82A1B8D4800F77D81 /* TYBorderEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYBorderEditView.swift; sourceTree = "<group>"; };
+		088727AA2A1B8EC200F77D81 /* TYTextSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYTextSliderView.swift; sourceTree = "<group>"; };
+		088727AF2A1C9EB200F77D81 /* TYBorderCornerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYBorderCornerModel.swift; sourceTree = "<group>"; };
 		484BF3AB2319ECA8E46487F6 /* Pods-TYPictureMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.release.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.release.xcconfig"; sourceTree = "<group>"; };
 		B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYPictureMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -62,6 +72,8 @@
 				0870C2FD2A1B1E3600AC1793 /* TYOprationCell.swift */,
 				0870C2F92A15D52500AC1793 /* TYImageCollectView.swift */,
 				0870C2FB2A15DF4300AC1793 /* TYImageScrollView.swift */,
+				088727A82A1B8D4800F77D81 /* TYBorderEditView.swift */,
+				088727AA2A1B8EC200F77D81 /* TYTextSliderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -69,6 +81,8 @@
 		0870C2ED2A14A04600AC1793 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				088727A22A1B668E00F77D81 /* TYEditInfo.swift */,
+				088727AF2A1C9EB200F77D81 /* TYBorderCornerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -78,6 +92,7 @@
 			children = (
 				0870C2F02A14A0AC00AC1793 /* TYMainViewController.swift */,
 				0870C2F32A14C55000AC1793 /* TYPictureStitchController.swift */,
+				088727A42A1B6DC100F77D81 /* TYBorderEditController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -272,11 +287,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				088727A52A1B6DC100F77D81 /* TYBorderEditController.swift in Sources */,
 				0870C2FE2A1B1E3600AC1793 /* TYOprationCell.swift in Sources */,
 				0870C2F12A14A0AC00AC1793 /* TYMainViewController.swift in Sources */,
 				0870C2FC2A15DF4300AC1793 /* TYImageScrollView.swift in Sources */,
+				088727A32A1B668E00F77D81 /* TYEditInfo.swift in Sources */,
 				0870C2F42A14C55000AC1793 /* TYPictureStitchController.swift in Sources */,
 				0870C2F62A14CEFA00AC1793 /* TYUpdownView.swift in Sources */,
+				088727AB2A1B8EC200F77D81 /* TYTextSliderView.swift in Sources */,
+				088727A92A1B8D4800F77D81 /* TYBorderEditView.swift in Sources */,
+				088727B02A1C9EB200F77D81 /* TYBorderCornerModel.swift in Sources */,
 				0870C2F82A14E64800AC1793 /* TYProportionCell.swift in Sources */,
 				0887279E2A1B4ADF00F77D81 /* TYOprationEnum.swift in Sources */,
 				088727A12A1B5C7E00F77D81 /* TYProportionEnum.swift in Sources */,

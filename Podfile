@@ -8,6 +8,8 @@ target 'TYPictureMaker' do
   # Pods for TYPictureMaker
   pod 'SnapKit', '~> 5.6.0'
   pod 'Moya', '~> 15.0'
+  pod 'RxSwift', '~> 5.0'
+  pod 'RxCocoa', '~> 5.0'
   pod 'ZLPhotoBrowser', '~> 4.4.1'
 
 end

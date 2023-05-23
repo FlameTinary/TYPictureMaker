@@ -39,10 +39,10 @@ class TYMainViewController: UIViewController  {
         // 打开相册
         let ps = ZLPhotoPreviewSheet()
         ps.selectImageBlock = { [weak self] results, isOriginal in
-            // your code
-            let images = results.map{$0.image}
-            let psVC = TYPictureStitchController(images: images)
+            
+            let psVC = TYPictureStitchController(images: results.map{$0.image})
             self?.navigationController?.pushViewController(psVC, animated: true)
+            
         }
         ps.showPhotoLibrary(sender: self)
     }

@@ -45,7 +45,7 @@ class TYUpdownView: UIView {
         bgView = UIView(frame: .zero)
         addSubview(bgView)
         bgView.snp.makeConstraints { make in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
         
         let topImageView = TYImageCollectView(with: topImage)
@@ -66,10 +66,10 @@ class TYUpdownView: UIView {
     
     func update(pandding: CGFloat) {
         bgView.snp.remakeConstraints { make in
-            make.edges.equalTo(self).inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
         }
-        layoutIfNeeded()
     }
+    
     func updateSubView(pandding: CGFloat) {
         bgView.subviews.forEach { imageView in
             if (imageView is TYImageCollectView) {

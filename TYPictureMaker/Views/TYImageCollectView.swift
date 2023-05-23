@@ -34,7 +34,7 @@ class TYImageCollectView : UIView {
             // TODO: 这里后期需要改成imageScrollView中的image非必选
             imageScrollView.image = image!
             imageScrollView.snp.makeConstraints { make in
-                make.edges.equalTo(self).inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
+                make.edges.equalToSuperview().inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
             }
         }
         backgroundColor = .lightGray

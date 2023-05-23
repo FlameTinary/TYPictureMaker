@@ -10,20 +10,20 @@ import SnapKit
 
 class TYPictureStitchController: UIViewController {
     
-    var images: [UIImage]?
+    var images : [UIImage]
     
-    private lazy var slider : UISlider = {
-        let s = UISlider(frame: .zero)
-        s.minimumValue = 0
-        s.maximumValue = 20
-        s.value = 0
-        s.addTarget(self, action: #selector(sliderDidChanged), for: .valueChanged)
-        view.addSubview(s)
-        return s
-    }()
+    private var editInfo : TYEditInfo!
     
     // 操作item选中row
-    private var oprationSelectedItem: TYOpration = .proportion
+    private var oprationSelectedItem: TYOpration = .proportion {
+        didSet {
+            print("选中了\(oprationSelectedItem.toName())操作")
+            if oprationSelectedItem == .border {
+                let vc = TYBorderEditController(pictureBorderValue: editInfo.borderCorner.pictureBorder, imageBorderValue: 5, imageCornerRadioValue: 20)
+                self.present(vc, animated: true)
+            }
+        }
+    }
     
     // 比例item选中的row
     private var proportionSelectedItem : TYProportion = .oneToOne {
@@ -53,7 +53,7 @@ class TYPictureStitchController: UIViewController {
         bgView.snp.makeConstraints { make in
             make.centerX.equalTo(view)
             make.centerY.equalTo(view).offset(-50)
-            make.width.equalTo(view)
+            make.width.equalToSuperview()
             make.height.equalTo(bgView.snp.width)
         }
         return bgView
@@ -91,10 +91,11 @@ class TYPictureStitchController: UIViewController {
         collectionView.register(TYProportionCell.self, forCellWithReuseIdentifier: "cellId")
         return collectionView
     }()
-    
+
     init(images: [UIImage]) {
-        super.init(nibName: nil, bundle: nil)
         self.images = images
+        editInfo = TYEditInfo(images: images)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -107,25 +108,14 @@ class TYPictureStitchController: UIViewController {
     }
     
     func setupSubViews() {
-        guard let images = self.images else {
-            return
-        }
-        
         let updownView: TYUpdownView = TYUpdownView(topImage: images.first!, bottomImage: images.last!)
+        updownView.pandding = CGFloat(editInfo.borderCorner.pictureBorder)
         bgView.addSubview(updownView)
         self.updownView = updownView
         // 按照默认选中的显示比例调整视图
         updownView.snp.makeConstraints { make in
             make.edges.equalTo(bgView)
         }
-        
-        slider.snp.makeConstraints { make in
-            make.top.equalTo(bgView.snp.bottom).offset(20)
-            make.left.equalTo(view).offset(20)
-            make.right.equalTo(view).offset(-20)
-        }
-        
-        updownView.pandding = CGFloat(slider.value)
         
         // 操作列表
         // 进入页面默认选中第一个
@@ -147,11 +137,6 @@ class TYPictureStitchController: UIViewController {
             make.bottom.equalTo(oprationListView.snp_topMargin)
         }
     }
-    
-    // 滑块滑动
-    @objc func sliderDidChanged(slider: UISlider) {
-        updownView?.imagePandding = CGFloat(slider.value)
-    }
 }
 
 // collection view delegate & data source
@@ -166,7 +151,7 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if (collectionView.tag == 2) {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oprationCellId", for: indexPath) as! TYOprationCell
-            cell.text = TYOpration.oprationName(rawValue: indexPath.item)
+            cell.text = TYOpration(rawValue: indexPath.item)?.toName()
             cell.isSelected = indexPath.item == oprationSelectedItem.rawValue
             return cell
         } else {
