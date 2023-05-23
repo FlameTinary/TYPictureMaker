@@ -3,12 +3,12 @@
 //  TYPictureMaker
 //
 //  Created by Sheldon Tian on 2023/5/17.
-//
+//  正常垂直布局
 
 import UIKit
 import SnapKit
 
-class TYUpdownView: UIView {
+class TYVerticalLayoutView: UIView {
     var topImage: UIImage
     var bottomImage: UIImage
     

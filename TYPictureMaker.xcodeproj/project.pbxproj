@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0870C2F12A14A0AC00AC1793 /* TYMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F02A14A0AC00AC1793 /* TYMainViewController.swift */; };
 		0870C2F42A14C55000AC1793 /* TYPictureStitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F32A14C55000AC1793 /* TYPictureStitchController.swift */; };
-		0870C2F62A14CEFA00AC1793 /* TYUpdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F52A14CEFA00AC1793 /* TYUpdownView.swift */; };
+		0870C2F62A14CEFA00AC1793 /* TYVerticalLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F52A14CEFA00AC1793 /* TYVerticalLayoutView.swift */; };
 		0870C2F82A14E64800AC1793 /* TYProportionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F72A14E64800AC1793 /* TYProportionCell.swift */; };
 		0870C2FA2A15D52500AC1793 /* TYImageCollectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F92A15D52500AC1793 /* TYImageCollectView.swift */; };
 		0870C2FC2A15DF4300AC1793 /* TYImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2FB2A15DF4300AC1793 /* TYImageScrollView.swift */; };
@@ -31,7 +31,7 @@
 		05264E615431AA850528777C /* Pods-TYPictureMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.debug.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		0870C2F02A14A0AC00AC1793 /* TYMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYMainViewController.swift; sourceTree = "<group>"; };
 		0870C2F32A14C55000AC1793 /* TYPictureStitchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYPictureStitchController.swift; sourceTree = "<group>"; };
-		0870C2F52A14CEFA00AC1793 /* TYUpdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYUpdownView.swift; sourceTree = "<group>"; };
+		0870C2F52A14CEFA00AC1793 /* TYVerticalLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYVerticalLayoutView.swift; sourceTree = "<group>"; };
 		0870C2F72A14E64800AC1793 /* TYProportionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYProportionCell.swift; sourceTree = "<group>"; };
 		0870C2F92A15D52500AC1793 /* TYImageCollectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYImageCollectView.swift; sourceTree = "<group>"; };
 		0870C2FB2A15DF4300AC1793 /* TYImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYImageScrollView.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 		0870C2EC2A14A03B00AC1793 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0870C2F52A14CEFA00AC1793 /* TYUpdownView.swift */,
+				0870C2F52A14CEFA00AC1793 /* TYVerticalLayoutView.swift */,
 				0870C2F72A14E64800AC1793 /* TYProportionCell.swift */,
 				0870C2FD2A1B1E3600AC1793 /* TYOprationCell.swift */,
 				0870C2F92A15D52500AC1793 /* TYImageCollectView.swift */,
@@ -293,7 +293,7 @@
 				0870C2FC2A15DF4300AC1793 /* TYImageScrollView.swift in Sources */,
 				088727A32A1B668E00F77D81 /* TYEditInfo.swift in Sources */,
 				0870C2F42A14C55000AC1793 /* TYPictureStitchController.swift in Sources */,
-				0870C2F62A14CEFA00AC1793 /* TYUpdownView.swift in Sources */,
+				0870C2F62A14CEFA00AC1793 /* TYVerticalLayoutView.swift in Sources */,
 				088727AB2A1B8EC200F77D81 /* TYTextSliderView.swift in Sources */,
 				088727A92A1B8D4800F77D81 /* TYBorderEditView.swift in Sources */,
 				088727B02A1C9EB200F77D81 /* TYBorderCornerModel.swift in Sources */,
