@@ -113,7 +113,13 @@ class TYPictureStitchController: TYBaseViewController {
     
     override func setupSubviews() {
         let updownView = TYNormalLayoutView(images: images)
-        updownView.axis = .horizontal
+        switch editInfo.layout {
+            
+        case .vertical:
+            updownView.axis = .vertical
+        case .horizontal:
+            updownView.axis = .horizontal
+        }
         updownView.pandding = CGFloat(editInfo.borderCorner.pictureBorder)
         updownView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
         updownView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
@@ -189,6 +195,23 @@ extension TYPictureStitchController {
         case .layout:
             print("present layout controller")
             let vc = TYLayoutEditController()
+            vc.selectedLayoutEdit = editInfo.layout
+            vc.itemSelectedObserver.subscribe(onNext: {[weak self] indexPath in
+                
+                let editEnum = TYLayoutEditEnum(rawValue: indexPath.item)
+                if nil != editEnum {
+                    self?.editInfo.layout = editEnum!
+                }
+                switch editEnum {
+                case .vertical:
+                    self?.updownView?.axis = .vertical
+                case .horizontal:
+                    self?.updownView?.axis = .horizontal
+                case .none:
+                    self?.updownView?.axis = .vertical
+                }
+                
+            }).disposed(by: self.disposeBag)
             present(vc, animated: true)
         case .border:
             do {
