@@ -25,25 +25,6 @@ class TYPictureStitchController: TYBaseViewController {
         }
     }
     
-    // 比例item选中的row
-    private var proportionSelectedItem : TYProportion = .oneToOne {
-        didSet {
-            // 选中item后按照选中的比例调整updownView视图的显示
-            let radio = proportionSelectedItem.toRadio()
-            self.updownView!.snp.remakeConstraints { make in
-                make.center.equalToSuperview()
-                if radio > 1 {
-                    make.width.equalToSuperview()
-                    make.height.equalToSuperview().dividedBy(radio)
-                } else {
-                    make.height.equalToSuperview()
-                    make.width.equalToSuperview().multipliedBy(radio)
-                }
-                
-            }
-        }
-    }
-    
     // 图片展示底视图，用于约束图片展示视图不超过屏幕
     private lazy var bgView : UIView = {
         let bgView = UIView()
@@ -76,18 +57,6 @@ class TYPictureStitchController: TYBaseViewController {
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        return collectionView
-    }()
-    
-    // 图片比例列表
-    private lazy var proportionListView : UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 1
-        layout.minimumInteritemSpacing = 1
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(TYProportionCell.self, forCellWithReuseIdentifier: "cellId")
         return collectionView
     }()
 
@@ -138,49 +107,24 @@ class TYPictureStitchController: TYBaseViewController {
             make.left.right.equalTo(0)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
-        // 比例列表
-        proportionListView.delegate = self
-        proportionListView.dataSource = self
-        view.addSubview(proportionListView)
-        // 进入页面默认选中第一个
-        proportionListView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .top)
-        proportionListView.snp.makeConstraints { make in
-            make.height.equalTo(30)
-            make.left.right.equalTo(0)
-            make.bottom.equalTo(oprationListView.snp_topMargin)
-        }
     }
 }
 
 // collection view delegate & data source
 extension TYPictureStitchController: UICollectionViewDelegate & UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (collectionView.tag == 2) {
-            return TYOpration.allCases.count
-        }
-        return TYProportion.allCases.count
+        return TYOpration.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if (collectionView.tag == 2) {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oprationCellId", for: indexPath) as! TYOprationCell
-            cell.text = TYOpration(rawValue: indexPath.item)?.toName()
-            cell.isSelected = indexPath.item == oprationSelectedItem.rawValue
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! TYProportionCell
-            cell.text = TYProportion(rawValue: indexPath.item)?.toName()
-            cell.isSelected = indexPath.item == proportionSelectedItem.rawValue
-            return cell
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oprationCellId", for: indexPath) as! TYOprationCell
+        cell.text = TYOpration(rawValue: indexPath.item)?.toName()
+        cell.isSelected = indexPath.item == oprationSelectedItem.rawValue
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if (collectionView.tag == 2) {
-            oprationSelectedItem = TYOpration(rawValue: indexPath.item)!
-        }else {
-            proportionSelectedItem = TYProportion(rawValue: indexPath.item)!
-        }
+        oprationSelectedItem = TYOpration(rawValue: indexPath.item)!
     }
      
 }
@@ -191,7 +135,32 @@ extension TYPictureStitchController {
         switch opration {
 
         case .proportion:
-            print("present proportion controller")
+            let vc = TYProportionEditController()
+            vc.selectedProportion = editInfo.proportion
+            vc.itemSelectedObserver.subscribe(onNext: { [weak self] indexPath in
+                let proportionEdit = TYProportion(rawValue: indexPath.item)
+                
+                if (nil != proportionEdit) {
+                    self?.editInfo.proportion = proportionEdit!
+                }
+                
+                // 选中item后按照选中的比例调整updownView视图的显示
+                let radio = proportionEdit!.toRadio()
+                self?.updownView!.snp.remakeConstraints { make in
+                    make.center.equalToSuperview()
+                    if radio > 1 {
+                        make.width.equalToSuperview()
+                        make.height.equalToSuperview().dividedBy(radio)
+                    } else {
+                        make.height.equalToSuperview()
+                        make.width.equalToSuperview().multipliedBy(radio)
+                    }
+                    
+                }
+                
+                
+            }).disposed(by: self.disposeBag)
+            present(vc, animated: true)
         case .layout:
             print("present layout controller")
             let vc = TYLayoutEditController()

@@ -55,4 +55,5 @@ class TYProportionCell: UICollectionViewCell {
         super.layoutSubviews()
         textLbl.frame = contentView.bounds
     }
+
 }

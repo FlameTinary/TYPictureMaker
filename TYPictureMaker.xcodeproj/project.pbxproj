@@ -30,6 +30,7 @@
 		088727BA2A1DBA0700F77D81 /* TYBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727B92A1DBA0700F77D81 /* TYBaseView.swift */; };
 		088727BC2A1DC20400F77D81 /* TYLayoutEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727BB2A1DC20400F77D81 /* TYLayoutEditCell.swift */; };
 		088727BE2A1DCE1100F77D81 /* TYLayoutEditEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727BD2A1DCE1100F77D81 /* TYLayoutEditEnum.swift */; };
+		088727C02A1DE89000F77D81 /* TYProportionEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727BF2A1DE89000F77D81 /* TYProportionEditController.swift */; };
 		49D558BA9DDB2F6052E7CD9F /* Pods_TYPictureMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		088727B92A1DBA0700F77D81 /* TYBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYBaseView.swift; sourceTree = "<group>"; };
 		088727BB2A1DC20400F77D81 /* TYLayoutEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLayoutEditCell.swift; sourceTree = "<group>"; };
 		088727BD2A1DCE1100F77D81 /* TYLayoutEditEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLayoutEditEnum.swift; sourceTree = "<group>"; };
+		088727BF2A1DE89000F77D81 /* TYProportionEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYProportionEditController.swift; sourceTree = "<group>"; };
 		484BF3AB2319ECA8E46487F6 /* Pods-TYPictureMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.release.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.release.xcconfig"; sourceTree = "<group>"; };
 		B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYPictureMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 				088727B52A1D15C200F77D81 /* TYOprationEditController.swift */,
 				088727A42A1B6DC100F77D81 /* TYBorderEditController.swift */,
 				088727B32A1CE40300F77D81 /* TYLayoutEditController.swift */,
+				088727BF2A1DE89000F77D81 /* TYProportionEditController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				088727BC2A1DC20400F77D81 /* TYLayoutEditCell.swift in Sources */,
 				088727A12A1B5C7E00F77D81 /* TYProportionEnum.swift in Sources */,
 				088727B62A1D15C200F77D81 /* TYOprationEditController.swift in Sources */,
+				088727C02A1DE89000F77D81 /* TYProportionEditController.swift in Sources */,
 				0870C2FA2A15D52500AC1793 /* TYImageCollectView.swift in Sources */,
 				0880101B2A1489B100FFCA18 /* AppDelegate.swift in Sources */,
 				088727B82A1DB74C00F77D81 /* TYBaseViewController.swift in Sources */,
