@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TYBorderEditView : UIView {
+class TYBorderEditView : TYBaseView {
     
     var pictureObserver : Observable<Float>!
     var imageBorderObserver : Observable<Float>!
@@ -41,10 +41,8 @@ class TYBorderEditView : UIView {
         addSubview(v)
         return v
     }()
-    
-    init() {
-        super.init(frame: .zero)
-        setupSubviews()
+    override init() {
+        super.init()
         pictureObserver = pictureSliderView.sliderObserver
         imageBorderObserver = imageSliderView.sliderObserver
         imageCornerRadioObserver = imageRadioSliderView.sliderObserver
@@ -53,10 +51,7 @@ class TYBorderEditView : UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    func setupSubviews() {
-        
+    override func setupSubviews() {
         pictureSliderView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(10)

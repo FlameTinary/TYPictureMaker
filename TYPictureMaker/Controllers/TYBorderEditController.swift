@@ -3,13 +3,13 @@
 //  TYPictureMaker
 //
 //  Created by Sheldon Tian on 2023/5/22.
-//
+//  边框控制器
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-class TYBorderEditController: UIViewController {
+class TYBorderEditController: TYOprationEditController {
         
     var pictureBorderValue : Float
     var imageBorderValue : Float
@@ -22,18 +22,19 @@ class TYBorderEditController: UIViewController {
     private lazy var borderEditView : TYBorderEditView = {
         let v = TYBorderEditView()
         v.backgroundColor = .red
-        view.addSubview(v)
         return v
     }()
     
     init(pictureBorderValue : Float, imageBorderValue : Float, imageCornerRadioValue : Float) {
+        
         self.pictureBorderValue = pictureBorderValue
         self.imageBorderValue = imageBorderValue
         self.imageCornerRadioValue = imageCornerRadioValue
-        super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = .clear
-        modalPresentationStyle = .custom;
-        modalTransitionStyle = .crossDissolve;
+        super.init()
+        pictureBorderObserver = borderEditView.pictureObserver
+        imageBorderObserver = borderEditView.imageBorderObserver
+        imageCornerRadioObserver = borderEditView.imageCornerRadioObserver
+        
     }
     
     required init?(coder: NSCoder) {
@@ -46,9 +47,10 @@ class TYBorderEditController: UIViewController {
         borderEditView.imageSliderView.slider.value = imageBorderValue
         borderEditView.imageRadioSliderView.slider.value = imageCornerRadioValue
         
-        pictureBorderObserver = borderEditView.pictureObserver
-        imageBorderObserver = borderEditView.imageBorderObserver
-        imageCornerRadioObserver = borderEditView.imageCornerRadioObserver
+    }
+    
+    override func setupSubviews() {
+        view.addSubview(borderEditView)
         
         borderEditView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
@@ -56,8 +58,4 @@ class TYBorderEditController: UIViewController {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        dismiss(animated: true)
-    }
 }

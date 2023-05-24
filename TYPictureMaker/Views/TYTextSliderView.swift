@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TYTextSliderView : UIView {
+class TYTextSliderView : TYBaseView {
         
     var sliderObserver : Observable<Float>!
     
@@ -24,18 +24,15 @@ class TYTextSliderView : UIView {
         addSubview(s)
         return s
     }()
-    
-    init() {
-        super.init(frame: .zero)
-        setupSubviews()
+    override init() {
+        super.init()
         sliderObserver = slider.rx.value.asObservable()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func setupSubviews() {
+    override func setupSubviews() {
         textLbl.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview()
@@ -46,4 +43,5 @@ class TYTextSliderView : UIView {
             make.right.equalToSuperview()
         }
     }
+    
 }

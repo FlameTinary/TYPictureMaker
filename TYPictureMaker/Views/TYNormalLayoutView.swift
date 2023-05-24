@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class TYNormalLayoutView: UIView {
+class TYNormalLayoutView: TYBaseView {
     var images : [UIImage]
     
     var axis : NSLayoutConstraint.Axis = .vertical {
@@ -18,9 +18,7 @@ class TYNormalLayoutView: UIView {
     }
     
     private lazy var stackView : UIStackView = {
-        let imageViews : [TYImageCollectView] = images.map { image in
-            TYImageCollectView(with: image)
-        }
+        let imageViews : [TYImageCollectView] = images.map { image in TYImageCollectView(with: image)}
         let stackView = UIStackView(arrangedSubviews: imageViews)
         stackView.axis = axis
         stackView.alignment = .fill
@@ -49,8 +47,7 @@ class TYNormalLayoutView: UIView {
     
     init(images: [UIImage]) {
         self.images = images
-        super.init(frame: .zero)
-        setupSubViews()
+        super.init()
         backgroundColor = .white
         
     }
@@ -58,8 +55,7 @@ class TYNormalLayoutView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func setupSubViews() {
+    override func setupSubviews() {
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }

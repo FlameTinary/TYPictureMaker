@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TYImageScrollView : UIView {
+class TYImageScrollView : TYBaseView {
     
     var image: UIImage {
         didSet {
@@ -41,8 +41,7 @@ class TYImageScrollView : UIView {
     
     init(with image: UIImage) {
         self.image = image
-        super.init(frame: .zero)
-//        imageView.image = image
+        super.init()
         backgroundColor = .white
         
     }

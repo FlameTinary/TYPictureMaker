@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class TYPictureStitchController: UIViewController {
+class TYPictureStitchController: TYBaseViewController {
     
     var images : [UIImage]
     
@@ -21,27 +21,7 @@ class TYPictureStitchController: UIViewController {
     // 操作item选中row
     private var oprationSelectedItem: TYOpration = .proportion {
         didSet {
-            print("选中了\(oprationSelectedItem.toName())操作")
-            if oprationSelectedItem == .border {
-                let vc = TYBorderEditController(pictureBorderValue: editInfo.borderCorner.pictureBorder, imageBorderValue: editInfo.borderCorner.imageBorder, imageCornerRadioValue: editInfo.borderCorner.imageCornerRadio)
-                
-                vc.pictureBorderObserver.subscribe(onNext: {[weak self] value in
-                    self?.updownView?.pandding = CGFloat(value)
-                    self?.editInfo.borderCorner.pictureBorder = value
-                }).disposed(by: self.disposeBag)
-                
-                vc.imageBorderObserver.subscribe(onNext: {[weak self] value in
-                    self?.updownView?.imagePandding = CGFloat(value)
-                    self?.editInfo.borderCorner.imageBorder = value
-                }).disposed(by: self.disposeBag)
-                
-                vc.imageCornerRadioObserver.subscribe(onNext: {[weak self] value in
-                    self?.updownView?.imageCornerRadio = CGFloat(value)
-                    self?.editInfo.borderCorner.imageCornerRadio = value
-                }).disposed(by: self.disposeBag)
-                
-                self.present(vc, animated: true)
-            }
+            presentOprationController(with: oprationSelectedItem)
         }
     }
     
@@ -61,7 +41,6 @@ class TYPictureStitchController: UIViewController {
                 }
                 
             }
-            view.layoutIfNeeded()
         }
     }
     
@@ -123,8 +102,8 @@ class TYPictureStitchController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = .black
-        setupSubViews()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -132,7 +111,7 @@ class TYPictureStitchController: UIViewController {
         self.disposeBag = DisposeBag()
     }
     
-    func setupSubViews() {
+    override func setupSubviews() {
         let updownView = TYNormalLayoutView(images: images)
         updownView.axis = .horizontal
         updownView.pandding = CGFloat(editInfo.borderCorner.pictureBorder)
@@ -198,6 +177,58 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
         }
     }
      
+}
+
+extension TYPictureStitchController {
+    // 跳转操作控制器
+    func presentOprationController(with opration: TYOpration) {
+        switch opration {
+
+        case .proportion:
+            print("present proportion controller")
+        case .layout:
+            print("present layout controller")
+            let vc = TYLayoutEditController()
+            present(vc, animated: true)
+        case .border:
+            do {
+                print("present border controller")
+                let vc = TYBorderEditController(pictureBorderValue: editInfo.borderCorner.pictureBorder, imageBorderValue: editInfo.borderCorner.imageBorder, imageCornerRadioValue: editInfo.borderCorner.imageCornerRadio)
+                
+                vc.pictureBorderObserver.subscribe(onNext: {[weak self] value in
+                    self?.updownView?.pandding = CGFloat(value)
+                    self?.editInfo.borderCorner.pictureBorder = value
+                }).disposed(by: self.disposeBag)
+
+                vc.imageBorderObserver.subscribe(onNext: {[weak self] value in
+                    self?.updownView?.imagePandding = CGFloat(value)
+                    self?.editInfo.borderCorner.imageBorder = value
+                }).disposed(by: self.disposeBag)
+
+                vc.imageCornerRadioObserver.subscribe(onNext: {[weak self] value in
+                    self?.updownView?.imageCornerRadio = CGFloat(value)
+                    self?.editInfo.borderCorner.imageCornerRadio = value
+                }).disposed(by: self.disposeBag)
+                
+                self.present(vc, animated: true)
+            }
+            
+        case .background:
+            print("present background controller")
+        case .filter:
+            print("present filter controller")
+        case .texture:
+            print("present texture controller")
+        case .text:
+            print("present text controller")
+        case .sticker:
+            print("present sticker controller")
+        case .pictureFrame:
+            print("present pictureFrame controller")
+        case .addImage:
+            print("present addImage controller")
+        }
+    }
 }
 
 extension TYPictureStitchController: UICollectionViewDelegateFlowLayout {

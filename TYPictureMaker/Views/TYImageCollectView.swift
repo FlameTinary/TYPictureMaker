@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TYImageCollectView : UIView {
+class TYImageCollectView : TYBaseView {
     
     var image: UIImage?
     
@@ -29,12 +29,12 @@ class TYImageCollectView : UIView {
         return scrollView
     }()
     
-    convenience init() {
-        self.init(with: nil)
-    }
+//    convenience init() {
+//        self.init(with: nil)
+//    }
     
     init(with image: UIImage?) {
-        super.init(frame: .zero)
+        super.init()
         if let img = image {
             self.image = img
             // TODO: 这里后期需要改成imageScrollView中的image非必选
