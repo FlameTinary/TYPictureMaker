@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class TYPictureStitchController: TYBaseViewController {
+class TYPictureStitchController: TYOprationEditController {
     
     var images : [UIImage]
     
@@ -26,17 +26,10 @@ class TYPictureStitchController: TYBaseViewController {
     }
     
     // 图片展示底视图，用于约束图片展示视图不超过屏幕
-    private lazy var bgView : UIView = {
-        let bgView = UIView()
-        bgView.backgroundColor = .black
-        view.addSubview(bgView)
-        bgView.snp.makeConstraints { make in
-            make.centerX.equalTo(view)
-            make.centerY.equalTo(view).offset(-50)
-            make.width.equalToSuperview()
-            make.height.equalTo(bgView.snp.width)
-        }
-        return bgView
+    private lazy var imageContentView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
     }()
     
     // 图片展示视图
@@ -50,20 +43,23 @@ class TYPictureStitchController: TYBaseViewController {
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = CGSize(width: 80, height: 50)
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.tag = 2
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(TYOprationCell.self, forCellWithReuseIdentifier: "oprationCellId")
-        view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
 
     init(images: [UIImage]) {
         self.images = images
         editInfo = TYEditInfo(images: images)
-        super.init(nibName: nil, bundle: nil)
+        super.init()
+        
+        
     }
     
     required init?(coder: NSCoder) {
@@ -81,6 +77,10 @@ class TYPictureStitchController: TYBaseViewController {
     }
     
     override func setupSubviews() {
+        super.setupSubviews()
+        alertView.addSubview(oprationListView)
+        view.addSubview(imageContentView)
+        
         let updownView = TYNormalLayoutView(images: images)
         switch editInfo.layout {
             
@@ -92,21 +92,31 @@ class TYPictureStitchController: TYBaseViewController {
         updownView.pandding = CGFloat(editInfo.borderCorner.pictureBorder)
         updownView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
         updownView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
-        bgView.addSubview(updownView)
+        imageContentView.addSubview(updownView)
         self.updownView = updownView
-        // 按照默认选中的显示比例调整视图
-        updownView.snp.makeConstraints { make in
-            make.edges.equalTo(bgView)
+        
+        alertView.snp.remakeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.height.equalTo(100)
         }
         
-        // 操作列表
-        // 进入页面默认选中第一个
-        oprationListView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .top)
         oprationListView.snp.makeConstraints { make in
-            make.height.equalTo(44)
-            make.left.right.equalTo(0)
+            make.left.right.top.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+        
+        imageContentView.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.centerY.equalTo(view).offset(-50)
+            make.width.equalToSuperview()
+            make.height.equalTo(imageContentView.snp.width)
+        }
+
+        updownView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        
     }
 }
 
@@ -220,11 +230,5 @@ extension TYPictureStitchController {
         case .addImage:
             print("present addImage controller")
         }
-    }
-}
-
-extension TYPictureStitchController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 30)
     }
 }
