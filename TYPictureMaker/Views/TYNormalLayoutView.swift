@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class TYNormalLayoutView: TYBaseView {
+    
     var images : [UIImage]
     
     var axis : NSLayoutConstraint.Axis = .vertical {

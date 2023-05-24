@@ -43,7 +43,7 @@ class TYImageCollectView : TYBaseView {
                 make.edges.equalToSuperview().inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
             }
         }
-        backgroundColor = .white
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

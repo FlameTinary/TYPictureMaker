@@ -31,6 +31,9 @@
 		088727BC2A1DC20400F77D81 /* TYLayoutEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727BB2A1DC20400F77D81 /* TYLayoutEditCell.swift */; };
 		088727BE2A1DCE1100F77D81 /* TYLayoutEditEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727BD2A1DCE1100F77D81 /* TYLayoutEditEnum.swift */; };
 		088727C02A1DE89000F77D81 /* TYProportionEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727BF2A1DE89000F77D81 /* TYProportionEditController.swift */; };
+		088727C22A1DFF2E00F77D81 /* TYPictureBackgroundEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727C12A1DFF2E00F77D81 /* TYPictureBackgroundEditController.swift */; };
+		088727C42A1E00A300F77D81 /* TYBackgroundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727C32A1E00A300F77D81 /* TYBackgroundCell.swift */; };
+		088727C62A1E026900F77D81 /* TYBackgroundColorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727C52A1E026900F77D81 /* TYBackgroundColorEnum.swift */; };
 		49D558BA9DDB2F6052E7CD9F /* Pods_TYPictureMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +65,9 @@
 		088727BB2A1DC20400F77D81 /* TYLayoutEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLayoutEditCell.swift; sourceTree = "<group>"; };
 		088727BD2A1DCE1100F77D81 /* TYLayoutEditEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLayoutEditEnum.swift; sourceTree = "<group>"; };
 		088727BF2A1DE89000F77D81 /* TYProportionEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYProportionEditController.swift; sourceTree = "<group>"; };
+		088727C12A1DFF2E00F77D81 /* TYPictureBackgroundEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYPictureBackgroundEditController.swift; sourceTree = "<group>"; };
+		088727C32A1E00A300F77D81 /* TYBackgroundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYBackgroundCell.swift; sourceTree = "<group>"; };
+		088727C52A1E026900F77D81 /* TYBackgroundColorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYBackgroundColorEnum.swift; sourceTree = "<group>"; };
 		484BF3AB2319ECA8E46487F6 /* Pods-TYPictureMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.release.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.release.xcconfig"; sourceTree = "<group>"; };
 		B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYPictureMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -82,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				0870C2F52A14CEFA00AC1793 /* TYNormalLayoutView.swift */,
+				088727C32A1E00A300F77D81 /* TYBackgroundCell.swift */,
 				0870C2F72A14E64800AC1793 /* TYProportionCell.swift */,
 				0870C2FD2A1B1E3600AC1793 /* TYOprationCell.swift */,
 				0870C2F92A15D52500AC1793 /* TYImageCollectView.swift */,
@@ -107,6 +114,7 @@
 			children = (
 				0870C2F02A14A0AC00AC1793 /* TYMainViewController.swift */,
 				0870C2F32A14C55000AC1793 /* TYPictureStitchController.swift */,
+				088727C12A1DFF2E00F77D81 /* TYPictureBackgroundEditController.swift */,
 				088727B52A1D15C200F77D81 /* TYOprationEditController.swift */,
 				088727A42A1B6DC100F77D81 /* TYBorderEditController.swift */,
 				088727B32A1CE40300F77D81 /* TYLayoutEditController.swift */,
@@ -139,6 +147,7 @@
 				0887279D2A1B4ADF00F77D81 /* TYOprationEnum.swift */,
 				088727A02A1B5C7E00F77D81 /* TYProportionEnum.swift */,
 				088727BD2A1DCE1100F77D81 /* TYLayoutEditEnum.swift */,
+				088727C52A1E026900F77D81 /* TYBackgroundColorEnum.swift */,
 				088727B72A1DB74C00F77D81 /* TYBaseViewController.swift */,
 				088727B92A1DBA0700F77D81 /* TYBaseView.swift */,
 			);
@@ -316,11 +325,14 @@
 				088727A32A1B668E00F77D81 /* TYEditInfo.swift in Sources */,
 				0870C2F42A14C55000AC1793 /* TYPictureStitchController.swift in Sources */,
 				0870C2F62A14CEFA00AC1793 /* TYNormalLayoutView.swift in Sources */,
+				088727C62A1E026900F77D81 /* TYBackgroundColorEnum.swift in Sources */,
 				088727AB2A1B8EC200F77D81 /* TYTextSliderView.swift in Sources */,
+				088727C22A1DFF2E00F77D81 /* TYPictureBackgroundEditController.swift in Sources */,
 				088727A92A1B8D4800F77D81 /* TYBorderEditView.swift in Sources */,
 				088727B02A1C9EB200F77D81 /* TYBorderCornerModel.swift in Sources */,
 				0870C2F82A14E64800AC1793 /* TYProportionCell.swift in Sources */,
 				088727BA2A1DBA0700F77D81 /* TYBaseView.swift in Sources */,
+				088727C42A1E00A300F77D81 /* TYBackgroundCell.swift in Sources */,
 				0887279E2A1B4ADF00F77D81 /* TYOprationEnum.swift in Sources */,
 				088727B42A1CE40300F77D81 /* TYLayoutEditController.swift in Sources */,
 				088727BC2A1DC20400F77D81 /* TYLayoutEditCell.swift in Sources */,

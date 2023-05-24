@@ -26,6 +26,7 @@ class TYImageScrollView : TYBaseView {
         let sv = UIScrollView(frame: bounds)
         sv.showsHorizontalScrollIndicator = false
         sv.showsVerticalScrollIndicator = false
+        sv.backgroundColor = .clear
         sv.delegate = self
         sv.minimumZoomScale = 1
         sv.maximumZoomScale = 2
@@ -42,7 +43,7 @@ class TYImageScrollView : TYBaseView {
     init(with image: UIImage) {
         self.image = image
         super.init()
-        backgroundColor = .white
+        backgroundColor = .clear
         
     }
     

@@ -13,7 +13,7 @@ import RxCocoa
 class TYPictureStitchController: TYOprationEditController {
     
     var images : [UIImage]
-    
+        
     private var editInfo : TYEditInfo!
     
     private var disposeBag = DisposeBag()
@@ -33,9 +33,7 @@ class TYPictureStitchController: TYOprationEditController {
     }()
     
     // 图片展示视图
-    private var updownView :TYNormalLayoutView?
-    
-    private var heightConstraint : Constraint?
+    private var imageEditView :TYNormalLayoutView?
     
     // 底部操作列表
     private lazy var oprationListView : UICollectionView = {
@@ -59,7 +57,6 @@ class TYPictureStitchController: TYOprationEditController {
         editInfo = TYEditInfo(images: images)
         super.init()
         
-        
     }
     
     required init?(coder: NSCoder) {
@@ -81,19 +78,20 @@ class TYPictureStitchController: TYOprationEditController {
         alertView.addSubview(oprationListView)
         view.addSubview(imageContentView)
         
-        let updownView = TYNormalLayoutView(images: images)
+        let imageEditView = TYNormalLayoutView(images: images)
+        imageEditView.backgroundColor = editInfo.backgroundColor.color()
         switch editInfo.layout {
             
         case .vertical:
-            updownView.axis = .vertical
+            imageEditView.axis = .vertical
         case .horizontal:
-            updownView.axis = .horizontal
+            imageEditView.axis = .horizontal
         }
-        updownView.pandding = CGFloat(editInfo.borderCorner.pictureBorder)
-        updownView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
-        updownView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
-        imageContentView.addSubview(updownView)
-        self.updownView = updownView
+        imageEditView.pandding = CGFloat(editInfo.borderCorner.pictureBorder)
+        imageEditView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
+        imageEditView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
+        imageContentView.addSubview(imageEditView)
+        self.imageEditView = imageEditView
         
         alertView.snp.remakeConstraints { make in
             make.left.right.bottom.equalToSuperview()
@@ -112,7 +110,7 @@ class TYPictureStitchController: TYOprationEditController {
             make.height.equalTo(imageContentView.snp.width)
         }
 
-        updownView.snp.makeConstraints { make in
+        imageEditView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -156,7 +154,7 @@ extension TYPictureStitchController {
                 
                 // 选中item后按照选中的比例调整updownView视图的显示
                 let radio = proportionEdit!.toRadio()
-                self?.updownView!.snp.remakeConstraints { make in
+                self?.imageEditView!.snp.remakeConstraints { make in
                     make.center.equalToSuperview()
                     if radio > 1 {
                         make.width.equalToSuperview()
@@ -183,11 +181,11 @@ extension TYPictureStitchController {
                 }
                 switch editEnum {
                 case .vertical:
-                    self?.updownView?.axis = .vertical
+                    self?.imageEditView?.axis = .vertical
                 case .horizontal:
-                    self?.updownView?.axis = .horizontal
+                    self?.imageEditView?.axis = .horizontal
                 case .none:
-                    self?.updownView?.axis = .vertical
+                    self?.imageEditView?.axis = .vertical
                 }
                 
             }).disposed(by: self.disposeBag)
@@ -198,17 +196,17 @@ extension TYPictureStitchController {
                 let vc = TYBorderEditController(pictureBorderValue: editInfo.borderCorner.pictureBorder, imageBorderValue: editInfo.borderCorner.imageBorder, imageCornerRadioValue: editInfo.borderCorner.imageCornerRadio)
                 
                 vc.pictureBorderObserver.subscribe(onNext: {[weak self] value in
-                    self?.updownView?.pandding = CGFloat(value)
+                    self?.imageEditView?.pandding = CGFloat(value)
                     self?.editInfo.borderCorner.pictureBorder = value
                 }).disposed(by: self.disposeBag)
 
                 vc.imageBorderObserver.subscribe(onNext: {[weak self] value in
-                    self?.updownView?.imagePandding = CGFloat(value)
+                    self?.imageEditView?.imagePandding = CGFloat(value)
                     self?.editInfo.borderCorner.imageBorder = value
                 }).disposed(by: self.disposeBag)
 
                 vc.imageCornerRadioObserver.subscribe(onNext: {[weak self] value in
-                    self?.updownView?.imageCornerRadio = CGFloat(value)
+                    self?.imageEditView?.imageCornerRadio = CGFloat(value)
                     self?.editInfo.borderCorner.imageCornerRadio = value
                 }).disposed(by: self.disposeBag)
                 
@@ -216,7 +214,14 @@ extension TYPictureStitchController {
             }
             
         case .background:
-            print("present background controller")
+            let vc = TYPictureBackgroundEditController()
+            vc.selectedColor = editInfo.backgroundColor
+            vc.itemSelectedObserver.subscribe(onNext: {[weak self] indexPath in
+                let colorEnum = TYBackgroundColorEnum(rawValue: indexPath.item)!
+                self?.editInfo.backgroundColor = colorEnum
+                self?.imageEditView!.backgroundColor = colorEnum.color()
+            }).disposed(by: self.disposeBag)
+            self.present(vc, animated: true)
         case .filter:
             print("present filter controller")
         case .texture:

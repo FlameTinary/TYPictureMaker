@@ -12,6 +12,8 @@ class TYEditInfo {
     var proportion: TYProportion = .oneToOne
     var borderCorner: TYBorderCornerModel = TYBorderCornerModel()
     
+    var backgroundColor : TYBackgroundColorEnum = .green
+    
     var layout : TYLayoutEditEnum = .vertical
     
     init(images: [UIImage]) {
