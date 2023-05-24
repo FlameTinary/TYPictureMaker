@@ -11,33 +11,52 @@ import RxCocoa
 
 class TYBorderEditView : TYBaseView {
     
+    var pictureBorderValue : Float = 0 {
+        didSet {
+            pictureSliderView.slider.value = pictureBorderValue
+        }
+    }
+    var imageBorderValue : Float = 0 {
+        didSet {
+            imageSliderView.slider.value = imageBorderValue
+        }
+    }
+    var imageCornerRadioValue : Float = 0 {
+        didSet {
+            imageRadioSliderView.slider.value = imageCornerRadioValue
+        }
+    }
+    
     var pictureObserver : Observable<Float>!
     var imageBorderObserver : Observable<Float>!
     var imageCornerRadioObserver : Observable<Float>!
     
-    lazy var pictureSliderView : TYTextSliderView = {
+    private lazy var pictureSliderView : TYTextSliderView = {
         let v = TYTextSliderView()
         v.textLbl.text = "相框"
         v.slider.minimumValue = 0
         v.slider.maximumValue = 20
+        v.slider.value = pictureBorderValue
         addSubview(v)
         return v
     }()
     
-    lazy var imageSliderView : TYTextSliderView = {
+    private lazy var imageSliderView : TYTextSliderView = {
         let v = TYTextSliderView()
         v.textLbl.text = "图框"
         v.slider.minimumValue = 0
         v.slider.maximumValue = 20
+        v.slider.value = imageBorderValue
         addSubview(v)
         return v
     }()
     
-    lazy var imageRadioSliderView : TYTextSliderView = {
+    private lazy var imageRadioSliderView : TYTextSliderView = {
         let v = TYTextSliderView()
         v.textLbl.text = "圆角"
         v.slider.minimumValue = 0
         v.slider.maximumValue = 40
+        v.slider.value = imageCornerRadioValue
         addSubview(v)
         return v
     }()

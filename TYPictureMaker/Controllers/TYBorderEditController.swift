@@ -31,9 +31,14 @@ class TYBorderEditController: TYOprationEditController {
         self.imageBorderValue = imageBorderValue
         self.imageCornerRadioValue = imageCornerRadioValue
         super.init()
+        
         pictureBorderObserver = borderEditView.pictureObserver
         imageBorderObserver = borderEditView.imageBorderObserver
         imageCornerRadioObserver = borderEditView.imageCornerRadioObserver
+        
+        borderEditView.pictureBorderValue = pictureBorderValue
+        borderEditView.imageBorderValue = imageBorderValue
+        borderEditView.imageCornerRadioValue = imageCornerRadioValue
         
     }
     
@@ -43,10 +48,6 @@ class TYBorderEditController: TYOprationEditController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        borderEditView.pictureSliderView.slider.value = pictureBorderValue
-        borderEditView.imageSliderView.slider.value = imageBorderValue
-        borderEditView.imageRadioSliderView.slider.value = imageCornerRadioValue
-        
     }
     
     override func setupSubviews() {
