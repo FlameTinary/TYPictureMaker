@@ -74,6 +74,7 @@ class TYImageScrollView : TYBaseView {
             let filterName = obj as! TYFilterEnum
             if filterName == .none {
                 self?.imageView.image = self?.image
+                self?.filter = nil
             } else {
                 self?.filter = CIFilter(name: filterName.toCIFilterName())
                 let ciImage = CIImage(image: (self?.filterImage)!)
