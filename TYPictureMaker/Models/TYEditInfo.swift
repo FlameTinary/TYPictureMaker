@@ -16,6 +16,8 @@ class TYEditInfo {
     
     var layout : TYLayoutEditEnum = .vertical
     
+    var filter : TYFilterModel = TYFilterModel()
+    
     init(images: [UIImage]) {
         self.images = images
     }

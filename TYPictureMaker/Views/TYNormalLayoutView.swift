@@ -10,7 +10,20 @@ import SnapKit
 
 class TYNormalLayoutView: TYBaseView {
     
-    var images : [UIImage]
+    var images : [UIImage] {
+        willSet {
+            stackView.arrangedSubviews.forEach { view in
+                view.removeFromSuperview()
+            }
+        }
+        didSet {
+            let imageViews : [TYImageCollectView] = images.map { image in TYImageCollectView(with: image)}
+            imageViews.forEach { view in
+                stackView.addArrangedSubview(view)
+            }
+            
+        }
+    }
     
     var axis : NSLayoutConstraint.Axis = .vertical {
         didSet {

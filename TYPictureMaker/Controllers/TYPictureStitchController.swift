@@ -13,9 +13,11 @@ import RxCocoa
 class TYPictureStitchController: TYOprationEditController {
     
     var images : [UIImage]
-        
+    
+    // 图片编辑相关信息
     private var editInfo : TYEditInfo!
     
+    // rx销毁属性
     private var disposeBag = DisposeBag()
     
     // 操作item选中row
@@ -66,6 +68,7 @@ class TYPictureStitchController: TYOprationEditController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        setupNotification()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -116,6 +119,24 @@ class TYPictureStitchController: TYOprationEditController {
         
         
     }
+    
+    private func setupNotification() {
+        
+        let changeFilterNotification = Notification.Name("changeFilter")
+        let filterIntensityNotification = Notification.Name("changeIntensity")
+        
+        NotificationCenter.default.rx.notification(changeFilterNotification).subscribe {[weak self] notification in
+            guard let obj = notification.object else {return}
+            self?.editInfo.filter.filter = obj as! TYFilterEnum
+            
+        }.disposed(by: self.disposeBag)
+        
+        NotificationCenter.default.rx.notification(filterIntensityNotification).subscribe {[weak self] notification in
+            guard let obj = notification.object else {return}
+            self?.editInfo.filter.intensity = obj as! Float
+            
+        }.disposed(by: self.disposeBag)
+    }
 }
 
 // collection view delegate & data source
@@ -137,9 +158,9 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
      
 }
 
+// 跳转操作控制器
 extension TYPictureStitchController {
-    // 跳转操作控制器
-    func presentOprationController(with opration: TYOpration) {
+    private func presentOprationController(with opration: TYOpration) {
         switch opration {
 
         case .proportion:
@@ -223,7 +244,10 @@ extension TYPictureStitchController {
             }).disposed(by: self.disposeBag)
             self.present(vc, animated: true)
         case .filter:
-            print("present filter controller")
+            
+            let vc = TYFilterEditController(with: editInfo.filter)
+            self.present(vc, animated: true)
+            
         case .texture:
             print("present texture controller")
         case .text:

@@ -10,8 +10,8 @@ import SnapKit
 
 class TYOprationEditController : TYBaseViewController {
     
-    lazy var alertView : UIView = {
-        let view = UIView()
+    lazy var alertView : TYOprationAlertView = {
+        let view = TYOprationAlertView()
         view.backgroundColor = .green
         return view
     }()

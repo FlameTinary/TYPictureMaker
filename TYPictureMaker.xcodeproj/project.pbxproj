@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		081CD87F2A1EFEE000A6A0F8 /* TYFilterEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081CD87E2A1EFEE000A6A0F8 /* TYFilterEditController.swift */; };
+		081CD8812A1F006E00A6A0F8 /* TYFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081CD8802A1F006E00A6A0F8 /* TYFilterModel.swift */; };
 		0870C2F12A14A0AC00AC1793 /* TYMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F02A14A0AC00AC1793 /* TYMainViewController.swift */; };
 		0870C2F42A14C55000AC1793 /* TYPictureStitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F32A14C55000AC1793 /* TYPictureStitchController.swift */; };
 		0870C2F62A14CEFA00AC1793 /* TYNormalLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870C2F52A14CEFA00AC1793 /* TYNormalLayoutView.swift */; };
@@ -34,11 +36,16 @@
 		088727C22A1DFF2E00F77D81 /* TYPictureBackgroundEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727C12A1DFF2E00F77D81 /* TYPictureBackgroundEditController.swift */; };
 		088727C42A1E00A300F77D81 /* TYBackgroundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727C32A1E00A300F77D81 /* TYBackgroundCell.swift */; };
 		088727C62A1E026900F77D81 /* TYBackgroundColorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727C52A1E026900F77D81 /* TYBackgroundColorEnum.swift */; };
+		08F5A6D22A1F00FD00200D6E /* TYFilterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F5A6D12A1F00FD00200D6E /* TYFilterEnum.swift */; };
+		08F5A6D42A1F12AF00200D6E /* TYOprationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F5A6D32A1F12AF00200D6E /* TYOprationAlertView.swift */; };
+		08F5A6D62A1F250000200D6E /* TYImageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F5A6D52A1F250000200D6E /* TYImageFilterView.swift */; };
 		49D558BA9DDB2F6052E7CD9F /* Pods_TYPictureMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		05264E615431AA850528777C /* Pods-TYPictureMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.debug.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.debug.xcconfig"; sourceTree = "<group>"; };
+		081CD87E2A1EFEE000A6A0F8 /* TYFilterEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYFilterEditController.swift; sourceTree = "<group>"; };
+		081CD8802A1F006E00A6A0F8 /* TYFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYFilterModel.swift; sourceTree = "<group>"; };
 		0870C2F02A14A0AC00AC1793 /* TYMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYMainViewController.swift; sourceTree = "<group>"; };
 		0870C2F32A14C55000AC1793 /* TYPictureStitchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYPictureStitchController.swift; sourceTree = "<group>"; };
 		0870C2F52A14CEFA00AC1793 /* TYNormalLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYNormalLayoutView.swift; sourceTree = "<group>"; };
@@ -68,6 +75,9 @@
 		088727C12A1DFF2E00F77D81 /* TYPictureBackgroundEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYPictureBackgroundEditController.swift; sourceTree = "<group>"; };
 		088727C32A1E00A300F77D81 /* TYBackgroundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYBackgroundCell.swift; sourceTree = "<group>"; };
 		088727C52A1E026900F77D81 /* TYBackgroundColorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYBackgroundColorEnum.swift; sourceTree = "<group>"; };
+		08F5A6D12A1F00FD00200D6E /* TYFilterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYFilterEnum.swift; sourceTree = "<group>"; };
+		08F5A6D32A1F12AF00200D6E /* TYOprationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYOprationAlertView.swift; sourceTree = "<group>"; };
+		08F5A6D52A1F250000200D6E /* TYImageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYImageFilterView.swift; sourceTree = "<group>"; };
 		484BF3AB2319ECA8E46487F6 /* Pods-TYPictureMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.release.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.release.xcconfig"; sourceTree = "<group>"; };
 		B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYPictureMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -96,6 +106,7 @@
 				088727A82A1B8D4800F77D81 /* TYBorderEditView.swift */,
 				088727AA2A1B8EC200F77D81 /* TYTextSliderView.swift */,
 				088727BB2A1DC20400F77D81 /* TYLayoutEditCell.swift */,
+				08F5A6D32A1F12AF00200D6E /* TYOprationAlertView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -105,6 +116,7 @@
 			children = (
 				088727A22A1B668E00F77D81 /* TYEditInfo.swift */,
 				088727AF2A1C9EB200F77D81 /* TYBorderCornerModel.swift */,
+				081CD8802A1F006E00A6A0F8 /* TYFilterModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -119,6 +131,7 @@
 				088727A42A1B6DC100F77D81 /* TYBorderEditController.swift */,
 				088727B32A1CE40300F77D81 /* TYLayoutEditController.swift */,
 				088727BF2A1DE89000F77D81 /* TYProportionEditController.swift */,
+				081CD87E2A1EFEE000A6A0F8 /* TYFilterEditController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -147,9 +160,11 @@
 				0887279D2A1B4ADF00F77D81 /* TYOprationEnum.swift */,
 				088727A02A1B5C7E00F77D81 /* TYProportionEnum.swift */,
 				088727BD2A1DCE1100F77D81 /* TYLayoutEditEnum.swift */,
+				08F5A6D12A1F00FD00200D6E /* TYFilterEnum.swift */,
 				088727C52A1E026900F77D81 /* TYBackgroundColorEnum.swift */,
 				088727B72A1DB74C00F77D81 /* TYBaseViewController.swift */,
 				088727B92A1DBA0700F77D81 /* TYBaseView.swift */,
+				08F5A6D52A1F250000200D6E /* TYImageFilterView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -320,8 +335,10 @@
 				088727BE2A1DCE1100F77D81 /* TYLayoutEditEnum.swift in Sources */,
 				088727A52A1B6DC100F77D81 /* TYBorderEditController.swift in Sources */,
 				0870C2FE2A1B1E3600AC1793 /* TYOprationCell.swift in Sources */,
+				08F5A6D62A1F250000200D6E /* TYImageFilterView.swift in Sources */,
 				0870C2F12A14A0AC00AC1793 /* TYMainViewController.swift in Sources */,
 				0870C2FC2A15DF4300AC1793 /* TYImageScrollView.swift in Sources */,
+				08F5A6D22A1F00FD00200D6E /* TYFilterEnum.swift in Sources */,
 				088727A32A1B668E00F77D81 /* TYEditInfo.swift in Sources */,
 				0870C2F42A14C55000AC1793 /* TYPictureStitchController.swift in Sources */,
 				0870C2F62A14CEFA00AC1793 /* TYNormalLayoutView.swift in Sources */,
@@ -331,13 +348,16 @@
 				088727A92A1B8D4800F77D81 /* TYBorderEditView.swift in Sources */,
 				088727B02A1C9EB200F77D81 /* TYBorderCornerModel.swift in Sources */,
 				0870C2F82A14E64800AC1793 /* TYProportionCell.swift in Sources */,
+				081CD87F2A1EFEE000A6A0F8 /* TYFilterEditController.swift in Sources */,
 				088727BA2A1DBA0700F77D81 /* TYBaseView.swift in Sources */,
 				088727C42A1E00A300F77D81 /* TYBackgroundCell.swift in Sources */,
 				0887279E2A1B4ADF00F77D81 /* TYOprationEnum.swift in Sources */,
 				088727B42A1CE40300F77D81 /* TYLayoutEditController.swift in Sources */,
 				088727BC2A1DC20400F77D81 /* TYLayoutEditCell.swift in Sources */,
+				081CD8812A1F006E00A6A0F8 /* TYFilterModel.swift in Sources */,
 				088727A12A1B5C7E00F77D81 /* TYProportionEnum.swift in Sources */,
 				088727B62A1D15C200F77D81 /* TYOprationEditController.swift in Sources */,
+				08F5A6D42A1F12AF00200D6E /* TYOprationAlertView.swift in Sources */,
 				088727C02A1DE89000F77D81 /* TYProportionEditController.swift in Sources */,
 				0870C2FA2A15D52500AC1793 /* TYImageCollectView.swift in Sources */,
 				0880101B2A1489B100FFCA18 /* AppDelegate.swift in Sources */,
