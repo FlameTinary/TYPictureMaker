@@ -253,7 +253,8 @@ extension TYPictureStitchController {
         case .text:
             print("present text controller")
         case .sticker:
-            print("present sticker controller")
+            let vc = TYStickerEditController()
+            present(vc, animated: true)
         case .pictureFrame:
             print("present pictureFrame controller")
         case .addImage:
