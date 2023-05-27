@@ -9,8 +9,14 @@ import UIKit
 
 class TYImageStickerView : TYPanView {
     
+    var imageName : String = "tiezhi_01" {
+        didSet {
+            imageView.image = UIImage(named: imageName)
+        }
+    }
+    
     private lazy var imageView : UIImageView = {
-        let view = UIImageView(image: UIImage(named: "tiezhi_02"))
+        let view = UIImageView(image: UIImage(named: imageName))
         return view
     }()
     

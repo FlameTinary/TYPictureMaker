@@ -17,6 +17,9 @@ class TYPictureStitchController: TYOprationEditController {
     // 图片编辑相关信息
     private var editInfo : TYEditInfo!
     
+    // 选中的贴纸数组
+    private var stickerNames : [String] = []
+    
     // rx销毁属性
     private var disposeBag = DisposeBag()
     
@@ -254,6 +257,18 @@ extension TYPictureStitchController {
             print("present text controller")
         case .sticker:
             let vc = TYStickerEditController()
+            vc.itemObserver.subscribe(onNext: {name in
+                
+                let stickView = TYImageStickerView()
+                stickView.width = 100
+                stickView.height = 100
+                stickView.centerX = self.imageEditView?.centerX ?? 0
+                stickView.centerY = self.imageEditView?.centerY ?? 0
+                stickView.imageName = name
+                self.imageEditView?.addSubview(stickView)
+                self.stickerNames.append(name)
+                
+            }).disposed(by: self.disposeBag)
             present(vc, animated: true)
         case .pictureFrame:
             print("present pictureFrame controller")

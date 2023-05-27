@@ -36,7 +36,7 @@ class TYLayoutEditCell : UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .red
+        contentView.backgroundColor = .clear
         setupSubviews()
     }
     
