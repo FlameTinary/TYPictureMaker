@@ -22,6 +22,7 @@
 		0883FA5B2A20B7EA0082A402 /* TYImageStickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883FA5A2A20B7EA0082A402 /* TYImageStickerView.swift */; };
 		0883FA5D2A20C1750082A402 /* TYTextStickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883FA5C2A20C1740082A402 /* TYTextStickerView.swift */; };
 		0883FA612A21CD6F0082A402 /* TYViewRectExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883FA602A21CD6F0082A402 /* TYViewRectExtention.swift */; };
+		0883FA632A21DC010082A402 /* TYTextEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883FA622A21DC010082A402 /* TYTextEditController.swift */; };
 		0887279E2A1B4ADF00F77D81 /* TYOprationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0887279D2A1B4ADF00F77D81 /* TYOprationEnum.swift */; };
 		088727A12A1B5C7E00F77D81 /* TYProportionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727A02A1B5C7E00F77D81 /* TYProportionEnum.swift */; };
 		088727A32A1B668E00F77D81 /* TYEditInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088727A22A1B668E00F77D81 /* TYEditInfo.swift */; };
@@ -66,6 +67,7 @@
 		0883FA5A2A20B7EA0082A402 /* TYImageStickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYImageStickerView.swift; sourceTree = "<group>"; };
 		0883FA5C2A20C1740082A402 /* TYTextStickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYTextStickerView.swift; sourceTree = "<group>"; };
 		0883FA602A21CD6F0082A402 /* TYViewRectExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYViewRectExtention.swift; sourceTree = "<group>"; };
+		0883FA622A21DC010082A402 /* TYTextEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYTextEditController.swift; sourceTree = "<group>"; };
 		0887279D2A1B4ADF00F77D81 /* TYOprationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYOprationEnum.swift; sourceTree = "<group>"; };
 		088727A02A1B5C7E00F77D81 /* TYProportionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYProportionEnum.swift; sourceTree = "<group>"; };
 		088727A22A1B668E00F77D81 /* TYEditInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYEditInfo.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				088727B32A1CE40300F77D81 /* TYLayoutEditController.swift */,
 				088727BF2A1DE89000F77D81 /* TYProportionEditController.swift */,
 				081CD87E2A1EFEE000A6A0F8 /* TYFilterEditController.swift */,
+				0883FA622A21DC010082A402 /* TYTextEditController.swift */,
 				08F5A6DC2A206C9400200D6E /* TYStickerEditController.swift */,
 			);
 			path = Controllers;
@@ -380,6 +383,7 @@
 				08F5A6D42A1F12AF00200D6E /* TYOprationAlertView.swift in Sources */,
 				088727C02A1DE89000F77D81 /* TYProportionEditController.swift in Sources */,
 				0870C2FA2A15D52500AC1793 /* TYImageCollectView.swift in Sources */,
+				0883FA632A21DC010082A402 /* TYTextEditController.swift in Sources */,
 				0880101B2A1489B100FFCA18 /* AppDelegate.swift in Sources */,
 				088727B82A1DB74C00F77D81 /* TYBaseViewController.swift in Sources */,
 			);

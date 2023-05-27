@@ -254,13 +254,28 @@ extension TYPictureStitchController {
         case .texture:
             print("present texture controller")
         case .text:
-            print("present text controller")
+            
+            let vc = TYTextEditController()
+            vc.textObserver.subscribe(onNext: {text in
+                print(text ?? "哈哈")
+                guard let t = text else { return }
+                // 将文字添加到文字贴纸上
+                let textStickerView = TYTextStickerView(text: t)
+                textStickerView.width = 150
+                textStickerView.height = 44
+                textStickerView.center = self.imageEditView!.center
+                self.imageEditView?.addSubview(textStickerView)
+                
+            }).disposed(by: self.disposeBag)
+            present(vc, animated: true)
+            
         case .sticker:
+            
             let vc = TYStickerEditController()
             vc.itemObserver.subscribe(onNext: {name in
                 
                 let stickView = TYImageStickerView()
-                stickView.width = 100
+                stickView.width = 150
                 stickView.height = 100
                 stickView.centerX = self.imageEditView?.centerX ?? 0
                 stickView.centerY = self.imageEditView?.centerY ?? 0
@@ -270,6 +285,7 @@ extension TYPictureStitchController {
                 
             }).disposed(by: self.disposeBag)
             present(vc, animated: true)
+            
         case .pictureFrame:
             print("present pictureFrame controller")
         case .addImage:

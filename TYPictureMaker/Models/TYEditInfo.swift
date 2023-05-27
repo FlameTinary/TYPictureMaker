@@ -12,7 +12,7 @@ class TYEditInfo {
     var proportion: TYProportion = .oneToOne
     var borderCorner: TYBorderCornerModel = TYBorderCornerModel()
     
-    var backgroundColor : TYBackgroundColorEnum = .green
+    var backgroundColor : TYBackgroundColorEnum = .white
     
     var layout : TYLayoutEditEnum = .vertical
     

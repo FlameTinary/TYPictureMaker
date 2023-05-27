@@ -9,6 +9,12 @@ import UIKit
 
 class TYTextStickerView : TYPanView {
     
+    var text : String {
+        didSet {
+            textLbl.text = text
+        }
+    }
+    
     private lazy var textField : UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .green
@@ -23,9 +29,13 @@ class TYTextStickerView : TYPanView {
         return lbl
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(text : String) {
+        self.text = text
+        super.init(frame: .zero)
+        
         backgroundColor = .red
+        
+        textLbl.text = text
         addSubview(textLbl)
 //        addSubview(textField)
 //
@@ -34,10 +44,8 @@ class TYTextStickerView : TYPanView {
 //            make.width.height.equalToSuperview().multipliedBy(0.9)
 //        }
         textLbl.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.bottom.equalToSuperview().offset(-20)
-            make.left.equalToSuperview().offset(10)
-            make.right.equalToSuperview().offset(-10)
+            make.center.equalToSuperview()
+            make.size.equalToSuperview().multipliedBy(0.9)
         }
     }
     

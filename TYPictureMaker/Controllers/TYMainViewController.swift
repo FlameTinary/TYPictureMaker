@@ -18,11 +18,6 @@ class TYMainViewController: TYBaseViewController  {
         return view
     }()
     
-    private lazy var textStickerView : TYTextStickerView = {
-        let textStickerView = TYTextStickerView()
-        return textStickerView
-    }()
-    
     private lazy var pingtuBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setTitle("快速拼图", for: .normal)
@@ -49,24 +44,13 @@ class TYMainViewController: TYBaseViewController  {
     
     override func setupSubviews() {
         view.addSubview(pingtuBtn)
-//        view.addSubview(panView)
-        view.addSubview(textStickerView)
     
         pingtuBtn.snp.makeConstraints { make in
             make.center.equalTo(view)
             make.width.equalTo(100)
             make.height.equalTo(44)
         }
-//
-//        panView.snp.makeConstraints { make in
-//            make.center.equalToSuperview()
-//            make.size.equalTo(CGSize(width: 100, height: 100))
-//        }
-        
-        textStickerView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.size.equalTo(CGSize(width: 200, height: 100))
-        }
+
     }
     
 }
