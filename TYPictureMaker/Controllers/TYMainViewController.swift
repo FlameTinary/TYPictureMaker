@@ -44,6 +44,21 @@ class TYMainViewController: TYBaseViewController  {
     
     override func setupSubviews() {
         view.addSubview(pingtuBtn)
+        
+        let lv = TYNormalLayoutView(images: [UIImage(named: "image_01")!, UIImage(named: "image_02")!])
+        lv.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        lv.layoutIfNeeded()
+//        lv.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+//        view.addSubview(lv)
+        
+        let imageView = UIImageView(image: lv.getImageFromView())
+        
+        view.addSubview(imageView)
+        
+        imageView.snp.makeConstraints { make in
+//            make.size.equalTo(CGSize(width: 200, height: 200))
+            make.center.equalToSuperview()
+        }
     
         pingtuBtn.snp.makeConstraints { make in
             make.center.equalTo(view)

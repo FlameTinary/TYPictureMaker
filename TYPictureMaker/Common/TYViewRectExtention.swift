@@ -86,4 +86,14 @@ extension UIView {
             self.center = center
         }
     }
+    
+    public var size : CGSize {
+        get {
+            return CGSize(width: width, height: height)
+        }
+        set {
+            width = newValue.width
+            height = newValue.height
+        }
+    }
 }

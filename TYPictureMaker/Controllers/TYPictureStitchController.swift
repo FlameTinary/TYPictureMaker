@@ -93,7 +93,7 @@ class TYPictureStitchController: TYOprationEditController {
 //        case .horizontal:
 //            imageEditView.axis = .horizontal
 //        }
-        imageEditView.pandding = CGFloat(editInfo.borderCorner.pictureBorder)
+        imageEditView.padding = CGFloat(editInfo.borderCorner.pictureBorder)
         imageEditView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
         imageEditView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
         imageContentView.addSubview(imageEditView)
@@ -221,7 +221,7 @@ extension TYPictureStitchController {
                 let vc = TYBorderEditController(pictureBorderValue: editInfo.borderCorner.pictureBorder, imageBorderValue: editInfo.borderCorner.imageBorder, imageCornerRadioValue: editInfo.borderCorner.imageCornerRadio)
                 
                 vc.pictureBorderObserver.subscribe(onNext: {[weak self] value in
-                    self?.imageEditView?.pandding = CGFloat(value)
+                    self?.imageEditView?.padding = CGFloat(value)
                     self?.editInfo.borderCorner.pictureBorder = value
                 }).disposed(by: self.disposeBag)
 
