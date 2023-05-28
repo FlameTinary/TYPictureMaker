@@ -282,12 +282,16 @@ extension TYPictureStitchController {
                 stickView.imageName = name
                 self.imageEditView?.addSubview(stickView)
                 self.stickerNames.append(name)
-                
             }).disposed(by: self.disposeBag)
             present(vc, animated: true)
             
         case .pictureFrame:
             print("present pictureFrame controller")
+            let vc = TYPictureFrameEditController()
+            vc.pictureFrameObserver.subscribe(onNext: {[weak self] frameName in
+                self?.imageEditView?.frameImage = UIImage(named: frameName!)
+            }).disposed(by: self.disposeBag)
+            present(vc, animated: true)
         case .addImage:
             print("present addImage controller")
         }

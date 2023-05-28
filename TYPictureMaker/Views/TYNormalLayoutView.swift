@@ -10,6 +10,12 @@ import SnapKit
 
 class TYNormalLayoutView: TYBaseView {
     
+    var frameImage : UIImage? {
+        didSet {
+            frameImageView.image = frameImage
+        }
+    }
+    
     var images : [UIImage] {
         willSet {
             stackView.arrangedSubviews.forEach { view in
@@ -41,6 +47,11 @@ class TYNormalLayoutView: TYBaseView {
         return stackView
     }()
     
+    private lazy var frameImageView : UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    
     var pandding : CGFloat = 0 {
         didSet {
             update(pandding: pandding)
@@ -70,6 +81,13 @@ class TYNormalLayoutView: TYBaseView {
         fatalError("init(coder:) has not been implemented")
     }
     override func setupSubviews() {
+        
+        addSubview(frameImageView)
+        
+        frameImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: -5, left: -5, bottom: -5, right: -5))
+        }
+        
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
