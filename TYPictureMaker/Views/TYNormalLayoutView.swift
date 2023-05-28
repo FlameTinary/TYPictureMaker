@@ -3,72 +3,64 @@
 //  TYPictureMaker
 //
 //  Created by Sheldon Tian on 2023/5/17.
-//  正常垂直布局
+//  简易布局
 
 import UIKit
 import SnapKit
 
 class TYNormalLayoutView: TYBaseView {
     
+    // 边框图片
     var frameImage : UIImage? {
         didSet {
             frameImageView.image = frameImage
         }
     }
     
-    var images : [UIImage] {
-        willSet {
-            stackView.arrangedSubviews.forEach { view in
-                view.removeFromSuperview()
-            }
-        }
-        didSet {
-            let imageViews : [TYImageCollectView] = images.map { image in TYImageCollectView(with: image)}
-            imageViews.forEach { view in
-                stackView.addArrangedSubview(view)
-            }
-            
-        }
-    }
+    // 图片集
+    var images : [UIImage]
     
-    var axis : NSLayoutConstraint.Axis = .vertical {
-        didSet {
-            stackView.axis = axis
-        }
-    }
+    // 布局方向
+    var axis : TYLayoutEditEnum = .vertical
     
-    private lazy var stackView : UIStackView = {
-        let imageViews : [TYImageCollectView] = images.map { image in TYImageCollectView(with: image)}
-        let stackView = UIStackView(arrangedSubviews: imageViews)
-        stackView.axis = axis
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        addSubview(stackView)
-        return stackView
+    private lazy var contentView : UIView = {
+        let view = UIView()
+        return view
     }()
+    
+//    private lazy var stackView : UIStackView = {
+//        let imageViews : [TYImageCollectView] = images.map { image in TYImageCollectView(with: image)}
+//        let stackView = UIStackView(arrangedSubviews: imageViews)
+//        stackView.axis = axis
+//        stackView.alignment = .fill
+//        stackView.distribution = .fillEqually
+//        addSubview(stackView)
+//        return stackView
+//    }()
     
     private lazy var frameImageView : UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
     
+    // 边框间距
     var pandding : CGFloat = 0 {
         didSet {
-            update(pandding: pandding)
+            contentView.snp.remakeConstraints { make in
+                make.edges.equalToSuperview().inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
+            }
         }
     }
     
+    // 图片间距
     var imagePandding: CGFloat = 0 {
         didSet {
-            updateSubView(pandding: imagePandding)
+            updateContentViewLayout()
         }
     }
     
-    var imageCornerRadio : CGFloat = 0 {
-        didSet {
-            updateSubView(cornerRadio: imageCornerRadio)
-        }
-    }
+    // 图片圆角
+    var imageCornerRadio : CGFloat = 0
     
     init(images: [UIImage]) {
         self.images = images
@@ -81,35 +73,34 @@ class TYNormalLayoutView: TYBaseView {
         fatalError("init(coder:) has not been implemented")
     }
     override func setupSubviews() {
+        addSubview(contentView)
         
-        addSubview(frameImageView)
-        
-        frameImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: -5, left: -5, bottom: -5, right: -5))
-        }
-        
-        stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-        }
-    }
-    
-    func update(pandding: CGFloat) {
-        stackView.snp.remakeConstraints { make in
+        contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: pandding, left: pandding, bottom: pandding, right: pandding))
         }
-        
+        images.forEach { image in
+            let imageView = TYImageCollectView(with: image)
+            contentView.addSubview(imageView)
+        }
     }
     
-    func updateSubView(pandding: CGFloat) {
-        stackView.spacing = pandding
-    }
-    
-    func updateSubView(cornerRadio: CGFloat) {
-        stackView.arrangedSubviews.forEach { view in
-            if (view is TYImageCollectView) {
-                let imgView = view as! TYImageCollectView
-                imgView.cornerRaido = cornerRadio
+    private func updateContentViewLayout() {
+        // 图片间距的个数
+        let paddingCount : Double = Double(images.count - 1)
+        // 每一张图片的高度
+        let imageH = (Double(contentView.height) - paddingCount * Double(imagePandding)) / Double(images.count)
+        for (index, subView) in contentView.subviews.enumerated() {
+            let topOffset = Double(index) * (imageH + Double(imagePandding))
+            subView.snp.remakeConstraints { make in
+                make.left.right.equalToSuperview()
+                make.top.equalToSuperview().offset(topOffset)
+                make.height.equalTo(imageH)
             }
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateContentViewLayout()
     }
 }

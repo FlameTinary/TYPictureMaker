@@ -8,7 +8,7 @@
 import Foundation
 
 enum TYLayoutEditEnum: Int, CaseIterable {
-    case vertical = 0, horizontal
+    case vertical = 0, horizontal, lattice
     
     func iconNameFromEnum() -> String {
         switch self {
@@ -16,6 +16,8 @@ enum TYLayoutEditEnum: Int, CaseIterable {
             return "icon_2_2"
         case .horizontal:
             return "icon_2_1"
+        case .lattice:
+            return "icon_2_4"
         }
     }
 }

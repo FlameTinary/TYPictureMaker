@@ -86,13 +86,13 @@ class TYPictureStitchController: TYOprationEditController {
         
         let imageEditView = TYNormalLayoutView(images: images)
         imageEditView.backgroundColor = editInfo.backgroundColor.color()
-        switch editInfo.layout {
-            
-        case .vertical:
-            imageEditView.axis = .vertical
-        case .horizontal:
-            imageEditView.axis = .horizontal
-        }
+//        switch editInfo.layout {
+//
+//        case .vertical:
+//            imageEditView.axis = .vertical
+//        case .horizontal:
+//            imageEditView.axis = .horizontal
+//        }
         imageEditView.pandding = CGFloat(editInfo.borderCorner.pictureBorder)
         imageEditView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
         imageEditView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
@@ -119,7 +119,6 @@ class TYPictureStitchController: TYOprationEditController {
         imageEditView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
         
     }
     
@@ -196,23 +195,25 @@ extension TYPictureStitchController {
         case .layout:
             print("present layout controller")
             let vc = TYLayoutEditController()
-            vc.selectedLayoutEdit = editInfo.layout
-            vc.itemSelectedObserver.subscribe(onNext: {[weak self] indexPath in
-                
-                let editEnum = TYLayoutEditEnum(rawValue: indexPath.item)
-                if nil != editEnum {
-                    self?.editInfo.layout = editEnum!
-                }
-                switch editEnum {
-                case .vertical:
-                    self?.imageEditView?.axis = .vertical
-                case .horizontal:
-                    self?.imageEditView?.axis = .horizontal
-                case .none:
-                    self?.imageEditView?.axis = .vertical
-                }
-                
-            }).disposed(by: self.disposeBag)
+//            vc.selectedLayoutEdit = editInfo.layout
+//            vc.itemSelectedObserver.subscribe(onNext: {[weak self] indexPath in
+//
+//                let editEnum = TYLayoutEditEnum(rawValue: indexPath.item)
+//                if nil != editEnum {
+//                    self?.editInfo.layout = editEnum!
+//                }
+//                switch editEnum {
+//                case .vertical:
+//                    self?.imageEditView?.axis = .vertical
+//                case .horizontal:
+//                    self?.imageEditView?.axis = .horizontal
+//                case .none:
+//                    self?.imageEditView?.axis = .vertical
+//                case .some(.lattice):
+//                    break
+//                }
+//
+//            }).disposed(by: self.disposeBag)
             present(vc, animated: true)
         case .border:
             do {
