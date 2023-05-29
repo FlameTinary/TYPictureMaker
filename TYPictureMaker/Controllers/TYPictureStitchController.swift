@@ -186,7 +186,6 @@ extension TYPictureStitchController {
             }).disposed(by: self.disposeBag)
             present(vc, animated: true)
         case .layout:
-            print("present layout controller")
             let vc = TYLayoutEditController(images: images)
             vc.selectedLayoutEdit = editInfo.layout
             vc.itemSelectedObserver.subscribe(onNext: {[weak self] indexPath in

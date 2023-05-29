@@ -51,6 +51,8 @@ class TYImageCollectView : TYBaseView {
     
     var cornerRaido : CGFloat = 0 {
         didSet {
+            layer.cornerRadius = cornerRaido
+            layer.masksToBounds = true
             imageScrollView.cornerRadio = cornerRaido
         }
     }

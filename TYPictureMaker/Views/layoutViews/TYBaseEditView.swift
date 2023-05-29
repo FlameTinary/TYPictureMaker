@@ -20,14 +20,18 @@ class TYBaseEditView: TYBaseView {
     
     // 图片间距
     var imagePandding: CGFloat = 4
-//    {
-//        didSet {
-//            updateContentViewLayout()
-//        }
-//    }
     
     // 图片圆角
-    var imageCornerRadio : CGFloat = 4
+    var imageCornerRadio : CGFloat = 4 {
+        didSet {
+            contentView.subviews.forEach { subview in
+                if subview.isKind(of: TYImageCollectView.self) {
+                    let view = subview as! TYImageCollectView
+                    view.cornerRaido = imageCornerRadio
+                }
+            }
+        }
+    }
     
     // 保存内容的视图
     lazy var contentView : UIView = {
