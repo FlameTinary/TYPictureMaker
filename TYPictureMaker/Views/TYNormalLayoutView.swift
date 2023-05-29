@@ -33,7 +33,11 @@ class TYNormalLayoutView: TYBaseEditView {
     }
     
     // 布局方向
-    var axis : NSLayoutConstraint.Axis = .vertical
+    var axis : NSLayoutConstraint.Axis = .vertical {
+        didSet {
+            stackView.axis = axis
+        }
+    }
     
     private lazy var stackView : UIStackView = {
         let imageViews : [TYImageCollectView] = images.map { image in TYImageCollectView(with: image)}

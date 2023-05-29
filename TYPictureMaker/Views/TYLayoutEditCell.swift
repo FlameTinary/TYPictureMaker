@@ -9,6 +9,14 @@ import UIKit
 
 class TYLayoutEditCell : UICollectionViewCell {
     
+    var image : UIImage? {
+        didSet {
+            if let img = image {
+                imageView.image = img
+            }
+        }
+    }
+    
     var imageName: String? {
         didSet {
             if let imgN = imageName {

@@ -11,6 +11,11 @@ import RxCocoa
 
 class TYLayoutEditController : TYOprationEditController {
     
+    private var images : [UIImage]
+    
+    // 缩略图
+    private var thumbnailImages : [UIImage]
+    
     var selectedLayoutEdit : TYLayoutEditEnum = .vertical {
         didSet {
             layoutScrollView.selectItem(at: IndexPath(item: selectedLayoutEdit.rawValue, section: 0), animated: true, scrollPosition: .top)
@@ -40,9 +45,15 @@ class TYLayoutEditController : TYOprationEditController {
         return view
     }()
     
-    override init() {
+    init(images: [UIImage]) {
+        self.images = images
+        let verticalImage = TYNormalLayoutView(images: images).thumbnail()
+        let horizontalImage = TYNormalLayoutView(images: images)
+        horizontalImage.axis = .horizontal
+        thumbnailImages = [verticalImage, horizontalImage.thumbnail()]
         super.init()
         itemSelectedObserver = layoutScrollView.rx.itemSelected.asObservable()
+
     }
     
     required init?(coder: NSCoder) {
@@ -73,12 +84,12 @@ class TYLayoutEditController : TYOprationEditController {
 // collection view delegate & data source
 extension TYLayoutEditController: UICollectionViewDelegate & UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return TYLayoutEditEnum.allCases.count
+        return thumbnailImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TYLayoutEditCell
-        cell.imageName = TYLayoutEditEnum(rawValue: indexPath.item)?.iconNameFromEnum()
+        cell.image = thumbnailImages[indexPath.item]
         return cell
     }
     

@@ -19,7 +19,7 @@ class TYBaseEditView: TYBaseView {
     var frameImage: UIImage?
     
     // 图片间距
-    var imagePandding: CGFloat = 10
+    var imagePandding: CGFloat = 4
 //    {
 //        didSet {
 //            updateContentViewLayout()
@@ -27,7 +27,7 @@ class TYBaseEditView: TYBaseView {
 //    }
     
     // 图片圆角
-    var imageCornerRadio : CGFloat = 10
+    var imageCornerRadio : CGFloat = 4
     
     // 保存内容的视图
     lazy var contentView : UIView = {
@@ -35,7 +35,7 @@ class TYBaseEditView: TYBaseView {
         return view
     }()
     
-    var padding : CGFloat = 10 {
+    var padding : CGFloat = 4 {
         didSet {
             contentView.snp.remakeConstraints { make in
                 make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
@@ -46,7 +46,7 @@ class TYBaseEditView: TYBaseView {
     init(images: [UIImage]) {
         self.images = images
         super.init()
-        backgroundColor = .red
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
@@ -69,5 +69,11 @@ class TYBaseEditView: TYBaseView {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
+    }
+    
+    func thumbnail() -> UIImage {
+        frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        layoutIfNeeded()
+        return getImageFromView()
     }
 }

@@ -194,26 +194,26 @@ extension TYPictureStitchController {
             present(vc, animated: true)
         case .layout:
             print("present layout controller")
-            let vc = TYLayoutEditController()
-//            vc.selectedLayoutEdit = editInfo.layout
-//            vc.itemSelectedObserver.subscribe(onNext: {[weak self] indexPath in
-//
-//                let editEnum = TYLayoutEditEnum(rawValue: indexPath.item)
-//                if nil != editEnum {
-//                    self?.editInfo.layout = editEnum!
-//                }
-//                switch editEnum {
-//                case .vertical:
-//                    self?.imageEditView?.axis = .vertical
-//                case .horizontal:
-//                    self?.imageEditView?.axis = .horizontal
-//                case .none:
-//                    self?.imageEditView?.axis = .vertical
-//                case .some(.lattice):
-//                    break
-//                }
-//
-//            }).disposed(by: self.disposeBag)
+            let vc = TYLayoutEditController(images: images)
+            vc.selectedLayoutEdit = editInfo.layout
+            vc.itemSelectedObserver.subscribe(onNext: {[weak self] indexPath in
+
+                let editEnum = TYLayoutEditEnum(rawValue: indexPath.item)
+                if nil != editEnum {
+                    self?.editInfo.layout = editEnum!
+                }
+                switch editEnum {
+                case .vertical:
+                    self?.imageEditView?.axis = .vertical
+                case .horizontal:
+                    self?.imageEditView?.axis = .horizontal
+                case .none:
+                    self?.imageEditView?.axis = .vertical
+                case .some(.lattice):
+                    break
+                }
+
+            }).disposed(by: self.disposeBag)
             present(vc, animated: true)
         case .border:
             do {
