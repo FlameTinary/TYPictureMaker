@@ -38,7 +38,7 @@ class TYPictureStitchController: TYOprationEditController {
     }()
     
     // 图片展示视图
-    private var imageEditView :TYNormalLayoutView?
+    private var imageEditView :TYBaseEditView?
     
     // 底部操作列表
     private lazy var oprationListView : UICollectionView = {
@@ -84,15 +84,8 @@ class TYPictureStitchController: TYOprationEditController {
         alertView.addSubview(oprationListView)
         view.addSubview(imageContentView)
         
-        let imageEditView = TYNormalLayoutView(images: images)
+        let imageEditView = editInfo.layout.toEditView(images: images)
         imageEditView.backgroundColor = editInfo.backgroundColor.color()
-//        switch editInfo.layout {
-//
-//        case .vertical:
-//            imageEditView.axis = .vertical
-//        case .horizontal:
-//            imageEditView.axis = .horizontal
-//        }
         imageEditView.padding = CGFloat(editInfo.borderCorner.pictureBorder)
         imageEditView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
         imageEditView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
@@ -202,17 +195,16 @@ extension TYPictureStitchController {
                 if nil != editEnum {
                     self?.editInfo.layout = editEnum!
                 }
-                switch editEnum {
-                case .vertical:
-                    self?.imageEditView?.axis = .vertical
-                case .horizontal:
-                    self?.imageEditView?.axis = .horizontal
-                case .none:
-                    self?.imageEditView?.axis = .vertical
-                case .some(.lattice):
-                    break
+                
+                let imageEditView = editEnum?.toEditView(images: self?.images)
+                if let view = imageEditView {
+                    self?.imageContentView.addSubview(view)
+                    self?.imageEditView = view
+                    view.snp.makeConstraints { make in
+                        make.edges.equalToSuperview()
+                    }
                 }
-
+                
             }).disposed(by: self.disposeBag)
             present(vc, animated: true)
         case .border:

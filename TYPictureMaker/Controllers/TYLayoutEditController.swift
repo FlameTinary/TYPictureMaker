@@ -14,7 +14,7 @@ class TYLayoutEditController : TYOprationEditController {
     private var images : [UIImage]
     
     // 缩略图
-    private var thumbnailImages : [UIImage]
+    private var thumbnailImages : [UIImage]?
     
     var selectedLayoutEdit : TYLayoutEditEnum = .vertical {
         didSet {
@@ -47,11 +47,8 @@ class TYLayoutEditController : TYOprationEditController {
     
     init(images: [UIImage]) {
         self.images = images
-        let verticalImage = TYNormalLayoutView(images: images).thumbnail()
-        let horizontalImage = TYNormalLayoutView(images: images)
-        horizontalImage.axis = .horizontal
-        thumbnailImages = [verticalImage, horizontalImage.thumbnail()]
         super.init()
+        setupThumbnails()
         itemSelectedObserver = layoutScrollView.rx.itemSelected.asObservable()
 
     }
@@ -84,17 +81,28 @@ class TYLayoutEditController : TYOprationEditController {
 // collection view delegate & data source
 extension TYLayoutEditController: UICollectionViewDelegate & UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return thumbnailImages.count
+        return thumbnailImages?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TYLayoutEditCell
-        cell.image = thumbnailImages[indexPath.item]
+        cell.image = thumbnailImages?[indexPath.item]
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let layoutEdit = TYLayoutEditEnum(rawValue: indexPath.item)
-//    }
-     
+}
+
+// 制作缩略图
+extension TYLayoutEditController {
+    func setupThumbnails() {
+        let vView = TYNormalLayoutView(images: images).thumbnail()
+        
+        let hView = TYNormalLayoutView(images: images)
+        hView.axis = .horizontal
+        
+        let view21 = TYLayoutView21(images: images).thumbnail()
+        
+        
+        thumbnailImages = [vView, hView.thumbnail(), view21]
+    }
 }

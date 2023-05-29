@@ -17,7 +17,7 @@ class TYImageScrollView : TYBaseView {
     private var orientation = UIImage.Orientation.up
     
     // 源图
-    var image: UIImage {
+    var image: UIImage? {
         didSet {
             imageView.image = image
             filterImage = image
@@ -52,11 +52,17 @@ class TYImageScrollView : TYBaseView {
         return imageView
     }()
     
-    init(with image: UIImage) {
-        self.image = image
+    override init() {
         super.init()
         backgroundColor = .clear
         setupNotification()
+    }
+    
+    convenience init(with image: UIImage?) {
+        self.init()
+        if let img = image {
+            self.image = img
+        }
         
     }
     
@@ -105,9 +111,11 @@ class TYImageScrollView : TYBaseView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        scrollView.frame = bounds
-        scrollView.contentSize = getImageViewSizeWith(image: image)
-        imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: scrollView.contentSize)
+        if let img = image {
+            scrollView.frame = bounds
+            scrollView.contentSize = getImageViewSizeWith(image: img)
+            imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: scrollView.contentSize)
+        }
     }
     
     // 双指缩放功能

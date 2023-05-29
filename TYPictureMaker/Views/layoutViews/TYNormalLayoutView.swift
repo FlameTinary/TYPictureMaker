@@ -40,8 +40,8 @@ class TYNormalLayoutView: TYBaseEditView {
     }
     
     private lazy var stackView : UIStackView = {
-        let imageViews : [TYImageCollectView] = images.map { image in TYImageCollectView(with: image)}
-        let stackView = UIStackView(arrangedSubviews: imageViews)
+        let imageViews : [TYImageCollectView]? = images?.map { image in TYImageCollectView(with: image)}
+        let stackView = UIStackView(arrangedSubviews: imageViews ?? [TYImageCollectView()])
         stackView.axis = axis
         stackView.alignment = .fill
         stackView.distribution = .fillEqually

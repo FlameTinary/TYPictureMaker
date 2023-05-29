@@ -10,7 +10,7 @@ import UIKit
 class TYBaseEditView: TYBaseView {
     
     // 图片集
-    var images : [UIImage]
+    var images : [UIImage]?
     
     // 背景图片
     var backgroundImage: UIImage?
@@ -43,7 +43,7 @@ class TYBaseEditView: TYBaseView {
         }
     }
     
-    init(images: [UIImage]) {
+    init(images: [UIImage]?) {
         self.images = images
         super.init()
         backgroundColor = .white
