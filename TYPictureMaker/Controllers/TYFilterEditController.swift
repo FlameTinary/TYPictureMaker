@@ -70,7 +70,8 @@ class TYFilterEditController : TYOprationEditController {
         alertView.addSubview(intensitySlider)
         
         filterScrollView.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
+            make.left.right.equalToSuperview()
             make.height.equalTo(100)
         }
         

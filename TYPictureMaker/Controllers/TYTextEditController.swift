@@ -55,7 +55,7 @@ class TYTextEditController : TYOprationEditController {
         alertView.addSubview(confirmBtn)
         
         textFiled.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(40)
             make.left.equalToSuperview().offset(10)
             make.right.equalToSuperview().offset(-10)
             make.height.equalTo(44)

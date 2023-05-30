@@ -66,13 +66,9 @@ class TYLayoutEditController : TYOprationEditController {
         
         alertView.addSubview(layoutScrollView)
         
-        alertView.snp.remakeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(100)
-        }
-        
         layoutScrollView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
+            make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }

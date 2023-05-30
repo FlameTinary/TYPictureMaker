@@ -52,6 +52,7 @@ class TYProportionEditController : TYOprationEditController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.isUserInteractionEnabled = true
     }
     
     override func setupSubviews() {
@@ -59,15 +60,15 @@ class TYProportionEditController : TYOprationEditController {
         
         alertView.addSubview(proportionScrollView)
         
-        alertView.snp.remakeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(100)
-        }
-        
         proportionScrollView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("123")
     }
 }
 

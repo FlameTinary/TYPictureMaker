@@ -36,6 +36,16 @@ class TYMainViewController: TYBaseViewController  {
         return btn
     }()
     
+    private lazy var transformBtn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setTitle("转场动画", for: .normal)
+        btn.setTitleColor(.red, for: .normal)
+        _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
+            self!.navigationController?.pushViewController(SourceViewController(), animated: true)
+        }
+        return btn
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -56,11 +66,18 @@ class TYMainViewController: TYBaseViewController  {
     
     override func setupSubviews() {
         view.addSubview(pingtuBtn)
+        view.addSubview(transformBtn)
     
         pingtuBtn.snp.makeConstraints { make in
             make.center.equalTo(view)
             make.width.equalTo(100)
             make.height.equalTo(44)
+        }
+        
+        transformBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(100)
+            make.size.equalTo(CGSize(width: 100, height: 44))
         }
 
     }

@@ -56,13 +56,8 @@ class TYPictureBackgroundEditController : TYOprationEditController {
         
         alertView.addSubview(colorScrollView)
         
-        alertView.snp.remakeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(100)
-        }
-        
         colorScrollView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
             make.left.equalTo(10)
             make.right.equalTo(-10)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)

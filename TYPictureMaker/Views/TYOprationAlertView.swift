@@ -6,10 +6,35 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class TYOprationAlertView : UIView {
+class TYOprationAlertView : TYBaseView {
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("点击了alert view")
+    var isShowCloseBtn : Bool = true {
+        didSet {
+            closeBtn.isHidden = !isShowCloseBtn
+        }
+    }
+    
+    var closeObserver : ControlEvent<Void>!
+    
+    private lazy var closeBtn : UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: "closeBtn"), for: .normal)
+        btn.isHidden = !isShowCloseBtn
+        closeObserver = btn.rx.tap
+        return btn
+    }()
+    
+    override func setupSubviews() {
+        super.setupSubviews()
+        
+        addSubview(closeBtn)
+        closeBtn.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(4)
+            make.right.equalToSuperview().offset(-4)
+            make.size.equalTo(CGSize(width: 20, height: 20))
+        }
     }
 }

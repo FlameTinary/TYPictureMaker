@@ -10,16 +10,23 @@ import SnapKit
 
 class TYOprationEditController : TYBaseViewController {
     
+    var editView : UIView?
+    
+    var dismissViewClosure: ((UIView?) -> Void)?
+    
     lazy var alertView : TYOprationAlertView = {
         let view = TYOprationAlertView()
+        _ = view.closeObserver.takeUntil(rx.deallocated).subscribe(onNext: {_ in
+            self.dismiss(animated: true) {
+                self.dismissViewClosure?(self.editView)
+            }
+        })
         view.backgroundColor = .green
         return view
     }()
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        modalTransitionStyle = .crossDissolve
-        modalPresentationStyle = .custom
     }
     
     required init?(coder: NSCoder) {
@@ -37,11 +44,6 @@ class TYOprationEditController : TYBaseViewController {
             make.left.right.bottom.equalToSuperview()
             make.height.equalTo(200)
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        dismiss(animated: true)
     }
     
 }

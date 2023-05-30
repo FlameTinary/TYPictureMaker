@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08091D192A26016700913842 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08091D182A26016700913842 /* DestinationViewController.swift */; };
 		081CD87F2A1EFEE000A6A0F8 /* TYFilterEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081CD87E2A1EFEE000A6A0F8 /* TYFilterEditController.swift */; };
 		081CD8812A1F006E00A6A0F8 /* TYFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081CD8802A1F006E00A6A0F8 /* TYFilterModel.swift */; };
 		08632A352A24C1E40010CC67 /* IrregularQuadrilateralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08632A342A24C1E40010CC67 /* IrregularQuadrilateralView.swift */; };
@@ -51,6 +52,8 @@
 		08DE9B292A2594BD006332EF /* TYLayoutView23.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DE9B282A2594BD006332EF /* TYLayoutView23.swift */; };
 		08DE9B2B2A25974E006332EF /* TYLayoutView24.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DE9B2A2A25974E006332EF /* TYLayoutView24.swift */; };
 		08DE9B2D2A259905006332EF /* TYLayoutView25.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DE9B2C2A259905006332EF /* TYLayoutView25.swift */; };
+		08DE9B2F2A2600E2006332EF /* CustomTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DE9B2E2A2600E2006332EF /* CustomTransitionAnimator.swift */; };
+		08DE9B312A260109006332EF /* SourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DE9B302A260109006332EF /* SourceViewController.swift */; };
 		08F5A6D22A1F00FD00200D6E /* TYFilterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F5A6D12A1F00FD00200D6E /* TYFilterEnum.swift */; };
 		08F5A6D42A1F12AF00200D6E /* TYOprationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F5A6D32A1F12AF00200D6E /* TYOprationAlertView.swift */; };
 		08F5A6D62A1F250000200D6E /* TYImageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F5A6D52A1F250000200D6E /* TYImageFilterView.swift */; };
@@ -61,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		05264E615431AA850528777C /* Pods-TYPictureMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.debug.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.debug.xcconfig"; sourceTree = "<group>"; };
+		08091D182A26016700913842 /* DestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewController.swift; sourceTree = "<group>"; };
 		081CD87E2A1EFEE000A6A0F8 /* TYFilterEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYFilterEditController.swift; sourceTree = "<group>"; };
 		081CD8802A1F006E00A6A0F8 /* TYFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYFilterModel.swift; sourceTree = "<group>"; };
 		08632A342A24C1E40010CC67 /* IrregularQuadrilateralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IrregularQuadrilateralView.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 		08DE9B282A2594BD006332EF /* TYLayoutView23.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYLayoutView23.swift; sourceTree = "<group>"; };
 		08DE9B2A2A25974E006332EF /* TYLayoutView24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYLayoutView24.swift; sourceTree = "<group>"; };
 		08DE9B2C2A259905006332EF /* TYLayoutView25.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYLayoutView25.swift; sourceTree = "<group>"; };
+		08DE9B2E2A2600E2006332EF /* CustomTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionAnimator.swift; sourceTree = "<group>"; };
+		08DE9B302A260109006332EF /* SourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceViewController.swift; sourceTree = "<group>"; };
 		08F5A6D12A1F00FD00200D6E /* TYFilterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYFilterEnum.swift; sourceTree = "<group>"; };
 		08F5A6D32A1F12AF00200D6E /* TYOprationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYOprationAlertView.swift; sourceTree = "<group>"; };
 		08F5A6D52A1F250000200D6E /* TYImageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYImageFilterView.swift; sourceTree = "<group>"; };
@@ -174,6 +180,8 @@
 				0883FA622A21DC010082A402 /* TYTextEditController.swift */,
 				08F5A6DC2A206C9400200D6E /* TYStickerEditController.swift */,
 				0893A9912A22F0270075B03C /* TYPictureFrameEditController.swift */,
+				08DE9B302A260109006332EF /* SourceViewController.swift */,
+				08091D182A26016700913842 /* DestinationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -210,6 +218,7 @@
 				08F5A6D52A1F250000200D6E /* TYImageFilterView.swift */,
 				0883FA602A21CD6F0082A402 /* TYViewExtention.swift */,
 				0893A9952A23A2F40075B03C /* TYEditViewProtocol.swift */,
+				08DE9B2E2A2600E2006332EF /* CustomTransitionAnimator.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -415,10 +424,12 @@
 				0870C2F82A14E64800AC1793 /* TYProportionCell.swift in Sources */,
 				081CD87F2A1EFEE000A6A0F8 /* TYFilterEditController.swift in Sources */,
 				08F5A6DF2A20A7BE00200D6E /* TYPanView.swift in Sources */,
+				08DE9B312A260109006332EF /* SourceViewController.swift in Sources */,
 				08F5A6DD2A206C9400200D6E /* TYStickerEditController.swift in Sources */,
 				088727BA2A1DBA0700F77D81 /* TYBaseView.swift in Sources */,
 				088727C42A1E00A300F77D81 /* TYBackgroundCell.swift in Sources */,
 				0893A9942A239CF80075B03C /* TYBaseEditView.swift in Sources */,
+				08091D192A26016700913842 /* DestinationViewController.swift in Sources */,
 				0887279E2A1B4ADF00F77D81 /* TYOprationEnum.swift in Sources */,
 				08DE9B252A258B09006332EF /* TYLayoutView22.swift in Sources */,
 				088727B42A1CE40300F77D81 /* TYLayoutEditController.swift in Sources */,
@@ -428,6 +439,7 @@
 				088727A12A1B5C7E00F77D81 /* TYProportionEnum.swift in Sources */,
 				088727B62A1D15C200F77D81 /* TYOprationEditController.swift in Sources */,
 				08A4BEAA2A244D7400BBE622 /* TYLayoutView21.swift in Sources */,
+				08DE9B2F2A2600E2006332EF /* CustomTransitionAnimator.swift in Sources */,
 				08F5A6D42A1F12AF00200D6E /* TYOprationAlertView.swift in Sources */,
 				088727C02A1DE89000F77D81 /* TYProportionEditController.swift in Sources */,
 				0870C2FA2A15D52500AC1793 /* TYImageCollectView.swift in Sources */,

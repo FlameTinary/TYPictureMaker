@@ -57,7 +57,8 @@ class TYPictureFrameEditController : TYOprationEditController {
         alertView.addSubview(frameScrollView)
         
         frameScrollView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
+            make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }

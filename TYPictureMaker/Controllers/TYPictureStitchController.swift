@@ -71,6 +71,7 @@ class TYPictureStitchController: TYOprationEditController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        alertView.isShowCloseBtn = false
         setupNotification()
     }
     
@@ -156,6 +157,9 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
 // 跳转操作控制器
 extension TYPictureStitchController {
     private func presentOprationController(with opration: TYOpration) {
+        
+        let destinationVC : TYOprationEditController
+        
         switch opration {
 
         case .proportion:
@@ -184,7 +188,7 @@ extension TYPictureStitchController {
                 
                 
             }).disposed(by: self.disposeBag)
-            present(vc, animated: true)
+            destinationVC = vc
         case .layout:
             let vc = TYLayoutEditController(images: images)
             vc.selectedLayoutEdit = editInfo.layout
@@ -212,29 +216,26 @@ extension TYPictureStitchController {
                 }
                 
             }).disposed(by: self.disposeBag)
-            present(vc, animated: true)
+            destinationVC = vc
         case .border:
-            do {
-                print("present border controller")
-                let vc = TYBorderEditController(pictureBorderValue: editInfo.borderCorner.pictureBorder, imageBorderValue: editInfo.borderCorner.imageBorder, imageCornerRadioValue: editInfo.borderCorner.imageCornerRadio)
-                
-                vc.pictureBorderObserver.subscribe(onNext: {[weak self] value in
-                    self?.imageEditView?.padding = CGFloat(value)
-                    self?.editInfo.borderCorner.pictureBorder = value
-                }).disposed(by: self.disposeBag)
+            let vc = TYBorderEditController(pictureBorderValue: editInfo.borderCorner.pictureBorder, imageBorderValue: editInfo.borderCorner.imageBorder, imageCornerRadioValue: editInfo.borderCorner.imageCornerRadio)
+            
+            vc.pictureBorderObserver.subscribe(onNext: {[weak self] value in
+                self?.imageEditView?.padding = CGFloat(value)
+                self?.editInfo.borderCorner.pictureBorder = value
+            }).disposed(by: self.disposeBag)
 
-                vc.imageBorderObserver.subscribe(onNext: {[weak self] value in
-                    self?.imageEditView?.imagePandding = CGFloat(value)
-                    self?.editInfo.borderCorner.imageBorder = value
-                }).disposed(by: self.disposeBag)
+            vc.imageBorderObserver.subscribe(onNext: {[weak self] value in
+                self?.imageEditView?.imagePandding = CGFloat(value)
+                self?.editInfo.borderCorner.imageBorder = value
+            }).disposed(by: self.disposeBag)
 
-                vc.imageCornerRadioObserver.subscribe(onNext: {[weak self] value in
-                    self?.imageEditView?.imageCornerRadio = CGFloat(value)
-                    self?.editInfo.borderCorner.imageCornerRadio = value
-                }).disposed(by: self.disposeBag)
-                
-                self.present(vc, animated: true)
-            }
+            vc.imageCornerRadioObserver.subscribe(onNext: {[weak self] value in
+                self?.imageEditView?.imageCornerRadio = CGFloat(value)
+                self?.editInfo.borderCorner.imageCornerRadio = value
+            }).disposed(by: self.disposeBag)
+            
+            destinationVC = vc
             
         case .background:
             let vc = TYPictureBackgroundEditController()
@@ -244,14 +245,16 @@ extension TYPictureStitchController {
                 self?.editInfo.backgroundColor = colorEnum
                 self?.imageEditView!.backgroundColor = colorEnum.color()
             }).disposed(by: self.disposeBag)
-            self.present(vc, animated: true)
+            destinationVC = vc
+            
         case .filter:
             
             let vc = TYFilterEditController(with: editInfo.filter)
-            self.present(vc, animated: true)
+            destinationVC = vc
             
         case .texture:
-            print("present texture controller")
+            destinationVC = TYOprationEditController()
+            
         case .text:
             
             let vc = TYTextEditController()
@@ -266,7 +269,7 @@ extension TYPictureStitchController {
                 self.imageEditView?.addSubview(textStickerView)
                 
             }).disposed(by: self.disposeBag)
-            present(vc, animated: true)
+            destinationVC = vc
             
         case .sticker:
             
@@ -282,7 +285,7 @@ extension TYPictureStitchController {
                 self.imageEditView?.addSubview(stickView)
                 self.stickerNames.append(name)
             }).disposed(by: self.disposeBag)
-            present(vc, animated: true)
+            destinationVC = vc
             
         case .pictureFrame:
             print("present pictureFrame controller")
@@ -290,9 +293,32 @@ extension TYPictureStitchController {
             vc.pictureFrameObserver.subscribe(onNext: {[weak self] frameName in
                 self?.imageEditView?.frameImage = UIImage(named: frameName!)
             }).disposed(by: self.disposeBag)
-            present(vc, animated: true)
+            destinationVC = vc
+            
         case .addImage:
-            print("present addImage controller")
+            destinationVC = TYOprationEditController()
         }
+        destinationVC.editView = imageContentView
+        destinationVC.transitioningDelegate = self
+        destinationVC.modalPresentationStyle = .fullScreen
+        destinationVC.dismissViewClosure = { view in
+            if let contentView = view {
+                self.imageContentView = contentView
+            }
+        }
+        present(destinationVC, animated: true, completion: nil)
+
+    }
+}
+
+extension TYPictureStitchController : UIViewControllerTransitioningDelegate {
+    // MARK: - UIViewControllerTransitioningDelegate
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomTransitionAnimator(sourceView: self.imageContentView, isPresenting: true)
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomTransitionAnimator(sourceView: self.imageContentView, isPresenting: false)
     }
 }
