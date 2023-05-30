@@ -11,7 +11,7 @@ import RxCocoa
 
 class TYPictureBackgroundEditController : TYOprationEditController {
     
-    var selectedColor : TYBackgroundColorEnum = .red {
+    var selectedColor : TYBackgroundColorEnum = .white {
         didSet {
             colorScrollView.selectItem(at: IndexPath(item: selectedColor.rawValue, section: 0), animated: true, scrollPosition: .top)
         }

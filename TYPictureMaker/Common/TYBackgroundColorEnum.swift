@@ -8,7 +8,7 @@
 import UIKit
 
 enum TYBackgroundColorEnum: Int, CaseIterable {
-    case red = 0, green, blue, brown, cyan, orange, white, black
+    case white = 0, black, green, blue, brown, cyan, orange, red
     
     func color() -> UIColor {
         switch self {
