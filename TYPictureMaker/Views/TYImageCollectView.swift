@@ -20,6 +20,8 @@ class TYImageCollectView : TYBaseView {
         }
     }
     
+    var shapeLayer : CAShapeLayer?
+    
     var image: UIImage? {
         didSet {
             guard let img = image else { return }
@@ -128,11 +130,30 @@ class TYImageCollectView : TYBaseView {
             let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
             
             // 创建一个形状图层，并设置路径
-            let shapeLayer = CAShapeLayer()
-            shapeLayer.path = path.cgPath
+            shapeLayer = CAShapeLayer()
+            shapeLayer!.path = path.cgPath
             
             // 设置视图的遮罩为形状图层
             layer.mask = shapeLayer
+        case let .custom(points):
+            // 创建一个不规则的四边形路径
+            let path = UIBezierPath()
+            for (index, point) in points.enumerated() {
+                if index == 0 {
+                    path.move(to: point)
+                } else {
+                    path.addLine(to: point)
+                }
+            }
+            path.close()
+            
+            // 创建一个形状图层，并设置路径
+            shapeLayer = CAShapeLayer()
+            shapeLayer!.path = path.cgPath
+            
+            // 设置视图的遮罩为形状图层
+            layer.mask = shapeLayer
+
         }
     }
     

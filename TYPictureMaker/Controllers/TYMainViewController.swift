@@ -41,12 +41,12 @@ class TYMainViewController: TYBaseViewController  {
         view.backgroundColor = .white
         navigationItem.title = "快速拼图"
         
-//        let irregularView = IrregularQuadrilateralView(frame: CGRect(x: 100, y: 100, width: 200, height: 200))
-//        irregularView.backgroundColor = UIColor.red
-//        // 添加其他的子视图或内容到irregularView中
+        let irregularView = IrregularQuadrilateralView(frame: CGRect(x: 100, y: 100, width: 200, height: 200))
+        irregularView.backgroundColor = UIColor.red
+        // 添加其他的子视图或内容到irregularView中
+
+        view.addSubview(irregularView)
 //
-//        view.addSubview(irregularView)
-//        
 //        let circularView = CircularView(frame: CGRect(x: 100, y: 400, width: 200, height: 200))
 //        circularView.backgroundColor = UIColor.red
 //        // 添加其他的子视图或内容到circularView中
