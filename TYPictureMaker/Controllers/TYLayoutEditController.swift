@@ -14,7 +14,7 @@ class TYLayoutEditController : TYOprationEditController {
     private var images : [UIImage]
     
     // 缩略图
-    private var thumbnailImages : [UIImage]?
+    private var thumbnailImages : [UIImage] = []
     
     var selectedLayoutEdit : TYLayoutEditEnum = .vertical {
         didSet {
@@ -81,12 +81,12 @@ class TYLayoutEditController : TYOprationEditController {
 // collection view delegate & data source
 extension TYLayoutEditController: UICollectionViewDelegate & UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return thumbnailImages?.count ?? 0
+        return thumbnailImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TYLayoutEditCell
-        cell.image = thumbnailImages?[indexPath.item]
+        cell.image = thumbnailImages[indexPath.item]
         return cell
     }
     
@@ -95,14 +95,9 @@ extension TYLayoutEditController: UICollectionViewDelegate & UICollectionViewDat
 // 制作缩略图
 extension TYLayoutEditController {
     func setupThumbnails() {
-        let vView = TYNormalLayoutView(images: images).thumbnail()
-        
-        let hView = TYNormalLayoutView(images: images)
-        hView.axis = .horizontal
-        
-        let view21 = TYLayoutView21(images: images).thumbnail()
-        
-        
-        thumbnailImages = [vView, hView.thumbnail(), view21]
+        TYLayoutEditEnum.allCases.forEach { layout in
+            let view = layout.toEditView(images: images)
+            thumbnailImages.append(view.thumbnail())
+        }
     }
 }

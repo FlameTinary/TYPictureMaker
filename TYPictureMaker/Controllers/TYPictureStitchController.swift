@@ -197,6 +197,9 @@ extension TYPictureStitchController {
                 
                 let imageEditView = editEnum?.toEditView(images: self?.images)
                 if let view = imageEditView {
+                    self?.imageContentView.subviews.forEach({ view in
+                        view.removeFromSuperview()
+                    })
                     self?.imageContentView.addSubview(view)
                     self?.imageEditView = view
                     view.snp.makeConstraints { make in

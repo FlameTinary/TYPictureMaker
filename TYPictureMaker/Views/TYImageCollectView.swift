@@ -14,6 +14,11 @@ import RxCocoa
 class TYImageCollectView : TYBaseView {
     
 //    weak var sender : UIViewController?
+    var shape : TYShapes = .none {
+        didSet {
+            imageScrollView.shape = shape
+        }
+    }
     
     var image: UIImage? {
         didSet {
@@ -59,6 +64,7 @@ class TYImageCollectView : TYBaseView {
     
     private lazy var imageScrollView : TYImageScrollView = {
         let scrollView = TYImageScrollView(with: UIImage(named: "blend")!)
+        scrollView.shape = shape
         return scrollView
     }()
     
@@ -108,6 +114,26 @@ class TYImageCollectView : TYBaseView {
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
         }
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        switch shape {
+        case .none:
+            return
+        case .circle:
+            // 创建一个圆形路径
+            let radius = min(bounds.width, bounds.height) / 2
+            let center = CGPoint(x: bounds.midX, y: bounds.midY)
+            let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
+            
+            // 创建一个形状图层，并设置路径
+            let shapeLayer = CAShapeLayer()
+            shapeLayer.path = path.cgPath
+            
+            // 设置视图的遮罩为形状图层
+            layer.mask = shapeLayer
+        }
     }
     
     required init?(coder: NSCoder) {

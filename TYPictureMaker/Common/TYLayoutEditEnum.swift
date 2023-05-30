@@ -8,7 +8,7 @@
 import UIKit
 
 enum TYLayoutEditEnum: Int, CaseIterable {
-    case vertical = 0, horizontal, view21
+    case vertical = 0, horizontal, view21, view22
     
     func iconNameFromEnum() -> String {
         switch self {
@@ -18,6 +18,8 @@ enum TYLayoutEditEnum: Int, CaseIterable {
             return "icon_2_1"
         case .view21:
             return "icon_2_4"
+        default:
+            return "icon_2_1"
         }
     }
     
@@ -35,6 +37,9 @@ enum TYLayoutEditEnum: Int, CaseIterable {
             view = v
         case .view21:
             let v = TYLayoutView21(images: images)
+            view = v
+        case .view22:
+            let  v = TYLayoutView22(images: images)
             view = v
         }
         return view
