@@ -16,7 +16,20 @@ class TYBaseEditView: TYBaseView {
     var backgroundImage: UIImage?
     
     // 边框图片
-    var frameImage: UIImage?
+    var frameImage: UIImage? {
+        didSet {
+            if let image = frameImage {
+                frameImageView.image = image
+                contentView.snp.remakeConstraints { make in
+                    make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding + 4, left: padding + 4, bottom: padding + 4, right: padding + 4))
+                }
+            } else {
+                contentView.snp.remakeConstraints { make in
+                    make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
+                }
+            }
+        }
+    }
     
     // 图片间距
     var imagePandding: CGFloat = 4
@@ -32,6 +45,12 @@ class TYBaseEditView: TYBaseView {
             }
         }
     }
+    
+    // 边框图片视图
+    private lazy var frameImageView : UIImageView = {
+        let imageView = UIImageView(image: frameImage)
+        return imageView
+    }()
     
     // 保存内容的视图
     lazy var contentView : UIView = {
@@ -50,7 +69,7 @@ class TYBaseEditView: TYBaseView {
     init(images: [UIImage]?) {
         self.images = images
         super.init()
-        backgroundColor = .white
+        backgroundColor = .lightGray
     }
     
     required init?(coder: NSCoder) {
@@ -59,7 +78,11 @@ class TYBaseEditView: TYBaseView {
     
     override func setupSubviews() {
         super.setupSubviews()
+        addSubview(frameImageView)
         addSubview(contentView)
+        frameImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
         }

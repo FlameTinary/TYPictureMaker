@@ -200,6 +200,10 @@ extension TYPictureStitchController {
                     self?.imageContentView.subviews.forEach({ view in
                         view.removeFromSuperview()
                     })
+                    view.backgroundColor = self!.editInfo.backgroundColor.color()
+                    view.padding = CGFloat(self!.editInfo.borderCorner.pictureBorder)
+                    view.imagePandding = CGFloat(self!.editInfo.borderCorner.imageBorder)
+                    view.imageCornerRadio = CGFloat(self!.editInfo.borderCorner.imageCornerRadio)
                     self?.imageContentView.addSubview(view)
                     self?.imageEditView = view
                     view.snp.makeConstraints { make in
