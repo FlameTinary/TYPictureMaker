@@ -46,4 +46,18 @@ class TYOprationEditController : TYBaseViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        alertView.snp.makeConstraints { make in
+//            make.left.right.bottom.equalToSuperview()
+//            make.height.equalTo(200)
+//        }
+    }
+    
+}
+
+extension TYOprationEditController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("123")
+    }
 }

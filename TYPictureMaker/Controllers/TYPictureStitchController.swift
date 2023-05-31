@@ -104,8 +104,8 @@ class TYPictureStitchController: TYOprationEditController {
         }
         
         imageContentView.snp.makeConstraints { make in
-            make.centerX.equalTo(view)
-            make.centerY.equalTo(view).offset(-50)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-50)
             make.width.equalToSuperview()
             make.height.equalTo(imageContentView.snp.width)
         }

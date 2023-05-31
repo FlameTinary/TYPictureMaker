@@ -52,7 +52,6 @@ class TYProportionEditController : TYOprationEditController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.isUserInteractionEnabled = true
     }
     
     override func setupSubviews() {
@@ -67,9 +66,6 @@ class TYProportionEditController : TYOprationEditController {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("123")
-    }
 }
 
 // collection view delegate & data source

@@ -9,7 +9,9 @@ import UIKit
 
 class CustomTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
+    
     let duration: TimeInterval = 0.5
+    var animationDidFinished : (()-> Void)?
     private let sourceView: UIView?
     private let isPresenting: Bool
     
@@ -22,35 +24,62 @@ class CustomTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
-    
+
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromView = transitionContext.view(forKey: .from),
-              let toView = transitionContext.view(forKey: .to) else {
+        
+        guard let toView = transitionContext.view(forKey: .to) else {
+                  
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             return
+                  
         }
         
         let containerView = transitionContext.containerView
         
+        // 添加目标视图控制器的视图到容器视图
         containerView.addSubview(toView)
         toView.frame = containerView.bounds
         toView.alpha = 0.0
         
-        if let sourceView = sourceView {
+        // 添加视图到目标控制器视图
+        if let sourceView = self.sourceView {
             containerView.addSubview(sourceView)
-            // 对 sourceView 进行动画操作
-            // 执行源视图的动画
+            if isPresenting {
+                sourceView.snp.makeConstraints { make in
+                    make.centerX.equalToSuperview()
+                    make.centerY.equalToSuperview().offset(-50)
+                    make.width.equalToSuperview()
+                    make.height.equalTo(sourceView.snp.width)
+                }
+            }
             
-            UIView.animate(withDuration: duration, animations: {
+            UIView.animate(withDuration: duration) {
                 if self.isPresenting {
-                    sourceView.snp.remakeConstraints { make in
+                    sourceView.snp.updateConstraints { make in
                         // 更新源视图的约束
-                        make.centerX.equalToSuperview()
-                        make.top.equalToSuperview().offset(100)
-                        make.width.equalToSuperview()
-                        make.height.equalTo(sourceView.snp.width)
+                        make.centerY.equalToSuperview().offset(-150)
                     }
                 } else {
-                    
+                    sourceView.snp.updateConstraints { make in
+                        // 更新源视图的约束
+                        make.centerY.equalToSuperview().offset(-50)
+                    }
+                }
+                containerView.layoutIfNeeded()
+            }
+            
+        }
+        
+        
+        
+        UIView.animate(withDuration: duration) {
+            toView.alpha = 1.0
+        } completion: { _ in
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            
+            if !self.isPresenting {
+                if let sourceView = self.sourceView {
+                    toView.addSubview(sourceView)
                     sourceView.snp.remakeConstraints { make in
                         // 更新源视图的约束
                         make.centerX.equalToSuperview()
@@ -58,32 +87,6 @@ class CustomTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
                         make.width.equalToSuperview()
                         make.height.equalTo(sourceView.snp.width)
                     }
-                }
-                
-                containerView.layoutIfNeeded()
-            })
-        }
-
-        UIView.animate(withDuration: duration, animations: {
-            fromView.alpha = 0.0
-            toView.alpha = 1.0
-        }) { (finished) in
-            fromView.alpha = 1.0
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            if !self.isPresenting {
-                // 将传递的视图添加到源视图控制器的视图上
-                if let fromViewController = transitionContext.viewController(forKey: .to) as? SourceViewController {
-                    fromViewController.view.addSubview(self.sourceView!)
-                }
-                if let fromViewController = transitionContext.viewController(forKey: .to) as? UINavigationController {
-                    fromViewController.visibleViewController?.view.addSubview(self.sourceView!)
-                }
-                self.sourceView!.snp.remakeConstraints { make in
-                    // 更新源视图的约束
-                    make.centerX.equalToSuperview()
-                    make.centerY.equalToSuperview().offset(-50)
-                    make.width.equalToSuperview()
-                    make.height.equalTo(self.sourceView!.snp.width)
                 }
             }
         }
