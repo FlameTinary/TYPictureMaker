@@ -10,7 +10,14 @@ import SnapKit
 
 class TYOprationEditController : TYBaseViewController {
     
-    var editView : UIView?
+    var editInfo : TYEditInfo
+    
+    lazy var editView : TYBaseEditView = {
+        let editView = editInfo.layout.toEditView(images: editInfo.images)
+        editView.size = CGSize(width: view.width, height: editInfo.proportion.heightFrom(width: view.width))
+        editView.center = view.center
+        return editView
+    }()
     
     var aleatHeight : CGFloat {
         get {
@@ -18,14 +25,14 @@ class TYOprationEditController : TYBaseViewController {
         }
     }
     
-    var dismissViewClosure: ((UIView?) -> Void)?
+    var dismissViewClosure: ((UIView?, TYEditInfo) -> Void)?
     
     lazy var alertView : TYOprationAlertView = {
         let view = TYOprationAlertView()
         _ = view.closeObserver.takeUntil(rx.deallocated).subscribe(onNext: {_ in
             self.hiddenAlertView { isFinished in
                 self.dismiss(animated: true) {
-                    self.dismissViewClosure?(self.editView)
+                    self.dismissViewClosure?(self.editView, self.editInfo)
                 }
             }
         })
@@ -33,7 +40,8 @@ class TYOprationEditController : TYBaseViewController {
         return view
     }()
     
-    init() {
+    init(editInfo : TYEditInfo) {
+        self.editInfo = editInfo
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -46,7 +54,9 @@ class TYOprationEditController : TYBaseViewController {
     }
     
     override func setupSubviews() {
+        view.addSubview(editView)
         view.addSubview(alertView)
+        
         alertView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.height.equalTo(aleatHeight)

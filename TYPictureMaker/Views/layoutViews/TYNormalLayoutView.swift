@@ -10,6 +10,12 @@ import SnapKit
 
 class TYNormalLayoutView: TYBaseEditView {
     
+    override var images: [UIImage]? {
+        didSet {
+            print("image did set")
+        }
+    }
+    
     // 边框图片
     override var frameImage : UIImage? {
         didSet {

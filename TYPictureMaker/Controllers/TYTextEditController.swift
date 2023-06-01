@@ -33,16 +33,16 @@ class TYTextEditController : TYOprationEditController {
         return btn
     }()
     
-    override init() {
-        super.init()
-        textObserver = confirmBtn.rx.tap.map { _ in
-            return self.text
-        }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    override init() {
+//        super.init()
+//        textObserver = confirmBtn.rx.tap.map { _ in
+//            return self.text
+//        }
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

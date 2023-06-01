@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TYBaseEditView: TYBaseView {
+class TYBaseEditView: UIView {
     
     // 图片集
     var images : [UIImage]?
@@ -66,18 +66,22 @@ class TYBaseEditView: TYBaseView {
         }
     }
     
-    init(images: [UIImage]?) {
+    init() {
+        super.init(frame: .zero)
+    }
+    
+    convenience init(images: [UIImage]?) {
+        self.init()
         self.images = images
-        super.init()
-        backgroundColor = .lightGray
+        
+        setupSubviews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setupSubviews() {
-        super.setupSubviews()
+    func setupSubviews() {
         addSubview(frameImageView)
         addSubview(contentView)
         frameImageView.snp.makeConstraints { make in

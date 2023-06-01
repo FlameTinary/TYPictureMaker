@@ -66,14 +66,14 @@ class CustomTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
             toView.alpha = 1.0
         } completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            if !self.isPresenting {
-                if let sourceView = self.sourceView {
-                    toView.addSubview(sourceView)
-                    sourceView.size = CGSize(width: containerView.width, height: containerView.width)
-                    sourceView.centerX = containerView.centerX
-                    sourceView.centerY = containerView.centerY - 50
-                }
-            }
+//            if !self.isPresenting {
+//                if let sourceView = self.sourceView {
+//                    toView.addSubview(sourceView)
+//                    sourceView.size = CGSize(width: containerView.width, height: containerView.width)
+//                    sourceView.centerX = containerView.centerX
+//                    sourceView.centerY = containerView.centerY - 50
+//                }
+//            }
         }
     }
 
