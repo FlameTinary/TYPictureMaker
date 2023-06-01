@@ -58,7 +58,7 @@ class TYStickerEditController : TYOprationEditController {
         stickerCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(40)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(-stickerCollectionView.safeBottom)
         }
         
     }

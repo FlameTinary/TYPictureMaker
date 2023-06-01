@@ -55,7 +55,7 @@ class TYBorderEditController: TYOprationEditController {
         alertView.addSubview(borderEditView)
         borderEditView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(-borderEditView.safeBottom)
             make.top.equalToSuperview().offset(40)
         }
     }
