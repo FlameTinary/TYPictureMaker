@@ -14,28 +14,47 @@ class TYOprationCell: UICollectionViewCell {
         }
     }
     
-    private var selectedColor : UIColor = .red
-    private var normalColor : UIColor = .black
+    var icon : String? {
+        didSet {
+            if let icon = icon {
+                iconView.image = UIImage(named: icon)
+            }
+        }
+    }
     
+    var selectedIcon : String?
     
     private lazy var textLbl : UILabel = {
         let lbl = UILabel()
+        lbl.textColor = normalTextColor
+        lbl.font = normalFont
         lbl.textAlignment = .center
-        lbl.frame = contentView.bounds
+        contentView.addSubview(lbl)
         return lbl
     }()
     
-    init(text: String) {
-        self.text = text
-        super.init(frame: .zero)
-        self.textLbl.text = text
-        
-    }
+    private lazy var iconView : UIImageView = {
+        let iconView = UIImageView()
+        contentView.addSubview(iconView)
+        return iconView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(textLbl)
+        
+        textLbl.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.height.greaterThanOrEqualTo(10)
+        }
+        
+        iconView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(4)
+            make.bottom.equalTo(textLbl.snp_topMargin).offset(-4)
+            make.width.equalTo(iconView.snp.height)
+        }
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -44,15 +63,17 @@ class TYOprationCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if (isSelected) {
-                textLbl.textColor = selectedColor
+                textLbl.textColor = selectColor
+                if let selectedIcon = selectedIcon {
+                    iconView.image = UIImage(named: selectedIcon)
+                }
             } else {
-                textLbl.textColor = normalColor
+                textLbl.textColor = normalTextColor
+                if let icon = icon {
+                    iconView.image = UIImage(named: icon)
+                }
             }
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        textLbl.frame = contentView.bounds
-    }
 }

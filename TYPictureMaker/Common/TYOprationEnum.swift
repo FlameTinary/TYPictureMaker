@@ -34,5 +34,30 @@ case proportion = 0, layout, border, background, filter, texture, text, sticker,
             return "添加照片"
         }
     }
+    
+    func toIcon() -> String {
+        switch self {
+        case .proportion:
+            return "proportion"
+        case .layout:
+            return "layout"
+        case .border:
+            return "border"
+        case .background:
+            return "background"
+        case .filter:
+            return "filter"
+        case .texture:
+            return "filter"
+        case .text:
+            return "text"
+        case .sticker:
+            return "sticker"
+        case .pictureFrame:
+            return "pictureFrame"
+        case .addImage:
+            return "addImage"
+        }
+    }
 
 }

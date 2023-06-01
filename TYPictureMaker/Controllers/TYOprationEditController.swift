@@ -32,7 +32,6 @@ class TYOprationEditController : TYBaseViewController {
                 self.dismiss(animated: true)
             }
         })
-        view.backgroundColor = .green
         return view
     }()
     
@@ -47,6 +46,8 @@ class TYOprationEditController : TYBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = backgroundColor
     }
     
     override func setupSubviews() {

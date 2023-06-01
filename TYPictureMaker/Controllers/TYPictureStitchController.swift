@@ -49,7 +49,7 @@ class TYPictureStitchController: TYOprationEditController {
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = CGSize(width: 80, height: 50)
+        layout.itemSize = CGSize(width: 80, height: 50)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -73,7 +73,6 @@ class TYPictureStitchController: TYOprationEditController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
         alertView.isShowCloseBtn = false
         setupNotification()
     }
@@ -140,7 +139,14 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oprationCellId", for: indexPath) as! TYOprationCell
-        cell.text = TYOpration(rawValue: indexPath.item)?.toName()
+        
+        if let opration = TYOpration(rawValue: indexPath.item) {
+            cell.text = opration.toName()
+            cell.icon = opration.toIcon()
+            cell.selectedIcon = opration.toIcon() + "_selected"
+        }
+        
+        
 //        cell.isSelected = indexPath.item == oprationSelectedItem.rawValue
         return cell
     }

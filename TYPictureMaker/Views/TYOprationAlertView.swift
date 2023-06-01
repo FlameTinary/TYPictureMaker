@@ -29,7 +29,7 @@ class TYOprationAlertView : TYBaseView {
     
     override func setupSubviews() {
         super.setupSubviews()
-        
+        backgroundColor = editBackgroundColor
         addSubview(closeBtn)
         closeBtn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(4)
