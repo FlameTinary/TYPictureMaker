@@ -48,6 +48,11 @@ class TYOprationEditController : TYBaseViewController {
         super.viewDidLoad()
         
         view.backgroundColor = backgroundColor
+        
+        // 设置导航栏返回图标
+        let item = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(back))
+        item.tintColor = .white
+        self.navigationItem.leftBarButtonItem = item
     }
     
     override func setupSubviews() {
@@ -69,6 +74,10 @@ class TYOprationEditController : TYBaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showAlertView()
+    }
+    
+    @objc func back() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

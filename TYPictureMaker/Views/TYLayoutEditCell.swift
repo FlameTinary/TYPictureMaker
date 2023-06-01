@@ -28,7 +28,7 @@ class TYLayoutEditCell : UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if (isSelected) {
-                imageView.layer.borderColor = UIColor.red.cgColor
+                imageView.layer.borderColor = selectColor?.cgColor
                 imageView.layer.borderWidth = 2.0
             } else {
                 imageView.layer.borderColor = UIColor.clear.cgColor

@@ -14,27 +14,31 @@ class TYProportionCell: UICollectionViewCell {
         }
     }
     
-    private var selectedColor : UIColor = .red
-    private var normalColor : UIColor = .black
-    
-    
     private lazy var textLbl : UILabel = {
         let lbl = UILabel()
+        lbl.textColor = normalTextColor
+        lbl.font = normalFont
+        lbl.layer.borderColor = normalTextColor?.cgColor
+        lbl.layer.borderWidth = 1.0
         lbl.textAlignment = .center
-        lbl.frame = contentView.bounds
+        contentView.addSubview(lbl)
         return lbl
     }()
     
-    init(text: String) {
-        self.text = text
-        super.init(frame: .zero)
-        self.textLbl.text = text
-        
-    }
+//    init(text: String) {
+//        self.text = text
+//        super.init(frame: .zero)
+//        self.textLbl.text = text
+//
+//    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(textLbl)
+        
+        textLbl.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 4, left: 10, bottom: 4, right: 10))
+        }
+        
     }
     
     required init?(coder: NSCoder) {
@@ -44,16 +48,12 @@ class TYProportionCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if (isSelected) {
-                textLbl.textColor = selectedColor
+                textLbl.textColor = selectColor
+                textLbl.layer.borderColor = selectColor?.cgColor
             } else {
-                textLbl.textColor = normalColor
+                textLbl.textColor = normalTextColor
+                textLbl.layer.borderColor = normalTextColor?.cgColor
             }
         }
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        textLbl.frame = contentView.bounds
-    }
-
 }

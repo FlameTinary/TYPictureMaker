@@ -17,7 +17,7 @@ class TYProportionEditController : TYOprationEditController {
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = CGSize(width: 70, height: 50)
+        layout.itemSize = CGSize(width: 70, height: 44)
 
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.showsVerticalScrollIndicator = false
