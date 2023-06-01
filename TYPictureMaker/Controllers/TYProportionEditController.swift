@@ -61,8 +61,8 @@ class TYProportionEditController : TYOprationEditController {
         
         proportionScrollView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(40)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.top.equalToSuperview().offset(28)
+            make.bottom.equalTo(-proportionScrollView.safeBottom)
         }
     }
     

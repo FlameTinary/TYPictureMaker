@@ -14,6 +14,12 @@ class TYPictureStitchController: TYOprationEditController {
     
     var images : [UIImage]
     
+    override var aleatHeight: CGFloat {
+        get {
+            return 100
+        }
+    }
+    
     // 图片编辑相关信息
     private var editInfo : TYEditInfo!
     
@@ -33,6 +39,9 @@ class TYPictureStitchController: TYOprationEditController {
     // 图片展示底视图，用于约束图片展示视图不超过屏幕
     private lazy var imageContentView : UIView = {
         let view = UIView()
+        view.size = CGSize(width: self.view.width, height: self.view.width)
+        view.centerX = self.view.centerX
+        view.centerY = self.view.centerY - 50
         view.backgroundColor = .clear
         return view
     }()
@@ -93,21 +102,15 @@ class TYPictureStitchController: TYOprationEditController {
         imageContentView.addSubview(imageEditView)
         self.imageEditView = imageEditView
         
-        alertView.snp.remakeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(100)
-        }
+//        alertView.snp.remakeConstraints { make in
+//            make.left.right.equalToSuperview()
+//            make.height.equalTo(100)
+//            make.bottom.equalTo(0)
+//        }
         
         oprationListView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-        }
-        
-        imageContentView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-50)
-            make.width.equalToSuperview()
-            make.height.equalTo(imageContentView.snp.width)
+            make.bottom.equalTo(alertView).offset(-oprationListView.safeBottom)
         }
 
         imageEditView.snp.makeConstraints { make in
@@ -305,6 +308,20 @@ extension TYPictureStitchController {
             if let contentView = view {
                 self.imageContentView = contentView
             }
+            
+            self.alertView.snp.updateConstraints { make in
+                make.bottom.equalTo(0)
+            }
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        alertView.snp.updateConstraints { make in
+            make.bottom.equalTo(100)
+        }
+        UIView.animate(withDuration: 0.25) {
+            self.view.layoutIfNeeded()
         }
         present(destinationVC, animated: true, completion: nil)
 

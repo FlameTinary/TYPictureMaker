@@ -96,6 +96,18 @@ extension UIView {
             height = newValue.height
         }
     }
+    
+    public var safeTop : CGFloat {
+        get {
+            return UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
+        }
+    }
+    
+    public var safeBottom : CGFloat {
+        get {
+            return UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
+        }
+    }
 }
 
 extension UIView {

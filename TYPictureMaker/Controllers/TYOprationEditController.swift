@@ -12,13 +12,21 @@ class TYOprationEditController : TYBaseViewController {
     
     var editView : UIView?
     
+    var aleatHeight : CGFloat {
+        get {
+            return 150
+        }
+    }
+    
     var dismissViewClosure: ((UIView?) -> Void)?
     
     lazy var alertView : TYOprationAlertView = {
         let view = TYOprationAlertView()
         _ = view.closeObserver.takeUntil(rx.deallocated).subscribe(onNext: {_ in
-            self.dismiss(animated: true) {
-                self.dismissViewClosure?(self.editView)
+            self.hiddenAlertView { isFinished in
+                self.dismiss(animated: true) {
+                    self.dismissViewClosure?(self.editView)
+                }
             }
         })
         view.backgroundColor = .green
@@ -39,25 +47,53 @@ class TYOprationEditController : TYBaseViewController {
     
     override func setupSubviews() {
         view.addSubview(alertView)
-        
         alertView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(200)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(aleatHeight)
+            make.bottom.equalTo(aleatHeight)
         }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        alertView.snp.makeConstraints { make in
-//            make.left.right.bottom.equalToSuperview()
-//            make.height.equalTo(200)
-//        }
+        showAlertView()
     }
     
 }
 
 extension TYOprationEditController {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("123")
+    
+    func showAlertView(finished: ((Bool) -> Void)? = nil) {
+        alertView.snp.updateConstraints { make in
+            make.bottom.equalTo(0)
+        }
+        
+        UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseIn, .overrideInheritedDuration]) {
+            self.view.layoutIfNeeded()
+        } completion: { isFinished in
+            if let finished = finished {
+                finished(isFinished)
+            }
+        }
     }
+    
+    func hiddenAlertView(finished: ((Bool) -> Void)? = nil) {
+        self.alertView.snp.updateConstraints { make in
+            make.bottom.equalTo(aleatHeight)
+        }
+        
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: [.curveEaseIn]) {
+            self.view.layoutIfNeeded()
+        } completion: { isFinished in
+            if let finished = finished {
+                finished(isFinished)
+            }
+        }
+    }
+    
 }

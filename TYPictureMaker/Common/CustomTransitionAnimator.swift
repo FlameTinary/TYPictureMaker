@@ -45,27 +45,17 @@ class CustomTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
         if let sourceView = self.sourceView {
             containerView.addSubview(sourceView)
             if isPresenting {
-                sourceView.snp.makeConstraints { make in
-                    make.centerX.equalToSuperview()
-                    make.centerY.equalToSuperview().offset(-50)
-                    make.width.equalToSuperview()
-                    make.height.equalTo(sourceView.snp.width)
-                }
+                sourceView.size = CGSize(width: containerView.width, height: containerView.width)
+                sourceView.centerX = containerView.centerX
+                sourceView.centerY = containerView.centerY - 50
             }
             
             UIView.animate(withDuration: duration) {
                 if self.isPresenting {
-                    sourceView.snp.updateConstraints { make in
-                        // 更新源视图的约束
-                        make.centerY.equalToSuperview().offset(-150)
-                    }
+                    sourceView.centerY = containerView.centerY - 150
                 } else {
-                    sourceView.snp.updateConstraints { make in
-                        // 更新源视图的约束
-                        make.centerY.equalToSuperview().offset(-50)
-                    }
+                    sourceView.centerY = containerView.centerY - 50
                 }
-                containerView.layoutIfNeeded()
             }
             
         }
@@ -76,17 +66,12 @@ class CustomTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
             toView.alpha = 1.0
         } completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            
             if !self.isPresenting {
                 if let sourceView = self.sourceView {
                     toView.addSubview(sourceView)
-                    sourceView.snp.remakeConstraints { make in
-                        // 更新源视图的约束
-                        make.centerX.equalToSuperview()
-                        make.centerY.equalToSuperview().offset(-50)
-                        make.width.equalToSuperview()
-                        make.height.equalTo(sourceView.snp.width)
-                    }
+                    sourceView.size = CGSize(width: containerView.width, height: containerView.width)
+                    sourceView.centerX = containerView.centerX
+                    sourceView.centerY = containerView.centerY - 50
                 }
             }
         }
