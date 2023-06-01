@@ -11,8 +11,6 @@ import RxCocoa
 
 class TYTextEditController : TYOprationEditController {
     
-    var textObserver : Observable<String?>!
-    
     private var text : String?
     
     private lazy var textFiled : UITextField = {
@@ -30,23 +28,19 @@ class TYTextEditController : TYOprationEditController {
         btn.setTitle("确认", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = .green
+        _ = btn.rx.tap.takeUntil(rx.deallocated).subscribe(onNext: { [weak self] _ in
+            // 将文字添加到文字贴纸上
+            guard let text = self?.text else { return }
+            
+            let textStickerView = TYTextStickerView(text: text)
+            textStickerView.width = 150
+            textStickerView.height = 44
+            textStickerView.center = self?.editView.center ?? CGPoint(x: 0, y: 0)
+            self?.editView.addSubview(textStickerView)
+            
+        })
         return btn
     }()
-    
-//    override init() {
-//        super.init()
-//        textObserver = confirmBtn.rx.tap.map { _ in
-//            return self.text
-//        }
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override func setupSubviews() {
         super.setupSubviews()

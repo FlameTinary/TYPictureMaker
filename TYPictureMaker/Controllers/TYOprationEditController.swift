@@ -25,15 +25,11 @@ class TYOprationEditController : TYBaseViewController {
         }
     }
     
-    var dismissViewClosure: ((UIView?, TYEditInfo) -> Void)?
-    
     lazy var alertView : TYOprationAlertView = {
         let view = TYOprationAlertView()
         _ = view.closeObserver.takeUntil(rx.deallocated).subscribe(onNext: {_ in
             self.hiddenAlertView { isFinished in
-                self.dismiss(animated: true) {
-                    self.dismissViewClosure?(self.editView, self.editInfo)
-                }
+                self.dismiss(animated: true)
             }
         })
         view.backgroundColor = .green
@@ -93,8 +89,9 @@ extension TYOprationEditController {
     }
     
     func hiddenAlertView(finished: ((Bool) -> Void)? = nil) {
+        
         self.alertView.snp.updateConstraints { make in
-            make.bottom.equalTo(aleatHeight)
+            make.bottom.equalTo(self.alertView.height)
         }
         
         UIView.animate(withDuration: 0.25, delay: 0.0, options: [.curveEaseIn]) {
@@ -106,4 +103,29 @@ extension TYOprationEditController {
         }
     }
     
+}
+
+extension TYPictureStitchController : UIViewControllerTransitioningDelegate {
+    // MARK: - UIViewControllerTransitioningDelegate
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        hiddenAlertView()
+        
+        let sourceVC = source as! TYOprationEditController
+        return CustomTransitionAnimator(sourceView: sourceVC.editView, isPresenting: true)
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let dismissVC = dismissed as! TYOprationEditController
+        
+        return CustomTransitionAnimator(sourceView: dismissVC.editView, isPresenting: false) {
+            
+            self.editView = dismissVC.editView
+            self.editInfo = dismissVC.editInfo
+            self.view.addSubview(self.editView)
+            
+            self.showAlertView()
+        }
+    }
 }

@@ -17,7 +17,13 @@ class TYEditInfo {
     var layout : TYLayoutEditEnum = .vertical
     
     var filter : TYFilterModel = TYFilterModel()
+
+    // 贴纸数组
+    var stickerNames: [String] = []
     
+    // 相框名称
+    var frameName : String?
+
     init(images: [UIImage]) {
         self.images = images
     }

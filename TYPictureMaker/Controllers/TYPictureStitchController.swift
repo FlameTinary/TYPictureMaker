@@ -29,14 +29,6 @@ class TYPictureStitchController: TYOprationEditController {
     // rx销毁属性
     private var disposeBag = DisposeBag()
     
-    // 操作item选中row
-    private var oprationSelectedItem: TYOpration = .proportion
-    {
-        didSet {
-            presentOprationController(with: oprationSelectedItem)
-        }
-    }
-    
     // 图片展示底视图，用于约束图片展示视图不超过屏幕
 //    private lazy var imageContentView : UIView = {
 //        let view = UIView()
@@ -149,12 +141,12 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oprationCellId", for: indexPath) as! TYOprationCell
         cell.text = TYOpration(rawValue: indexPath.item)?.toName()
-        cell.isSelected = indexPath.item == oprationSelectedItem.rawValue
+//        cell.isSelected = indexPath.item == oprationSelectedItem.rawValue
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        oprationSelectedItem = TYOpration(rawValue: indexPath.item)!
+        presentOprationController(with: TYOpration(rawValue: indexPath.item)!)
     }
      
 }
@@ -163,7 +155,34 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
 extension TYPictureStitchController {
     private func presentOprationController(with opration: TYOpration) {
 
-        let destinationVC : TYOprationEditController = TYProportionEditController(editInfo: editInfo)
+        let destinationVC : TYOprationEditController
+        
+        switch opration {
+        case .proportion:
+            destinationVC = TYProportionEditController(editInfo: editInfo)
+        case .layout:
+            destinationVC = TYLayoutEditController(editInfo: editInfo)
+        case .border:
+            destinationVC = TYBorderEditController(editInfo: editInfo)
+        case .background:
+            destinationVC = TYPictureBackgroundEditController(editInfo: editInfo)
+        case .filter:
+            destinationVC = TYFilterEditController(editInfo: editInfo)
+        case .text:
+            destinationVC = TYTextEditController(editInfo: editInfo)
+        case .sticker:
+            destinationVC = TYStickerEditController(editInfo: editInfo)
+        case .pictureFrame:
+            destinationVC = TYPictureFrameEditController(editInfo: editInfo)
+        default:
+            destinationVC = TYOprationEditController(editInfo: editInfo)
+        }
+        
+        destinationVC.editView = editView
+        destinationVC.transitioningDelegate = self
+        destinationVC.modalPresentationStyle = .fullScreen
+
+        present(destinationVC, animated: true, completion: nil)
 
 //        switch opration {
 //
@@ -236,7 +255,7 @@ extension TYPictureStitchController {
 ////            }).disposed(by: self.disposeBag)
 ////
 ////            vc.imageCornerRadioObserver.subscribe(onNext: {[weak self] value in
-////                self?.imageEditView?.imageCornerRadio = CGFloat(value)
+////                self?.imageEditViw?.imageCornerRadio = CGFloat(value)
 ////                self?.editInfo.borderCorner.imageCornerRadio = value
 ////            }).disposed(by: self.disposeBag)
 ////
@@ -303,43 +322,9 @@ extension TYPictureStitchController {
 //        case .addImage: break
 ////            destinationVC = TYOprationEditController()
 //        }
-        destinationVC.editView = editView
-        destinationVC.transitioningDelegate = self
-        destinationVC.modalPresentationStyle = .fullScreen
-        destinationVC.dismissViewClosure = { view, editInfo in
-            self.editInfo = editInfo
-            if let contentView = view {
-                self.editView = contentView as! TYBaseEditView
-                self.view.addSubview(contentView)
-            }
-
-            self.alertView.snp.updateConstraints { make in
-                make.bottom.equalTo(0)
-            }
-            UIView.animate(withDuration: 0.25) {
-                self.view.layoutIfNeeded()
-            }
-        }
-
-        alertView.snp.updateConstraints { make in
-            make.bottom.equalTo(100)
-        }
-        UIView.animate(withDuration: 0.25) {
-            self.view.layoutIfNeeded()
-        }
-        present(destinationVC, animated: true, completion: nil)
+        
 
     }
 }
 
-extension TYPictureStitchController : UIViewControllerTransitioningDelegate {
-    // MARK: - UIViewControllerTransitioningDelegate
 
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CustomTransitionAnimator(sourceView: self.editView, isPresenting: true)
-    }
-
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CustomTransitionAnimator(sourceView: self.editView, isPresenting: false)
-    }
-}

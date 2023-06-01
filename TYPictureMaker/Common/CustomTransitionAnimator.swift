@@ -15,9 +15,10 @@ class CustomTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
     private let sourceView: UIView?
     private let isPresenting: Bool
     
-    init(sourceView: UIView?, isPresenting: Bool) {
+    init(sourceView: UIView?, isPresenting: Bool, finished: (()-> Void)? = nil) {
         self.sourceView = sourceView
         self.isPresenting = isPresenting
+        animationDidFinished = finished
         super.init()
     }
     
@@ -44,17 +45,12 @@ class CustomTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
         // 添加视图到目标控制器视图
         if let sourceView = self.sourceView {
             containerView.addSubview(sourceView)
-            if isPresenting {
-                sourceView.size = CGSize(width: containerView.width, height: containerView.width)
-                sourceView.centerX = containerView.centerX
-                sourceView.centerY = containerView.centerY - 50
-            }
             
             UIView.animate(withDuration: duration) {
                 if self.isPresenting {
-                    sourceView.centerY = containerView.centerY - 150
+                    sourceView.centerY = containerView.centerY - 80
                 } else {
-                    sourceView.centerY = containerView.centerY - 50
+                    sourceView.centerY = containerView.centerY - 30
                 }
             }
             
@@ -66,16 +62,13 @@ class CustomTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
             toView.alpha = 1.0
         } completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-//            if !self.isPresenting {
-//                if let sourceView = self.sourceView {
-//                    toView.addSubview(sourceView)
-//                    sourceView.size = CGSize(width: containerView.width, height: containerView.width)
-//                    sourceView.centerX = containerView.centerX
-//                    sourceView.centerY = containerView.centerY - 50
-//                }
-//            }
         }
     }
-
+    
+    func animationEnded(_ transitionCompleted: Bool) {
+        if let finished = animationDidFinished {
+            finished()
+        }
+    }
 }
 
