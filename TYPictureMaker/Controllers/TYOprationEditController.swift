@@ -16,6 +16,10 @@ class TYOprationEditController : TYBaseViewController {
         let editView = editInfo.layout.toEditView(images: editInfo.images)
         editView.size = CGSize(width: view.width, height: editInfo.proportion.heightFrom(width: view.width))
         editView.center = view.center
+        editView.padding = CGFloat(editInfo.borderCorner.pictureBorder)
+        editView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
+        editView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
+        editView.backgroundColor = editInfo.backgroundColor.color()
         return editView
     }()
     
