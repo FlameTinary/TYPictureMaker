@@ -15,6 +15,10 @@ let backgroundColor = UIColor(hexString: backgroundColorName)
 let editBackgroundColorName = "#211C28"
 let editBackgroundColor = UIColor(hexString: "#211C28")
 
+// cell背景颜色
+let cellColorName = "#CDCDCD"
+let cellColor = UIColor(hexString: cellColorName)
+
 // 普通文字颜色
 let normalTextColorName = "#FFFFFF"
 let normalTextColor = UIColor(hexString: normalTextColorName)
