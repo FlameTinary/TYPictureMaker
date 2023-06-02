@@ -11,7 +11,7 @@ class TYLayoutView25 : TYBaseEditView {
     
     override var padding: CGFloat {
         get {
-            return 4
+            return 6
         }
         set {
             
@@ -78,10 +78,10 @@ class TYLayoutView25 : TYBaseEditView {
         super.layoutSubviews()
         
         // 设置遮罩路径
-        let mainViewPoints = [CGPoint(x: 0, y: 0), CGPoint(x: contentView.bounds.maxX - 2, y: contentView.bounds.minY), CGPoint(x: contentView.bounds.minX, y: contentView.bounds.maxY - 2)]
+        let mainViewPoints = [CGPoint(x: 0, y: 0), CGPoint(x: contentView.bounds.maxX - (padding / 2), y: contentView.bounds.minY), CGPoint(x: contentView.bounds.minX, y: contentView.bounds.maxY - (padding / 2))]
         mainCollectView.shape = .custom(mainViewPoints)
         
-        let secViewPoints = [CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.minY + 2), CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.maxY), CGPoint(x: contentView.bounds.minX + 2, y: contentView.bounds.maxY)]
+        let secViewPoints = [CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.minY + (padding / 2)), CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.maxY), CGPoint(x: contentView.bounds.minX + (padding / 2), y: contentView.bounds.maxY)]
         secCollectView.shape = .custom(secViewPoints)
         
     }
