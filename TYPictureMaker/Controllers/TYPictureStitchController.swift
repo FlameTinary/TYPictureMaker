@@ -26,6 +26,9 @@ class TYPictureStitchController: TYOprationEditController {
     // rx销毁属性
     private var disposeBag = DisposeBag()
     
+    //操作列表item
+    private var oprationItem : [TYOpration]!
+    
     // 底部操作列表
     private lazy var oprationListView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -47,6 +50,13 @@ class TYPictureStitchController: TYOprationEditController {
         super.viewDidLoad()
         alertView.isShowCloseBtn = false
 //        setupNotification()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        oprationItem = editInfo.layout.supportOpration()
+        oprationListView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,23 +97,21 @@ class TYPictureStitchController: TYOprationEditController {
 // collection view delegate & data source
 extension TYPictureStitchController: UICollectionViewDelegate & UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return TYOpration.allCases.count
+        return oprationItem.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oprationCellId", for: indexPath) as! TYOprationCell
-        
-        if let opration = TYOpration(rawValue: indexPath.item) {
-            cell.text = opration.toName()
-            cell.icon = opration.toIcon()
-            cell.selectedIcon = opration.toIcon() + "_selected"
-        }
-        
+        let itemName = oprationItem[indexPath.item].toName()
+        let itemIcon = oprationItem[indexPath.item].toIcon()
+        cell.text = itemName
+        cell.icon = itemIcon
+        cell.selectedIcon = itemIcon + "_selected"
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presentOprationController(with: TYOpration(rawValue: indexPath.item)!)
+        presentOprationController(with: oprationItem[indexPath.item])
     }
      
 }

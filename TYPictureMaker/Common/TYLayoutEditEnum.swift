@@ -10,6 +10,7 @@ import UIKit
 enum TYLayoutEditEnum: Int, CaseIterable {
     case vertical = 0, horizontal, view21, view22, view23, view24, view24_1, view25
     
+    // 通过枚举返回icon名称
     func iconNameFromEnum() -> String {
         switch self {
         case .vertical:
@@ -23,6 +24,7 @@ enum TYLayoutEditEnum: Int, CaseIterable {
         }
     }
     
+    // 通过枚举类型返回布局视图
     func toEditView(images: [UIImage]?) -> TYBaseEditView {
         var view : TYBaseEditView
         switch self {
@@ -59,4 +61,28 @@ enum TYLayoutEditEnum: Int, CaseIterable {
         
         return view
     }
+    
+    // 返回该枚举类型支持的操作
+    func supportOpration() -> [TYOpration] {
+        switch self {
+        
+        case .vertical:
+            return TYOpration.allCases
+        case .horizontal:
+            return TYOpration.allCases
+        case .view21:
+            return TYOpration.allCases
+        case .view22:
+            return TYOpration.allCases
+        case .view23:
+            return TYOpration.allCases
+        case .view24:
+            return TYOpration.allCases
+        case .view24_1:
+            return TYOpration.allCases
+        case .view25:
+            return [.layout, .background, .filter, .texture, .text, .sticker, .pictureFrame, .addImage]
+        }
+    }
+    
 }
