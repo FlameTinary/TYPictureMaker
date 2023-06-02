@@ -22,7 +22,7 @@ class TYLayoutEditController : TYOprationEditController {
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = CGSize(width: 50, height: 50)
+        layout.itemSize = CGSize(width: 50, height: 50)
 
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.showsVerticalScrollIndicator = false
@@ -89,6 +89,10 @@ extension TYLayoutEditController {
     func setupThumbnails() {
         TYLayoutEditEnum.allCases.forEach { layout in
             let view = layout.toEditView(images: editInfo.images)
+            view.padding = 2
+            view.imagePandding = 2
+            view.imageCornerRadio = 2
+            view.backgroundColor = .white
             thumbnailImages.append(view.thumbnail())
         }
     }

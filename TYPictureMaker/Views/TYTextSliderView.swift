@@ -13,14 +13,18 @@ class TYTextSliderView : TYBaseView {
         
     var sliderObserver : Observable<Float>!
     
-    lazy var textLbl : UILabel = {
-        let lbl = UILabel(frame: .zero)
-        addSubview(lbl)
-        return lbl
+    lazy var iconView : UIImageView = {
+        let view = UIImageView()
+//        lbl.font = normalFont
+//        lbl.textColor = normalTextColor
+        addSubview(view)
+        return view
     }()
     
     lazy var slider : UISlider = {
         let s = UISlider(frame: .zero)
+        s.minimumTrackTintColor = selectColor
+        s.maximumTrackTintColor = .white
         addSubview(s)
         return s
     }()
@@ -33,13 +37,14 @@ class TYTextSliderView : TYBaseView {
         fatalError("init(coder:) has not been implemented")
     }
     override func setupSubviews() {
-        textLbl.snp.makeConstraints { make in
+        iconView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview()
+            make.size.equalTo(CGSize(width: 20, height: 20))
         }
         slider.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(textLbl.snp.right).offset(10)
+            make.left.equalTo(iconView.snp.right).offset(10)
             make.right.equalToSuperview()
         }
     }

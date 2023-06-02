@@ -33,9 +33,11 @@ class TYBorderEditView : TYBaseView {
     
     private lazy var pictureSliderView : TYTextSliderView = {
         let v = TYTextSliderView()
-        v.textLbl.text = "相框"
+        v.iconView.image = UIImage(named: "border")
         v.slider.minimumValue = 0
         v.slider.maximumValue = 20
+        v.slider.minimumValueImage = UIImage(named: "")
+        v.slider.maximumValueImage = UIImage(named: "")
         v.slider.value = pictureBorderValue
         addSubview(v)
         return v
@@ -43,7 +45,7 @@ class TYBorderEditView : TYBaseView {
     
     private lazy var imageSliderView : TYTextSliderView = {
         let v = TYTextSliderView()
-        v.textLbl.text = "图框"
+        v.iconView.image = UIImage(named: "border_inner")
         v.slider.minimumValue = 0
         v.slider.maximumValue = 20
         v.slider.value = imageBorderValue
@@ -53,7 +55,7 @@ class TYBorderEditView : TYBaseView {
     
     private lazy var imageRadioSliderView : TYTextSliderView = {
         let v = TYTextSliderView()
-        v.textLbl.text = "圆角"
+        v.iconView.image = UIImage(named: "rounded_corner")
         v.slider.minimumValue = 0
         v.slider.maximumValue = 40
         v.slider.value = imageCornerRadioValue
