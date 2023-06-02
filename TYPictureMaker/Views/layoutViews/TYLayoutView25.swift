@@ -64,15 +64,21 @@ class TYLayoutView25 : TYBaseEditView {
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        
-        if mainCollectView.shapeLayer?.path?.contains(point) == true {
-            return mainCollectView.hitTest(point, with: event)
+        if let view = super.hitTest(point, with: event) {
+            if !(view is UIScrollView) {
+                return view
+            } else {
+                if mainCollectView.shapeLayer?.path?.contains(point) == true {
+                    return mainCollectView.hitTest(point, with: event)
+                }
+
+                if secCollectView.shapeLayer?.path?.contains(point) == true {
+                    return secCollectView.hitTest(point, with: event)
+                }
+            }
+            
         }
         
-        if secCollectView.shapeLayer?.path?.contains(point) == true {
-            return secCollectView.hitTest(point, with: event)
-        }
         return super.hitTest(point, with: event)
-        
     }
 }
