@@ -20,7 +20,7 @@ class TYLayoutView25 : TYBaseEditView {
     
     override var imagePandding: CGFloat {
         get {
-            return 4
+            return 0
         }
         set {
             
@@ -39,7 +39,7 @@ class TYLayoutView25 : TYBaseEditView {
     private lazy var mainCollectView : TYImageCollectView = {
         let view = TYImageCollectView(with: images?.first)
         view.tag = 1
-        view.padding = 4.0
+//        view.padding = 4.0
         return view
     }()
     
@@ -54,7 +54,7 @@ class TYLayoutView25 : TYBaseEditView {
         
         let view = TYImageCollectView(with: image)
         view.tag = 2
-        view.padding = 4.0
+//        view.padding = 4.0
 //        view.isUserInteractionEnabled = false
         return view
     }()
@@ -76,11 +76,14 @@ class TYLayoutView25 : TYBaseEditView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let mainViewPoints = [CGPoint(x: 0, y: 0), CGPoint(x: bounds.maxX, y: bounds.minY), CGPoint(x: bounds.minX, y: bounds.maxY)]
+        
+        // 设置遮罩路径
+        let mainViewPoints = [CGPoint(x: 0, y: 0), CGPoint(x: contentView.bounds.maxX - 2, y: contentView.bounds.minY), CGPoint(x: contentView.bounds.minX, y: contentView.bounds.maxY - 2)]
         mainCollectView.shape = .custom(mainViewPoints)
         
-        let secViewPoints = [CGPoint(x: bounds.maxX, y: bounds.minY), CGPoint(x: bounds.maxX, y: bounds.maxY), CGPoint(x: bounds.minX, y: bounds.maxY)]
+        let secViewPoints = [CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.minY + 2), CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.maxY), CGPoint(x: contentView.bounds.minX + 2, y: contentView.bounds.maxY)]
         secCollectView.shape = .custom(secViewPoints)
+        
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
