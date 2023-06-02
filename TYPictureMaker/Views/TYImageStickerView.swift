@@ -17,6 +17,7 @@ class TYImageStickerView : TYPanView {
     
     private lazy var imageView : UIImageView = {
         let view = UIImageView(image: UIImage(named: imageName))
+        view.contentMode = .scaleAspectFit
         return view
     }()
     

@@ -18,6 +18,7 @@ class TYStickerEditController : TYOprationEditController {
     private lazy var stickerCollectionView : UICollectionView = {
 
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         layout.itemSize = CGSize(width: 50, height: 50)
@@ -63,7 +64,7 @@ extension TYStickerEditController: UICollectionViewDelegate & UICollectionViewDa
         
         let stickView = TYImageStickerView()
         stickView.width = 150
-        stickView.height = 100
+        stickView.height = 150
         stickView.centerX = self.editView.centerX
         stickView.centerY = self.editView.centerY
         stickView.imageName = self.stickerImageNames[indexPath.item]

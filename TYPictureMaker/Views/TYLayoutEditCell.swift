@@ -39,6 +39,7 @@ class TYLayoutEditCell : UICollectionViewCell {
     
     private lazy var imageView : UIImageView = {
         let view = UIImageView(image: UIImage(named: "icon_2_1"))
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
