@@ -21,7 +21,7 @@ class TYBackgroundCell: UICollectionViewCell {
         didSet {
             if (isSelected) {
                 contentView.layer.borderWidth = 2
-                contentView.layer.borderColor = UIColor.red.cgColor
+                contentView.layer.borderColor = selectColor?.cgColor
             } else {
                 contentView.layer.borderWidth = 0
                 contentView.layer.borderColor = UIColor.clear.cgColor

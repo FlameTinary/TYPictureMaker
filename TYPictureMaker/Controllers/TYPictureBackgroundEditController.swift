@@ -41,7 +41,7 @@ class TYPictureBackgroundEditController : TYOprationEditController {
             make.top.equalToSuperview().offset(28)
             make.left.equalTo(10)
             make.right.equalTo(-10)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(-colorScrollView.safeBottom)
         }
     }
 }
