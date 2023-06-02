@@ -9,17 +9,37 @@ import UIKit
 
 class TYLayoutView25 : TYBaseEditView {
     
+    override var padding: CGFloat {
+        get {
+            return 4
+        }
+        set {
+            
+        }
+    }
+    
     override var imagePandding: CGFloat {
-        didSet {
-            mainCollectView.padding = imagePandding
-            secCollectView.padding = imagePandding
+        get {
+            return 4
+        }
+        set {
+            
+        }
+    }
+    
+    override var imageCornerRadio: CGFloat {
+        get {
+            return 0
+        }
+        set {
+            
         }
     }
     
     private lazy var mainCollectView : TYImageCollectView = {
         let view = TYImageCollectView(with: images?.first)
         view.tag = 1
-        view.padding = 5.0
+        view.padding = 4.0
         return view
     }()
     
@@ -34,7 +54,7 @@ class TYLayoutView25 : TYBaseEditView {
         
         let view = TYImageCollectView(with: image)
         view.tag = 2
-        view.padding = 5.0
+        view.padding = 4.0
 //        view.isUserInteractionEnabled = false
         return view
     }()
