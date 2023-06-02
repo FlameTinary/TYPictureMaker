@@ -19,6 +19,10 @@ let editBackgroundColor = UIColor(hexString: "#211C28")
 let normalTextColorName = "#FFFFFF"
 let normalTextColor = UIColor(hexString: normalTextColorName)
 
+// 描述文字的颜色
+let descTextColorName = "#999999"
+let descTextColor = UIColor(hexString: descTextColorName)
+
 // 普通文字字号
 let normalFont = UIFont.systemFont(ofSize: 14)
 
