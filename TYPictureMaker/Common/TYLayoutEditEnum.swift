@@ -77,11 +77,11 @@ enum TYLayoutEditEnum: Int, CaseIterable {
         case .view23:
             return TYOpration.allCases
         case .view24:
-            return [.layout, .border, .background, .filter, .texture, .text, .sticker, .pictureFrame, .addImage]
+            return [.layout, .border, .background, .filter, .text, .sticker, .pictureFrame, .addImage]
         case .view24_1:
             return TYOpration.allCases
         case .view25:
-            return [.layout, .background, .filter, .texture, .text, .sticker, .pictureFrame, .addImage]
+            return [.layout, .background, .filter, .text, .sticker, .pictureFrame, .addImage]
         }
     }
     

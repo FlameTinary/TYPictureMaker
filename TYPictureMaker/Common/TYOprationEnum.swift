@@ -8,7 +8,7 @@
 import Foundation
 
 enum TYOpration: Int,CaseIterable  {
-case proportion = 0, layout, border, background, filter, texture, text, sticker, pictureFrame, addImage
+case proportion = 0, layout, border, background, filter, text, sticker, pictureFrame, addImage //texture
     
     func toName() -> String {
         switch self {
@@ -22,8 +22,8 @@ case proportion = 0, layout, border, background, filter, texture, text, sticker,
             return "背景"
         case .filter:
             return "滤镜"
-        case .texture:
-            return "纹理"
+//        case .texture:
+//            return "纹理"
         case .text:
             return "文字"
         case .sticker:
@@ -47,8 +47,8 @@ case proportion = 0, layout, border, background, filter, texture, text, sticker,
             return "background"
         case .filter:
             return "filter"
-        case .texture:
-            return "filter"
+//        case .texture:
+//            return "filter"
         case .text:
             return "text"
         case .sticker:

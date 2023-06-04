@@ -46,11 +46,11 @@ enum TYFilterEnum: Int, CaseIterable {
     
     func toImage(image: UIImage) -> UIImage? {
         let manager = TYFilterManager.shared
-        let intensity = 0.5
-        let radius = 1.5
+        let intensity = 0.8
+        let radius = 10.0
         let angle = 0.5
-        let saturation = 0.5
-        let brightness = 0.5
+        let saturation = 1.5
+        let brightness = 0.3
         let contrast = 0.5
         let exposure = 0.5
         switch self {
