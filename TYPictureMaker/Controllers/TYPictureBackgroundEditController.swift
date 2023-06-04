@@ -8,8 +8,30 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ZLPhotoBrowser
 
 class TYPictureBackgroundEditController : TYOprationEditController {
+    
+    private lazy var addPicBtn : UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: "addImage"), for: .normal)
+        btn.setImage(UIImage(named: "addImage_selected"), for: .highlighted)
+        
+        _ = btn.rx.tap.takeUntil(rx.deallocated).subscribe(onNext: {event in
+            // 打开相册
+            let ps = ZLPhotoPreviewSheet()
+            ps.selectImageBlock = { results, isOriginal in
+                let image = results.map{$0.image}
+                
+                self.editInfo.backgroundImage = image.first
+                
+                self.editView.backgroundImage = image.first
+                
+            }
+            ps.showPreview(sender: self)
+        })
+        return btn
+    }()
     
     private let cellId = "backgroundCellId"
 //
@@ -35,11 +57,18 @@ class TYPictureBackgroundEditController : TYOprationEditController {
     override func setupSubviews() {
         super.setupSubviews()
 
+        alertView.addSubview(addPicBtn)
         alertView.addSubview(colorScrollView)
 
+        addPicBtn.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(10)
+            make.width.equalTo(40)
+            make.top.equalToSuperview().offset(28)
+            make.bottom.equalTo(-colorScrollView.safeBottom)
+        }
         colorScrollView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(28)
-            make.left.equalTo(10)
+            make.left.equalTo(addPicBtn.snp_rightMargin).offset(10)
             make.right.equalTo(-10)
             make.bottom.equalTo(-colorScrollView.safeBottom)
         }

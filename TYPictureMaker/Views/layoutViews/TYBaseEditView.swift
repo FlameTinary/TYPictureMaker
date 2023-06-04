@@ -13,7 +13,17 @@ class TYBaseEditView: UIView {
     var images : [UIImage]?
     
     // 背景图片
-    var backgroundImage: UIImage?
+    var backgroundImage : UIImage? {
+        didSet {
+            if let image = backgroundImage {
+                backgroundImageView.image = image
+            }
+        }
+    }
+    private lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
     
     // 边框图片
     var frameImage: UIImage? {
@@ -83,12 +93,17 @@ class TYBaseEditView: UIView {
     
     func setupSubviews() {
         addSubview(frameImageView)
+        addSubview(backgroundImageView)
         addSubview(contentView)
         frameImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        contentView.snp.makeConstraints { make in
+        backgroundImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
+        }
+        contentView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
+            make.edges.equalTo(backgroundImageView)
         }
     }
     

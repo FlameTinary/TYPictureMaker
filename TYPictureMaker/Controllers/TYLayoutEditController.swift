@@ -73,6 +73,7 @@ extension TYLayoutEditController: UICollectionViewDelegate & UICollectionViewDat
         editView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
         editView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
         editView.backgroundColor = editInfo.backgroundColor.color()
+        editView.backgroundImage = editInfo.backgroundImage
         editView.frame = self.editView.frame
         
         self.view.insertSubview(editView, at: 0)

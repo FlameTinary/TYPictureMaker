@@ -20,6 +20,7 @@ class TYOprationEditController : TYBaseViewController {
         editView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
         editView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)
         editView.backgroundColor = editInfo.backgroundColor.color()
+        editView.backgroundImage = editInfo.backgroundImage
         return editView
     }()
     

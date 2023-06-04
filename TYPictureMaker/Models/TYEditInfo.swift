@@ -13,6 +13,7 @@ class TYEditInfo {
     var borderCorner: TYBorderCornerModel = TYBorderCornerModel()
     
     var backgroundColor : TYBackgroundColorEnum = .white
+    var backgroundImage : UIImage?
     
     var layout : TYLayoutEditEnum = .vertical
     

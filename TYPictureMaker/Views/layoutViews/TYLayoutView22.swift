@@ -47,7 +47,7 @@ class TYLayoutView22 : TYBaseEditView {
         
         secCollectView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.size.equalToSuperview().multipliedBy(0.5)
+            make.size.equalToSuperview().multipliedBy(0.8)
         }
     }
 }
