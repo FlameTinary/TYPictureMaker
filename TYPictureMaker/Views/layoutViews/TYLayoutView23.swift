@@ -8,7 +8,13 @@
 import UIKit
 
 class TYLayoutView23 : TYBaseEditView {
-    
+    override var images: [UIImage]? {
+        didSet {
+            guard let images = images else { return }
+            mainCollectView.image = images.first
+            secCollectView.image = images.count > 1 ? images[1] : images.first
+        }
+    }
     override var imagePandding: CGFloat {
         didSet {
             mainCollectView.padding = imagePandding

@@ -13,6 +13,11 @@ class TYNormalLayoutView: TYBaseEditView {
     override var images: [UIImage]? {
         didSet {
             print("image did set")
+            guard let images = images else { return}
+            for (index, image) in images.enumerated(){
+                let v = stackView.arrangedSubviews[index] as! TYImageCollectView
+                v.image = image
+            }
         }
     }
     

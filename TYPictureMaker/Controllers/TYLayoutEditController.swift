@@ -68,7 +68,7 @@ extension TYLayoutEditController: UICollectionViewDelegate & UICollectionViewDat
         let layout = TYLayoutEditEnum(rawValue: indexPath.item)
         editInfo.layout = layout!
         
-        let editView = layout!.toEditView(images: editInfo.images)
+        let editView = layout!.toEditView(images: editInfo.filter != .none ? editInfo.filterImages : editInfo.images)
         editView.padding = CGFloat(editInfo.borderCorner.pictureBorder)
         editView.imagePandding = CGFloat(editInfo.borderCorner.imageBorder)
         editView.imageCornerRadio = CGFloat(editInfo.borderCorner.imageCornerRadio)

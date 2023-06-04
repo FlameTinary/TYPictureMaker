@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		08091D192A26016700913842 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08091D182A26016700913842 /* DestinationViewController.swift */; };
+		0809BD932A2C40A000682888 /* TYFilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809BD922A2C40A000682888 /* TYFilterManager.swift */; };
+		0809BD952A2C68A000682888 /* TYImageAndTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809BD942A2C68A000682888 /* TYImageAndTextCell.swift */; };
 		081CD87F2A1EFEE000A6A0F8 /* TYFilterEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081CD87E2A1EFEE000A6A0F8 /* TYFilterEditController.swift */; };
 		081CD8812A1F006E00A6A0F8 /* TYFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081CD8802A1F006E00A6A0F8 /* TYFilterModel.swift */; };
 		08632A352A24C1E40010CC67 /* IrregularQuadrilateralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08632A342A24C1E40010CC67 /* IrregularQuadrilateralView.swift */; };
@@ -67,6 +69,8 @@
 /* Begin PBXFileReference section */
 		05264E615431AA850528777C /* Pods-TYPictureMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.debug.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		08091D182A26016700913842 /* DestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewController.swift; sourceTree = "<group>"; };
+		0809BD922A2C40A000682888 /* TYFilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYFilterManager.swift; sourceTree = "<group>"; };
+		0809BD942A2C68A000682888 /* TYImageAndTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYImageAndTextCell.swift; sourceTree = "<group>"; };
 		081CD87E2A1EFEE000A6A0F8 /* TYFilterEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYFilterEditController.swift; sourceTree = "<group>"; };
 		081CD8802A1F006E00A6A0F8 /* TYFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYFilterModel.swift; sourceTree = "<group>"; };
 		08632A342A24C1E40010CC67 /* IrregularQuadrilateralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IrregularQuadrilateralView.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 				088727C32A1E00A300F77D81 /* TYBackgroundCell.swift */,
 				0870C2F72A14E64800AC1793 /* TYProportionCell.swift */,
 				0870C2FD2A1B1E3600AC1793 /* TYOprationCell.swift */,
+				0809BD942A2C68A000682888 /* TYImageAndTextCell.swift */,
 				0870C2F92A15D52500AC1793 /* TYImageCollectView.swift */,
 				0870C2FB2A15DF4300AC1793 /* TYImageScrollView.swift */,
 				088727A82A1B8D4800F77D81 /* TYBorderEditView.swift */,
@@ -225,6 +230,7 @@
 				08B3840D2A28D7F000D55B28 /* TYColorExtention.swift */,
 				0893A9952A23A2F40075B03C /* TYEditViewProtocol.swift */,
 				08DE9B2E2A2600E2006332EF /* CustomTransitionAnimator.swift */,
+				0809BD922A2C40A000682888 /* TYFilterManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 				081CD8812A1F006E00A6A0F8 /* TYFilterModel.swift in Sources */,
 				088727A12A1B5C7E00F77D81 /* TYProportionEnum.swift in Sources */,
 				08FB76722A28DB4800C160B1 /* TYPanView.swift in Sources */,
+				0809BD952A2C68A000682888 /* TYImageAndTextCell.swift in Sources */,
 				088727B62A1D15C200F77D81 /* TYOprationEditController.swift in Sources */,
 				08A4BEAA2A244D7400BBE622 /* TYLayoutView21.swift in Sources */,
 				08DE9B2F2A2600E2006332EF /* CustomTransitionAnimator.swift in Sources */,
@@ -454,6 +461,7 @@
 				08B384102A28D8D600D55B28 /* TYConstProperty.swift in Sources */,
 				08DE9B2D2A259905006332EF /* TYLayoutView25.swift in Sources */,
 				08DE9B2B2A25974E006332EF /* TYLayoutView24.swift in Sources */,
+				0809BD932A2C40A000682888 /* TYFilterManager.swift in Sources */,
 				0883FA632A21DC010082A402 /* TYTextEditController.swift in Sources */,
 				0880101B2A1489B100FFCA18 /* AppDelegate.swift in Sources */,
 				088727B82A1DB74C00F77D81 /* TYBaseViewController.swift in Sources */,

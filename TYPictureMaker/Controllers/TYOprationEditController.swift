@@ -13,7 +13,7 @@ class TYOprationEditController : TYBaseViewController {
     var editInfo : TYEditInfo
     
     lazy var editView : TYBaseEditView = {
-        let editView = editInfo.layout.toEditView(images: editInfo.images)
+        let editView = editInfo.layout.toEditView(images: editInfo.filter != .none ? editInfo.filterImages : editInfo.images)
         editView.size = CGSize(width: view.width, height: editInfo.proportion.heightFrom(width: view.width))
         editView.center = view.center
         editView.padding = CGFloat(editInfo.borderCorner.pictureBorder)
