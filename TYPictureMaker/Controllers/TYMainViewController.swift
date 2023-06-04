@@ -45,17 +45,18 @@ class TYMainViewController: TYBaseViewController  {
     
     private lazy var transformBtn: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.setTitle("转场动画", for: .normal)
+        btn.setTitle("九宫格切图", for: .normal)
         btn.setTitleColor(.red, for: .normal)
         _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
-//            self!.navigationController?.pushViewController(SourceViewController(), animated: true)
+//            // 打开相册
+//            let ps = ZLPhotoPreviewSheet()
+//            ps.selectImageBlock = { [weak self] results, isOriginal in
+//                self?.splitImageIntoNinePieces(image: results.map{$0.image}.first!)
+//
+//            }
+//            ps.showPhotoLibrary(sender: self!)
             
-            let filterManager = TYFilterManager.shared
-            guard let image = UIImage(named: "image_02") else { return }
-
-            let filter = TYFilterEnum.old
-            guard let filteredImage = filter.toImage(image: image) else {return}
-            self?.imageView.image = filteredImage
+            self?.navigationController?.pushViewController(ViewController(), animated: true)
         }
         return btn
     }()
@@ -65,19 +66,6 @@ class TYMainViewController: TYBaseViewController  {
         view.backgroundColor = .white
         navigationItem.title = "快速拼图"
         
-
-        
-//        let irregularView = IrregularQuadrilateralView(frame: CGRect(x: 100, y: 100, width: 200, height: 200))
-//        irregularView.backgroundColor = UIColor.red
-        // 添加其他的子视图或内容到irregularView中
-
-//        view.addSubview(irregularView)
-//
-//        let circularView = CircularView(frame: CGRect(x: 100, y: 400, width: 200, height: 200))
-//        circularView.backgroundColor = UIColor.red
-//        // 添加其他的子视图或内容到circularView中
-//
-//        view.addSubview(circularView)
     }
     
     override func setupSubviews() {
@@ -105,3 +93,5 @@ class TYMainViewController: TYBaseViewController  {
     }
     
 }
+
+
