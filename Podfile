@@ -11,5 +11,6 @@ target 'TYPictureMaker' do
   pod 'RxSwift', '~> 5.0'
   pod 'RxCocoa', '~> 5.0'
   pod 'ZLPhotoBrowser', '~> 4.4.1'
+  pod 'Toast-Swift', '~> 5.0.1'
 
 end

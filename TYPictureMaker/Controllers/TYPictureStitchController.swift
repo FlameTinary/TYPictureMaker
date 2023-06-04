@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Toast_Swift
 
 class TYPictureStitchController: TYOprationEditController {
     
@@ -50,6 +51,29 @@ class TYPictureStitchController: TYOprationEditController {
         super.viewDidLoad()
         alertView.isShowCloseBtn = false
 //        setupNotification()
+        
+        // 创建一个按钮
+        let saveButton = UIButton(type: .custom)
+        saveButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
+        saveButton.setTitle("保存", for: .normal)
+        saveButton.titleLabel?.font = normalFont
+        saveButton.setTitleColor(normalTextColor, for: .normal)
+        saveButton.backgroundColor = UIColor(hexString: "#1296db")
+        saveButton.layer.cornerRadius = 4.0
+        saveButton.addTarget(self, action: #selector(saveClick), for: .touchUpInside)
+
+        // 创建一个自定义视图
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
+        customView.backgroundColor = selectColor
+        customView.layer.cornerRadius = 4
+        customView.addSubview(saveButton)
+
+        // 创建一个UIBarButtonItem，并将自定义视图设置为customView
+        let barButtonItem = UIBarButtonItem(customView: customView)
+
+        // 设置导航栏右侧按钮
+        navigationItem.rightBarButtonItem = barButtonItem
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +99,26 @@ class TYPictureStitchController: TYOprationEditController {
 
     }
     
+    @objc func saveClick() {
+        // 在这里实现按钮点击后的逻辑
+        let image = editView.getImageFromView()
+
+        // 保存图片到相册
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
+
+    }
+    
+    @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // 图片保存失败
+            view.makeToast("保存图片到相册失败: \(error.localizedDescription)", duration: 1.0, position: .center)
+        } else {
+            // 图片保存成功
+            view.makeToast("图片保存成功", duration: 1.0, position: .center)
+        }
+    }
+
+
 //    private func setupNotification() {
 //
 //        let changeFilterNotification = Notification.Name("changeFilter")
