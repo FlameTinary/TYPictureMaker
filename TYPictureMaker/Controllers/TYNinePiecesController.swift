@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TYNinePiecesController: UIViewController {
     var collectionView: UICollectionView!
     
     var images: [UIImage] = [] // 存储分割后的图片
@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // 分割图片，并将结果存储在 images 数组中
-        guard let originalImage = UIImage(named: "image_02") else {
+        guard let originalImage = UIImage(named: "image_01") else {
             return
         }
         images = splitImageIntoNinePieces(image: originalImage) ?? []
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension TYNinePiecesController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
@@ -74,7 +74,7 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
-extension ViewController {
+extension TYNinePiecesController {
     func splitImageIntoNinePieces(image: UIImage) -> [UIImage]? {
         let imageWidth = image.size.width
         let imageHeight = image.size.height

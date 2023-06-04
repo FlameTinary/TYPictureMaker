@@ -48,15 +48,19 @@ class TYMainViewController: TYBaseViewController  {
         btn.setTitle("九宫格切图", for: .normal)
         btn.setTitleColor(.red, for: .normal)
         _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
-//            // 打开相册
-//            let ps = ZLPhotoPreviewSheet()
-//            ps.selectImageBlock = { [weak self] results, isOriginal in
-//                self?.splitImageIntoNinePieces(image: results.map{$0.image}.first!)
-//
-//            }
-//            ps.showPhotoLibrary(sender: self!)
             
-            self?.navigationController?.pushViewController(ViewController(), animated: true)
+            self?.navigationController?.pushViewController(TYNinePiecesController(), animated: true)
+        }
+        return btn
+    }()
+    
+    private lazy var combineBtn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setTitle("拼长图", for: .normal)
+        btn.setTitleColor(.red, for: .normal)
+        _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
+            
+            self?.navigationController?.pushViewController(TYCombineImagesViewController(), animated: true)
         }
         return btn
     }()
@@ -71,6 +75,7 @@ class TYMainViewController: TYBaseViewController  {
     override func setupSubviews() {
         view.addSubview(pingtuBtn)
         view.addSubview(transformBtn)
+        view.addSubview(combineBtn)
     
         pingtuBtn.snp.makeConstraints { make in
             make.center.equalTo(view)
@@ -81,6 +86,12 @@ class TYMainViewController: TYBaseViewController  {
         transformBtn.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(100)
+            make.size.equalTo(CGSize(width: 100, height: 44))
+        }
+        
+        combineBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(50)
             make.size.equalTo(CGSize(width: 100, height: 44))
         }
         
