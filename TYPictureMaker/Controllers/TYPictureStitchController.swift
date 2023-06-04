@@ -10,6 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import Toast_Swift
+import ZLPhotoBrowser
 
 class TYPictureStitchController: TYOprationEditController {
     
@@ -118,24 +119,6 @@ class TYPictureStitchController: TYOprationEditController {
         }
     }
 
-
-//    private func setupNotification() {
-//
-//        let changeFilterNotification = Notification.Name("changeFilter")
-//        let filterIntensityNotification = Notification.Name("changeIntensity")
-//
-//        NotificationCenter.default.rx.notification(changeFilterNotification).subscribe {[weak self] notification in
-//            guard let obj = notification.object else {return}
-//            self?.editInfo.filter.filter = obj as! TYFilterEnum
-//
-//        }.disposed(by: self.disposeBag)
-//
-//        NotificationCenter.default.rx.notification(filterIntensityNotification).subscribe {[weak self] notification in
-//            guard let obj = notification.object else {return}
-//            self?.editInfo.filter.intensity = obj as! Float
-//
-//        }.disposed(by: self.disposeBag)
-//    }
 }
 
 // collection view delegate & data source
@@ -155,7 +138,24 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presentOprationController(with: oprationItem[indexPath.item])
+        let opration = oprationItem[indexPath.item]
+        if opration == .addImage {
+            // 打开相册
+            let ps = ZLPhotoPreviewSheet()
+            ps.selectImageBlock = { results, isOriginal in
+                let image : UIImage = results.map{$0.image}.first!
+                let stickView = TYImageStickerView()
+                stickView.width = 150
+                stickView.height = 150
+                stickView.centerX = self.editView.centerX
+                stickView.centerY = self.editView.centerY
+                stickView.image = image
+                self.editView.addSubview(stickView)
+            }
+            ps.showPreview(sender: self)
+        } else {
+            presentOprationController(with: opration)
+        }
     }
      
 }

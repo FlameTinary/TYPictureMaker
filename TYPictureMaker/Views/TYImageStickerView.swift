@@ -9,14 +9,22 @@ import UIKit
 
 class TYImageStickerView : TYPanView {
     
-    var imageName : String = "tiezhi_01" {
+    var imageName : String? = "tiezhi_01" {
         didSet {
-            imageView.image = UIImage(named: imageName)
+            if let imageName = imageName {
+                imageView.image = UIImage(named: imageName)
+            }
+        }
+    }
+    
+    var image : UIImage? {
+        didSet {
+            imageView.image = image
         }
     }
     
     private lazy var imageView : UIImageView = {
-        let view = UIImageView(image: UIImage(named: imageName))
+        let view = UIImageView()
         view.contentMode = .scaleAspectFit
         return view
     }()
