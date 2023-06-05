@@ -58,14 +58,7 @@ class TYMainViewController: TYBaseViewController  {
         btn.setTitle("拼长图", for: .normal)
         btn.setTitleColor(.red, for: .normal)
         _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
-            // 打开相册
-            let ps = ZLPhotoPreviewSheet()
-            ps.selectImageBlock = { [weak self] results, isOriginal in
-                
-                let psVC = TYCombineImagesViewController(editInfo: TYEditInfo(images: results.map{$0.image}))
-                self?.navigationController?.pushViewController(psVC, animated: true)
-            }
-            ps.showPhotoLibrary(sender: self!)
+            self?.navigationController?.pushViewController(TYCombineImagesViewController(), animated: true)
         }
         return btn
     }()
