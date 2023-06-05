@@ -63,12 +63,16 @@ extension TYStickerEditController: UICollectionViewDelegate & UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let stickView = TYImageStickerView()
-        stickView.width = 150
-        stickView.height = 150
-        stickView.centerX = self.editView.centerX
-        stickView.centerY = self.editView.centerY
+//        stickView.width = 150
+//        stickView.height = 150
+//        stickView.centerX = self.editView.centerX
+//        stickView.centerY = self.editView.centerY
         stickView.imageName = self.stickerImageNames[indexPath.item]
         self.editView.addSubview(stickView)
         self.editInfo.stickerNames.append(self.stickerImageNames[indexPath.item])
+        stickView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(CGSize(width: 150, height: 150))
+        }
     }
 }
