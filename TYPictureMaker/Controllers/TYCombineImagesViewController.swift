@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TYCombineImagesViewController: UIViewController {
+class TYCombineImagesViewController: TYOprationEditController {
 
     // 图片数组
     let images: [UIImage] = [UIImage(named: "image_01")!, UIImage(named: "image_02")!]

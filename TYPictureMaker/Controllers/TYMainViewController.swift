@@ -48,8 +48,7 @@ class TYMainViewController: TYBaseViewController  {
         btn.setTitle("九宫格切图", for: .normal)
         btn.setTitleColor(.red, for: .normal)
         _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
-            
-            self?.navigationController?.pushViewController(TYNinePiecesController(), animated: true)
+            self?.navigationController?.pushViewController(TYNinePiecesController(), animated: true) 
         }
         return btn
     }()
@@ -59,8 +58,14 @@ class TYMainViewController: TYBaseViewController  {
         btn.setTitle("拼长图", for: .normal)
         btn.setTitleColor(.red, for: .normal)
         _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
-            
-            self?.navigationController?.pushViewController(TYCombineImagesViewController(), animated: true)
+            // 打开相册
+            let ps = ZLPhotoPreviewSheet()
+            ps.selectImageBlock = { [weak self] results, isOriginal in
+                
+                let psVC = TYCombineImagesViewController(editInfo: TYEditInfo(images: results.map{$0.image}))
+                self?.navigationController?.pushViewController(psVC, animated: true)
+            }
+            ps.showPhotoLibrary(sender: self!)
         }
         return btn
     }()
