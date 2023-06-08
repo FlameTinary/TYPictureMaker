@@ -20,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
         
+        UINavigationBar.appearance().tintColor = backgroundColor
+        UINavigationBar.appearance().barTintColor = backgroundColor
+        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : backgroundColor ?? .white]
+        
         return true
     }
 
