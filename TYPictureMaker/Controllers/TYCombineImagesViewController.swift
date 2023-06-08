@@ -63,6 +63,7 @@ class TYCombineImagesViewController: TYBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = backgroundColor
         // 设置导航栏右侧按钮
         navigationItem.rightBarButtonItem = barButtonItem
         view.addSubview(scrollView)

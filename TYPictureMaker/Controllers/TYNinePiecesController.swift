@@ -37,7 +37,7 @@ class TYNinePiecesController: TYBaseViewController {
         
         // 创建一个自定义视图
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
-        customView.backgroundColor = selectColor
+        customView.backgroundColor = backgroundColor
         customView.layer.cornerRadius = 4
         customView.addSubview(saveButton)
 
@@ -49,13 +49,14 @@ class TYNinePiecesController: TYBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = backgroundColor
         
         // 打开相册
         let ps = ZLPhotoPreviewSheet()
         ps.selectImageBlock = { [weak self] results, isOriginal in
             guard let self = self,
                   let originalImage = results.map({$0.image}).first,
-                  let images = self.splitImageIntoNinePieces(image: originalImage) else { return }
+                  let images = self.splitImageIntoNinePieces(image: originalImage) else {return}
             
             self.pieceImages = images
             
@@ -80,7 +81,7 @@ class TYNinePiecesController: TYBaseViewController {
             
             // 创建 UICollectionView，并将布局和 frame 设置为适当的值
             self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
-            self.collectionView.backgroundColor = .white
+            self.collectionView.backgroundColor = backgroundColor
             
             // 注册自定义的单元格类
             self.collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
