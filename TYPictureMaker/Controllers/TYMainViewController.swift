@@ -62,16 +62,16 @@ class TYMainViewController: TYBaseViewController  {
         }
         return btn
     }()
-//    private lazy var turnBtn: UIButton = {
-//        let btn = UIButton(type: .custom)
-//        btn.setTitle("旋转", for: .normal)
-//        btn.setTitleColor(.red, for: .normal)
-//        _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
-//
-//            self?.navigationController?.pushViewController(ViewController(), animated: true)
-//        }
-//        return btn
-//    }()
+    private lazy var templateBtn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setTitle("模版", for: .normal)
+        btn.setTitleColor(.red, for: .normal)
+        _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
+
+            self?.navigationController?.pushViewController(TYTemplateViewController(), animated: true)
+        }
+        return btn
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +84,7 @@ class TYMainViewController: TYBaseViewController  {
         view.addSubview(pingtuBtn)
         view.addSubview(transformBtn)
         view.addSubview(combineBtn)
-//        view.addSubview(turnBtn)
+        view.addSubview(templateBtn)
     
         pingtuBtn.snp.makeConstraints { make in
             make.center.equalTo(view)
@@ -104,11 +104,11 @@ class TYMainViewController: TYBaseViewController  {
             make.size.equalTo(CGSize(width: 100, height: 44))
         }
         
-//        turnBtn.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.centerY.equalToSuperview().offset(150)
-//            make.size.equalTo(CGSize(width: 100, height: 44))
-//        }
+        templateBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(150)
+            make.size.equalTo(CGSize(width: 100, height: 44))
+        }
         
         imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
