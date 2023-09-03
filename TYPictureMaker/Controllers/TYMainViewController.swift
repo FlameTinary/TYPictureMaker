@@ -28,7 +28,7 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var pingtuBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setTitle("快速拼图", for: .normal)
-        btn.setTitleColor(.red, for: .normal)
+        btn.setTitleColor(accentColor, for: .normal)
         _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
             // 打开相册
             let ps = ZLPhotoPreviewSheet()
@@ -46,7 +46,7 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var transformBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setTitle("九宫格切图", for: .normal)
-        btn.setTitleColor(.red, for: .normal)
+        btn.setTitleColor(accentColor, for: .normal)
         _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
             self?.navigationController?.pushViewController(TYNinePiecesController(), animated: true) 
         }
@@ -56,7 +56,7 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var combineBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setTitle("拼长图", for: .normal)
-        btn.setTitleColor(.red, for: .normal)
+        btn.setTitleColor(accentColor, for: .normal)
         _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
             self?.navigationController?.pushViewController(TYCombineImagesViewController(), animated: true)
         }
@@ -65,7 +65,7 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var templateBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setTitle("模版", for: .normal)
-        btn.setTitleColor(.red, for: .normal)
+        btn.setTitleColor(accentColor, for: .normal)
         _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
 
             self?.navigationController?.pushViewController(TYTemplateViewController(), animated: true)
@@ -76,7 +76,7 @@ class TYMainViewController: TYBaseViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationItem.title = "快速拼图"
+//        navigationItem.title = "快速拼图"
         
     }
     

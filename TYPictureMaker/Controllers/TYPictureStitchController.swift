@@ -53,7 +53,7 @@ class TYPictureStitchController: TYOprationEditController {
         alertView.isShowCloseBtn = false
 //        setupNotification()
         
-        // 创建一个按钮
+        // 保存按钮
         let saveButton = UIButton(type: .custom)
         saveButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
         saveButton.setTitle("保存", for: .normal)
