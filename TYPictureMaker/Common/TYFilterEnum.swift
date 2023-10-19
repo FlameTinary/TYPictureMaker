@@ -10,7 +10,7 @@ import UIKit
 
 enum TYFilterEnum: Int, CaseIterable {
     
-    case none = 0, sepiaTone, gaussianBlur, sharpen, blackAndWhite, hueAdjustment, saturationAdjustemnt, brightnessAdjustment, contrastAdjustment, exposureAdjustment, fade, vignetteTone, old
+    case none = 0, sepiaTone, gaussianBlur, sharpen, blackAndWhite, hueAdjustment, saturationAdjustemnt, brightnessAdjustment, contrastAdjustment, exposureAdjustment, fade, vignetteTone, old, lomo
     
     func toName() -> String {
         switch self {
@@ -40,6 +40,8 @@ enum TYFilterEnum: Int, CaseIterable {
             return "暗角"
         case .old:
             return "老照片"
+        case .lomo:
+            return "lomo"
         }
         
     }
@@ -81,6 +83,8 @@ enum TYFilterEnum: Int, CaseIterable {
             return manager.applyVignetteTone(to: image, intensity: intensity, radius: radius)
         case .old:
             return manager.applyOldFilter(to: image)
+        case .lomo:
+            return manager.applyLomo(to: image)
         }
     }
 }

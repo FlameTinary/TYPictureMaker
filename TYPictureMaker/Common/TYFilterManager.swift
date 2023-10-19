@@ -143,6 +143,10 @@ extension TYFilterManager {
 
         return applyFilter(filter: vignetteTone(to: CIImage(image: image), intensity: intensity, radius: radius))
     }
+    
+    func applyLomo(to image:UIImage) -> UIImage? {
+        return applyFilter(filter: lomo(to: CIImage(image: image)))
+    }
 
     // 添加风格化滤镜
 //    func applyVibrance(to image: UIImage, vibrance: CGFloat) -> UIImage? {
@@ -274,6 +278,38 @@ extension TYFilterManager {
         filter?.setValue(radius, forKey: kCIInputRadiusKey)
 
         return filter
+    }
+    
+    // 添加Lomo滤镜效果
+    private func lomo(to ciImage: CIImage?) -> CIFilter? {
+        guard let ciImage = ciImage else { return nil }
+        
+        // 创建Lomo滤镜
+        guard let lomoFilter = CIFilter(name: "CIPhotoEffectInstant") else {
+            return nil
+        }
+        
+        // 设置输入图像
+        lomoFilter.setValue(ciImage, forKey: kCIInputImageKey)
+        
+//        // 应用滤镜
+//        guard let outputImage = lomoFilter.outputImage else {
+//            return nil
+//        }
+        
+//        // 创建CIContext
+//        let context = CIContext()
+//        
+//        // 将输出图像渲染到CGImage
+//        guard let cgImage = context.createCGImage(outputImage, from: outputImage.extent) else {
+//            return nil
+//        }
+//        
+//        // 创建输出UIImage
+//        let filteredImage = UIImage(cgImage: cgImage)
+//        
+//        return filteredImage
+        return lomoFilter
     }
 
     // 添加风格化滤镜
