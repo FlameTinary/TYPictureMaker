@@ -55,7 +55,7 @@
 		0893A9942A239CF80075B03C /* TYBaseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0893A9932A239CF80075B03C /* TYBaseEditView.swift */; };
 		0893A9962A23A2F40075B03C /* TYEditViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0893A9952A23A2F40075B03C /* TYEditViewProtocol.swift */; };
 		08A4BEAA2A244D7400BBE622 /* TYLayoutView21.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A4BEA92A244D7400BBE622 /* TYLayoutView21.swift */; };
-		08AAA5BE2AEE63DA00ECF5C7 /* TYPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAA5BD2AEE63DA00ECF5C7 /* TYPhotoPicker.swift */; };
+		08AAA5C02AEE9D4400ECF5C7 /* TYViewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAA5BF2AEE9D4400ECF5C7 /* TYViewControllerExtention.swift */; };
 		08B3840E2A28D7F000D55B28 /* TYColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B3840D2A28D7F000D55B28 /* TYColorExtention.swift */; };
 		08B384102A28D8D600D55B28 /* TYConstProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B3840F2A28D8D600D55B28 /* TYConstProperty.swift */; };
 		08DE9B252A258B09006332EF /* TYLayoutView22.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DE9B242A258B09006332EF /* TYLayoutView22.swift */; };
@@ -127,7 +127,7 @@
 		0893A9932A239CF80075B03C /* TYBaseEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYBaseEditView.swift; sourceTree = "<group>"; };
 		0893A9952A23A2F40075B03C /* TYEditViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYEditViewProtocol.swift; sourceTree = "<group>"; };
 		08A4BEA92A244D7400BBE622 /* TYLayoutView21.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLayoutView21.swift; sourceTree = "<group>"; };
-		08AAA5BD2AEE63DA00ECF5C7 /* TYPhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYPhotoPicker.swift; sourceTree = "<group>"; };
+		08AAA5BF2AEE9D4400ECF5C7 /* TYViewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYViewControllerExtention.swift; sourceTree = "<group>"; };
 		08B3840D2A28D7F000D55B28 /* TYColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYColorExtention.swift; sourceTree = "<group>"; };
 		08B3840F2A28D8D600D55B28 /* TYConstProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYConstProperty.swift; sourceTree = "<group>"; };
 		08DE9B242A258B09006332EF /* TYLayoutView22.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLayoutView22.swift; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 				08DE9B2E2A2600E2006332EF /* CustomTransitionAnimator.swift */,
 				0809BD922A2C40A000682888 /* TYFilterManager.swift */,
 				084422362A303DE9008C4C2D /* TYWaterfallLayout.swift */,
-				08AAA5BD2AEE63DA00ECF5C7 /* TYPhotoPicker.swift */,
+				08AAA5BF2AEE9D4400ECF5C7 /* TYViewControllerExtention.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -483,6 +483,7 @@
 				088727C42A1E00A300F77D81 /* TYBackgroundCell.swift in Sources */,
 				0893A9942A239CF80075B03C /* TYBaseEditView.swift in Sources */,
 				08091D192A26016700913842 /* DestinationViewController.swift in Sources */,
+				08AAA5C02AEE9D4400ECF5C7 /* TYViewControllerExtention.swift in Sources */,
 				0887279E2A1B4ADF00F77D81 /* TYOprationEnum.swift in Sources */,
 				08FDBD182AED63BA00A4523A /* TYTestView.swift in Sources */,
 				08DE9B252A258B09006332EF /* TYLayoutView22.swift in Sources */,
@@ -490,7 +491,6 @@
 				0893A9922A22F0270075B03C /* TYPictureFrameEditController.swift in Sources */,
 				088727BC2A1DC20400F77D81 /* TYLayoutEditCell.swift in Sources */,
 				084422372A303DE9008C4C2D /* TYWaterfallLayout.swift in Sources */,
-				08AAA5BE2AEE63DA00ECF5C7 /* TYPhotoPicker.swift in Sources */,
 				081CD8812A1F006E00A6A0F8 /* TYFilterModel.swift in Sources */,
 				088727A12A1B5C7E00F77D81 /* TYProportionEnum.swift in Sources */,
 				08FB76722A28DB4800C160B1 /* TYPanView.swift in Sources */,

@@ -105,8 +105,7 @@ class TYPictureStitchController: TYOprationEditController {
         let image = editView.getImageFromView()
 
         // 保存图片到相册
-        TYPhotoPicker.photoSave(image: image)
-
+        self.photoSave(image: image)
     }
 
 }
@@ -131,7 +130,7 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
         let opration = oprationItem[indexPath.item]
         if opration == .addImage {
             // 打开相册
-            TYPhotoPicker.pickImages(sender: self) { images, asset, isOriginal in
+            self.pickImages { images, asset, isOriginal in
                 let image : UIImage = images.first!
                 let stickView = TYImageStickerView()
                 stickView.width = 150

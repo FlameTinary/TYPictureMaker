@@ -6,8 +6,6 @@
 //
 
 import UIKit
-//import RxSwift
-//import RxCocoa
 
 class TYPictureFrameEditController : TYOprationEditController {
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 extension UIView {
     
@@ -120,6 +121,12 @@ extension UIView {
             }
         }
         return nil
+    }
+}
+
+extension UIView {
+    public func showToast(_ text: String?) {
+        makeToast(text, duration: 1.5, position: .center)
     }
 }
 

@@ -16,7 +16,7 @@ class TYPictureBackgroundEditController : TYOprationEditController {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "addImage"), for: .normal)
         btn.setImage(UIImage(named: "addImage_selected"), for: .highlighted)
-        
+        btn.addTarget(self, action: #selector(addPicBtnClick), for: .touchUpInside)
 //        _ = btn.rx.tap.takeUntil(rx.deallocated).subscribe(onNext: {event in
 //            // 打开相册
 //            let ps = ZLPhotoPreviewSheet()
@@ -71,6 +71,15 @@ class TYPictureBackgroundEditController : TYOprationEditController {
             make.left.equalTo(addPicBtn.snp_rightMargin).offset(10)
             make.right.equalTo(-10)
             make.bottom.equalTo(-colorScrollView.safeBottom)
+        }
+    }
+    
+    @objc private func addPicBtnClick(sender: UIButton) {
+        // 打开相册
+        self.pickImages{ images, asset, isOriginal in
+            let image = images.first
+            self.editInfo.backgroundImage = image
+            self.editView.backgroundImage = image
         }
     }
 }

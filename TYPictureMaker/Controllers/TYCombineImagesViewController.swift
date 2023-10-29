@@ -7,8 +7,8 @@
 
 import UIKit
 //import ZLPhotoBrowser
-//import RxSwift
-//import RxCocoa
+import RxSwift
+import RxCocoa
 
 class TYCombineImagesViewController: TYBaseViewController {
 
@@ -39,13 +39,12 @@ class TYCombineImagesViewController: TYBaseViewController {
         saveButton.setTitleColor(normalTextColor, for: .normal)
         saveButton.backgroundColor = UIColor(hexString: "#1296db")
         saveButton.layer.cornerRadius = 4.0
-//        _ = saveButton.rx.tap.takeUntil(rx.deallocated).subscribe { [weak self] _ in
-//
-//            guard let self = self, let image = self.image else {return}
-//            // 保存图片到相册
-//            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
-//
-//        }
+        _ = saveButton.rx.tap.takeUntil(rx.deallocated).subscribe { [weak self] _ in
+
+            guard let self = self, let image = self.image else {return}
+            // 保存图片到相册
+            self.photoSave(image: image)
+        }
         
         // 创建一个自定义视图
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
@@ -69,29 +68,21 @@ class TYCombineImagesViewController: TYBaseViewController {
         view.addSubview(scrollView)
         
         // 打开相册
-//        let ps = ZLPhotoPreviewSheet()
-//        ps.selectImageBlock = { [weak self] results, isOriginal in
-//            
-//            // 将图片拼接为一张长图
-//            guard let self = self, let combinedImage = self.combineImagesVertically(results.map{$0.image}) else { return }
-//            self.image = combinedImage
-//            // 计算图片宽高
-//            let imageRadio = combinedImage.size.width / combinedImage.size.height
-//            let imageViewW = self.view.width
-//            let imageViewH = imageViewW / imageRadio
-//            
-//            // 显示拼接后的图片
-//            self.combinedImageView.image = combinedImage
-//            self.combinedImageView.frame = CGRect(x: 0, y: 0, width: imageViewW, height: imageViewH)
-//            self.scrollView.contentSize = self.combinedImageView.bounds.size
-//            self.scrollView.addSubview(self.combinedImageView)
-//        }
-//        ps.showPhotoLibrary(sender: self)
-        
-        
-
-        
-        
+        self.pickImages {[weak self] images, asset, isOriginal in
+            // 将图片拼接为一张长图
+            guard let self = self, let combinedImage = self.combineImagesVertically(images) else { return }
+            self.image = combinedImage
+            // 计算图片宽高
+            let imageRadio = combinedImage.size.width / combinedImage.size.height
+            let imageViewW = self.view.width
+            let imageViewH = imageViewW / imageRadio
+            
+            // 显示拼接后的图片
+            self.combinedImageView.image = combinedImage
+            self.combinedImageView.frame = CGRect(x: 0, y: 0, width: imageViewW, height: imageViewH)
+            self.scrollView.contentSize = self.combinedImageView.bounds.size
+            self.scrollView.addSubview(self.combinedImageView)
+        }
     }
     
     func combineImagesVertically(_ images: [UIImage]) -> UIImage? {
@@ -118,17 +109,5 @@ class TYCombineImagesViewController: TYBaseViewController {
         let combinedImage = UIGraphicsGetImageFromCurrentImageContext()
         return combinedImage
     }
-
-    @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            // 图片保存失败
-//            view.makeToast("保存图片到相册失败: \(error.localizedDescription)", duration: 1.0, position: .center)
-        } else {
-            // 图片保存成功
-//            view.makeToast("图片保存成功", duration: 1.0, position: .center)
-        }
-    }
-
-
 }
 

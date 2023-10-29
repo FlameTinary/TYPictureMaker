@@ -105,7 +105,7 @@ class TYMainViewController: TYBaseViewController  {
     @objc private func btnClick(sender: UIButton) {
         switch sender.tag {
         case 1: // 快速拼图
-            TYPhotoPicker.pickImages(sender: self) { results, asset, isOriginal in
+            self.pickImages { results, asset, isOriginal in
                 let psVC = TYPictureStitchController(editInfo: TYEditInfo(images: results))
                 self.navigationController?.pushViewController(psVC, animated: true)
             }
