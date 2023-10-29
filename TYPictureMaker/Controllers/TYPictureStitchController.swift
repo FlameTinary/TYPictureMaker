@@ -105,18 +105,8 @@ class TYPictureStitchController: TYOprationEditController {
         let image = editView.getImageFromView()
 
         // 保存图片到相册
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
+        TYPhotoPicker.photoSave(image: image)
 
-    }
-    
-    @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            // 图片保存失败
-//            view.makeToast("保存图片到相册失败: \(error.localizedDescription)", duration: 1.0, position: .center)
-        } else {
-            // 图片保存成功
-//            view.makeToast("图片保存成功", duration: 1.0, position: .center)
-        }
     }
 
 }
