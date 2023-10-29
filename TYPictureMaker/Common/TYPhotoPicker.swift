@@ -21,7 +21,10 @@ class TYPhotoPicker {
         ps.selectImageBlock = callback
         ps.showPhotoLibrary(sender: sender)
     }
-        
+    
+    
+    /// 保存图片到相册
+    /// - Parameter image: 需要保存的图片
     static func photoSave(image:UIImage) {
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
     }

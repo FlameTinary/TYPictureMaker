@@ -32,11 +32,11 @@ class TYOprationEditController : TYBaseViewController {
     
     lazy var alertView : TYOprationAlertView = {
         let view = TYOprationAlertView()
-//        _ = view.closeObserver.takeUntil(rx.deallocated).subscribe(onNext: {_ in
-//            self.hiddenAlertView { isFinished in
-//                self.dismiss(animated: true)
-//            }
-//        })
+        view.closeBtnDidClick = {sender in
+            self.hiddenAlertView { isFinished in
+                self.dismiss(animated: true)
+            }
+        }
         return view
     }()
     

@@ -27,9 +27,22 @@ class TYBorderEditView : TYBaseView {
         }
     }
     
-//    var pictureObserver : Observable<Float>!
-//    var imageBorderObserver : Observable<Float>!
-//    var imageCornerRadioObserver : Observable<Float>!
+    var pictureValueChanged : ((_ value: Float)->Void)? {
+        didSet {
+            pictureSliderView.sliderValueDidChanged = pictureValueChanged
+        }
+        
+    }
+    var imageBorderValueChanged : ((_ value: Float)->Void)? {
+        didSet {
+            imageSliderView.sliderValueDidChanged = imageBorderValueChanged
+        }
+    }
+    var imageCornerRadioValueChanged : ((_ value: Float)->Void)? {
+        didSet {
+            imageRadioSliderView.sliderValueDidChanged = imageCornerRadioValueChanged
+        }
+    }
     
     private lazy var pictureSliderView : TYTextSliderView = {
         let v = TYTextSliderView()

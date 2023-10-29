@@ -16,7 +16,7 @@ class TYOprationAlertView : TYBaseView {
             closeBtn.isHidden = !isShowCloseBtn
         }
     }
-    
+    var closeBtnDidClick : ((_ sender: UIButton) -> Void)?
 //    var closeObserver : ControlEvent<Void>!
     
     private lazy var closeBtn : UIButton = {
@@ -24,6 +24,7 @@ class TYOprationAlertView : TYBaseView {
         btn.setImage(UIImage(named: "closeBtn"), for: .normal)
         btn.isHidden = !isShowCloseBtn
 //        closeObserver = btn.rx.tap
+        btn.addTarget(self, action: #selector(closeBtnClick), for: .touchUpInside)
         return btn
     }()
     
@@ -35,6 +36,12 @@ class TYOprationAlertView : TYBaseView {
             make.top.equalToSuperview().offset(4)
             make.right.equalToSuperview().offset(-4)
             make.size.equalTo(CGSize(width: 20, height: 20))
+        }
+    }
+    
+    @objc private func closeBtnClick(sender: UIButton) {
+        if let callback = closeBtnDidClick {
+            callback(sender)
         }
     }
 }

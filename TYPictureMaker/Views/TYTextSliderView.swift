@@ -12,6 +12,9 @@ import UIKit
 class TYTextSliderView : TYBaseView {
         
 //    var sliderObserver : Observable<Float>!
+//    private var sliderObserver : NSKeyValueObservation?
+    
+    var sliderValueDidChanged: ((_ value: Float)->Void)?
     
     lazy var iconView : UIImageView = {
         let view = UIImageView()
@@ -25,9 +28,11 @@ class TYTextSliderView : TYBaseView {
         let s = UISlider(frame: .zero)
         s.minimumTrackTintColor = selectColor
         s.maximumTrackTintColor = .white
+        s.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
         addSubview(s)
         return s
     }()
+    
     override init() {
         super.init()
 //        sliderObserver = slider.rx.value.asObservable()
@@ -36,7 +41,9 @@ class TYTextSliderView : TYBaseView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     override func setupSubviews() {
+        
         iconView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview()
@@ -46,6 +53,14 @@ class TYTextSliderView : TYBaseView {
             make.centerY.equalToSuperview()
             make.left.equalTo(iconView.snp.right).offset(10)
             make.right.equalToSuperview()
+        }
+    }
+    
+    @objc private func sliderChanged(sender: UISlider) {
+        let newValue = sender.value
+        print("Slider's value changed to: \(newValue)")
+        if let callback = sliderValueDidChanged {
+            callback(newValue)
         }
     }
     

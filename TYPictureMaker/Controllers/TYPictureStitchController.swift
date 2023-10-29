@@ -131,18 +131,17 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
         let opration = oprationItem[indexPath.item]
         if opration == .addImage {
             // 打开相册
-//            let ps = ZLPhotoPreviewSheet()
-//            ps.selectImageBlock = { results, isOriginal in
-//                let image : UIImage = results.map{$0.image}.first!
-//                let stickView = TYImageStickerView()
-//                stickView.width = 150
-//                stickView.height = 150
-//                stickView.centerX = self.editView.centerX
-//                stickView.centerY = self.editView.centerY
-//                stickView.image = image
-//                self.editView.addSubview(stickView)
-//            }
-//            ps.showPreview(sender: self)
+            TYPhotoPicker.pickImages(sender: self) { images, asset, isOriginal in
+                let image : UIImage = images.first!
+                let stickView = TYImageStickerView()
+                stickView.width = 150
+                stickView.height = 150
+                stickView.centerX = self.editView.centerX
+                stickView.centerY = self.editView.centerY
+                stickView.image = image
+                self.editView.addSubview(stickView)
+            }
+            
         } else {
             presentOprationController(with: opration)
         }
