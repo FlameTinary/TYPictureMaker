@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import ZLPhotoBrowser
+//import RxSwift
+//import RxCocoa
+//import ZLPhotoBrowser
 
 class TYPictureBackgroundEditController : TYOprationEditController {
     
@@ -17,19 +17,19 @@ class TYPictureBackgroundEditController : TYOprationEditController {
         btn.setImage(UIImage(named: "addImage"), for: .normal)
         btn.setImage(UIImage(named: "addImage_selected"), for: .highlighted)
         
-        _ = btn.rx.tap.takeUntil(rx.deallocated).subscribe(onNext: {event in
-            // 打开相册
-            let ps = ZLPhotoPreviewSheet()
-            ps.selectImageBlock = { results, isOriginal in
-                let image = results.map{$0.image}
-                
-                self.editInfo.backgroundImage = image.first
-                
-                self.editView.backgroundImage = image.first
-                
-            }
-            ps.showPreview(sender: self)
-        })
+//        _ = btn.rx.tap.takeUntil(rx.deallocated).subscribe(onNext: {event in
+//            // 打开相册
+//            let ps = ZLPhotoPreviewSheet()
+//            ps.selectImageBlock = { results, isOriginal in
+//                let image = results.map{$0.image}
+//                
+//                self.editInfo.backgroundImage = image.first
+//                
+//                self.editView.backgroundImage = image.first
+//                
+//            }
+//            ps.showPreview(sender: self)
+//        })
         return btn
     }()
     

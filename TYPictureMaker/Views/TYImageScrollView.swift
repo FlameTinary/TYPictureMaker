@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
 
 class TYImageScrollView : TYBaseView {
     

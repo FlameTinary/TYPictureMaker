@@ -6,12 +6,12 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
 
 class TYTextSliderView : TYBaseView {
         
-    var sliderObserver : Observable<Float>!
+//    var sliderObserver : Observable<Float>!
     
     lazy var iconView : UIImageView = {
         let view = UIImageView()
@@ -30,7 +30,7 @@ class TYTextSliderView : TYBaseView {
     }()
     override init() {
         super.init()
-        sliderObserver = slider.rx.value.asObservable()
+//        sliderObserver = slider.rx.value.asObservable()
     }
     
     required init?(coder: NSCoder) {

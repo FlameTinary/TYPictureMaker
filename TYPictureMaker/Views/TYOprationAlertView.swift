@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
 
 class TYOprationAlertView : TYBaseView {
     
@@ -17,13 +17,13 @@ class TYOprationAlertView : TYBaseView {
         }
     }
     
-    var closeObserver : ControlEvent<Void>!
+//    var closeObserver : ControlEvent<Void>!
     
     private lazy var closeBtn : UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "closeBtn"), for: .normal)
         btn.isHidden = !isShowCloseBtn
-        closeObserver = btn.rx.tap
+//        closeObserver = btn.rx.tap
         return btn
     }()
     

@@ -6,8 +6,8 @@
 //  边框控制器
 
 import UIKit
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
 
 class TYBorderEditController: TYOprationEditController {
 
@@ -24,20 +24,20 @@ class TYBorderEditController: TYOprationEditController {
         v.imageBorderValue = editInfo.borderCorner.imageBorder
         v.imageCornerRadioValue = editInfo.borderCorner.imageCornerRadio
         
-        _ = v.pictureObserver.takeUntil(rx.deallocated).subscribe(onNext: {[weak self] value in
-            self?.editInfo.borderCorner.pictureBorder = value
-            self?.editView.padding = CGFloat(value)
-        })
-        
-        _ = v.imageBorderObserver.takeUntil(rx.deallocated).subscribe(onNext: {[weak self] value in
-            self?.editInfo.borderCorner.imageBorder = value
-            self?.editView.imagePandding = CGFloat(value)
-        })
-        
-        _ = v.imageCornerRadioObserver.takeUntil(rx.deallocated).subscribe(onNext: {[weak self] value in
-            self?.editInfo.borderCorner.imageCornerRadio = value
-            self?.editView.imageCornerRadio = CGFloat(value)
-        })
+//        _ = v.pictureObserver.takeUntil(rx.deallocated).subscribe(onNext: {[weak self] value in
+//            self?.editInfo.borderCorner.pictureBorder = value
+//            self?.editView.padding = CGFloat(value)
+//        })
+//        
+//        _ = v.imageBorderObserver.takeUntil(rx.deallocated).subscribe(onNext: {[weak self] value in
+//            self?.editInfo.borderCorner.imageBorder = value
+//            self?.editView.imagePandding = CGFloat(value)
+//        })
+//        
+//        _ = v.imageCornerRadioObserver.takeUntil(rx.deallocated).subscribe(onNext: {[weak self] value in
+//            self?.editInfo.borderCorner.imageCornerRadio = value
+//            self?.editView.imageCornerRadio = CGFloat(value)
+//        })
         return v
     }()
     

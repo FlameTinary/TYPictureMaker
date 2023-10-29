@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import ZLPhotoBrowser
-import RxSwift
-import RxCocoa
+//import ZLPhotoBrowser
+//import RxSwift
+//import RxCocoa
 
 class TYNinePiecesController: TYBaseViewController {
     var collectionView: UICollectionView!
@@ -25,15 +25,15 @@ class TYNinePiecesController: TYBaseViewController {
         saveButton.setTitleColor(normalTextColor, for: .normal)
         saveButton.backgroundColor = UIColor(hexString: "#1296db")
         saveButton.layer.cornerRadius = 4.0
-        _ = saveButton.rx.tap.takeUntil(rx.deallocated).subscribe { [weak self] _ in
-
-            guard let self = self else {return}
-            // 保存图片到相册
-            self.pieceImages.forEach { image in
-                UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
-            }
-
-        }
+//        _ = saveButton.rx.tap.takeUntil(rx.deallocated).subscribe { [weak self] _ in
+//
+//            guard let self = self else {return}
+//            // 保存图片到相册
+//            self.pieceImages.forEach { image in
+//                UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
+//            }
+//
+//        }
         
         // 创建一个自定义视图
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
@@ -52,51 +52,51 @@ class TYNinePiecesController: TYBaseViewController {
         view.backgroundColor = backgroundColor
         
         // 打开相册
-        let ps = ZLPhotoPreviewSheet()
-        ps.selectImageBlock = { [weak self] results, isOriginal in
-            guard let self = self,
-                  let originalImage = results.map({$0.image}).first,
-                  let images = self.splitImageIntoNinePieces(image: originalImage) else {return}
-            
-            self.pieceImages = images
-            
-            let imgW = originalImage.size.width
-            let imgH = originalImage.size.height
-            let radio = imgW / imgH
-            
-            // 间距
-            let space = 1.0
-            
-            // 一行3个
-            let lineItem = 3.0
-            
-            let itemW = (self.view.width - (space * 3)) / lineItem
-            let itemH = itemW / radio
-            
-            // 创建 UICollectionViewFlowLayout 布局
-            let layout = UICollectionViewFlowLayout()
-            layout.estimatedItemSize = CGSize(width: itemW, height: itemH) // 设置每个单元格的大小
-            layout.minimumInteritemSpacing = space // 设置水平间距
-            layout.minimumLineSpacing = space // 设置垂直间距
-            
-            // 创建 UICollectionView，并将布局和 frame 设置为适当的值
-            self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
-            self.collectionView.backgroundColor = backgroundColor
-            
-            // 注册自定义的单元格类
-            self.collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-            
-            // 设置数据源
-            self.collectionView.dataSource = self
-            
-            // 添加 UICollectionView 到视图中
-            self.view.addSubview(self.collectionView)
-            
-            // 刷新 UICollectionView
-            self.collectionView.reloadData()
-            
-        }
-        ps.showPhotoLibrary(sender: self)
+//        let ps = ZLPhotoPreviewSheet()
+//        ps.selectImageBlock = { [weak self] results, isOriginal in
+//            guard let self = self,
+//                  let originalImage = results.map({$0.image}).first,
+//                  let images = self.splitImageIntoNinePieces(image: originalImage) else {return}
+//            
+//            self.pieceImages = images
+//            
+//            let imgW = originalImage.size.width
+//            let imgH = originalImage.size.height
+//            let radio = imgW / imgH
+//            
+//            // 间距
+//            let space = 1.0
+//            
+//            // 一行3个
+//            let lineItem = 3.0
+//            
+//            let itemW = (self.view.width - (space * 3)) / lineItem
+//            let itemH = itemW / radio
+//            
+//            // 创建 UICollectionViewFlowLayout 布局
+//            let layout = UICollectionViewFlowLayout()
+//            layout.estimatedItemSize = CGSize(width: itemW, height: itemH) // 设置每个单元格的大小
+//            layout.minimumInteritemSpacing = space // 设置水平间距
+//            layout.minimumLineSpacing = space // 设置垂直间距
+//            
+//            // 创建 UICollectionView，并将布局和 frame 设置为适当的值
+//            self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+//            self.collectionView.backgroundColor = backgroundColor
+//            
+//            // 注册自定义的单元格类
+//            self.collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+//            
+//            // 设置数据源
+//            self.collectionView.dataSource = self
+//            
+//            // 添加 UICollectionView 到视图中
+//            self.view.addSubview(self.collectionView)
+//            
+//            // 刷新 UICollectionView
+//            self.collectionView.reloadData()
+//            
+//        }
+//        ps.showPhotoLibrary(sender: self)
         
     }
     
@@ -109,10 +109,10 @@ class TYNinePiecesController: TYBaseViewController {
     @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             // 图片保存失败
-            view.makeToast("保存图片到相册失败: \(error.localizedDescription)", duration: 1.0, position: .center)
+//            view.makeToast("保存图片到相册失败: \(error.localizedDescription)", duration: 1.0, position: .center)
         } else {
             // 图片保存成功
-            view.makeToast("图片保存成功", duration: 1.0, position: .center)
+//            view.makeToast("图片保存成功", duration: 1.0, position: .center)
         }
     }
 }

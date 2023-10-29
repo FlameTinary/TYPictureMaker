@@ -1,50 +1,22 @@
 PODS:
-  - Alamofire (5.7.1)
-  - Moya (15.0.0):
-    - Moya/Core (= 15.0.0)
-  - Moya/Core (15.0.0):
-    - Alamofire (~> 5.0)
-  - RxCocoa (5.1.3):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.1.3):
-    - RxSwift (~> 5)
-  - RxSwift (5.1.3)
   - SnapKit (5.6.0)
-  - Toast-Swift (5.0.1)
-  - ZLPhotoBrowser (4.4.1):
-    - ZLPhotoBrowser/Core (= 4.4.1)
-  - ZLPhotoBrowser/Core (4.4.1)
+  - ZLPhotoBrowser (4.0.0):
+    - ZLPhotoBrowser/Core (= 4.0.0)
+  - ZLPhotoBrowser/Core (4.0.0)
 
 DEPENDENCIES:
-  - Moya (~> 15.0)
-  - RxCocoa (~> 5.0)
-  - RxSwift (~> 5.0)
   - SnapKit (~> 5.6.0)
-  - Toast-Swift (~> 5.0.1)
-  - ZLPhotoBrowser (~> 4.4.1)
+  - ZLPhotoBrowser (= 4.0.0)
 
 SPEC REPOS:
   trunk:
-    - Alamofire
-    - Moya
-    - RxCocoa
-    - RxRelay
-    - RxSwift
     - SnapKit
-    - Toast-Swift
     - ZLPhotoBrowser
 
 SPEC CHECKSUMS:
-  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
-  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
-  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
-  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
-  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
-  ZLPhotoBrowser: dd045d229bf0d966e05a06a97ea428aace0303c7
+  ZLPhotoBrowser: 383552b21d32cd6394df95dbebd6a0bb51a028e4
 
-PODFILE CHECKSUM: 4987591c62e6efeb28ef5109c1485b44ebc74acc
+PODFILE CHECKSUM: 22b2a43c94c96acd63e7ca514827340acac4f830
 
 COCOAPODS: 1.13.0

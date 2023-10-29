@@ -7,10 +7,10 @@
 
 import UIKit
 import SnapKit
-import RxSwift
-import RxCocoa
-import Toast_Swift
-import ZLPhotoBrowser
+//import RxSwift
+//import RxCocoa
+//import Toast_Swift
+//import ZLPhotoBrowser
 
 class TYPictureStitchController: TYOprationEditController {
     
@@ -26,7 +26,7 @@ class TYPictureStitchController: TYOprationEditController {
     private var stickerNames : [String] = []
     
     // rx销毁属性
-    private var disposeBag = DisposeBag()
+//    private var disposeBag = DisposeBag()
     
     //操作列表item
     private var oprationItem : [TYOpration]!
@@ -86,7 +86,7 @@ class TYPictureStitchController: TYOprationEditController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.disposeBag = DisposeBag()
+//        self.disposeBag = DisposeBag()
     }
     
     override func setupSubviews() {
@@ -112,10 +112,10 @@ class TYPictureStitchController: TYOprationEditController {
     @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             // 图片保存失败
-            view.makeToast("保存图片到相册失败: \(error.localizedDescription)", duration: 1.0, position: .center)
+//            view.makeToast("保存图片到相册失败: \(error.localizedDescription)", duration: 1.0, position: .center)
         } else {
             // 图片保存成功
-            view.makeToast("图片保存成功", duration: 1.0, position: .center)
+//            view.makeToast("图片保存成功", duration: 1.0, position: .center)
         }
     }
 
@@ -141,18 +141,18 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
         let opration = oprationItem[indexPath.item]
         if opration == .addImage {
             // 打开相册
-            let ps = ZLPhotoPreviewSheet()
-            ps.selectImageBlock = { results, isOriginal in
-                let image : UIImage = results.map{$0.image}.first!
-                let stickView = TYImageStickerView()
-                stickView.width = 150
-                stickView.height = 150
-                stickView.centerX = self.editView.centerX
-                stickView.centerY = self.editView.centerY
-                stickView.image = image
-                self.editView.addSubview(stickView)
-            }
-            ps.showPreview(sender: self)
+//            let ps = ZLPhotoPreviewSheet()
+//            ps.selectImageBlock = { results, isOriginal in
+//                let image : UIImage = results.map{$0.image}.first!
+//                let stickView = TYImageStickerView()
+//                stickView.width = 150
+//                stickView.height = 150
+//                stickView.centerX = self.editView.centerX
+//                stickView.centerY = self.editView.centerY
+//                stickView.image = image
+//                self.editView.addSubview(stickView)
+//            }
+//            ps.showPreview(sender: self)
         } else {
             presentOprationController(with: opration)
         }

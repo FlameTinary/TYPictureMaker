@@ -19,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = UINavigationController(rootViewController: TYMainViewController())
         self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
-        
-        UINavigationBar.appearance().tintColor = backgroundColor
-        UINavigationBar.appearance().barTintColor = backgroundColor
-        UINavigationBar.appearance().isTranslucent = true
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : backgroundColor ?? .white]
+
+// 这里需要根据系统版本来调整nav
+//        UINavigationBar.appearance().tintColor = backgroundColor
+//        UINavigationBar.appearance().barTintColor = backgroundColor
+//        UINavigationBar.appearance().isTranslucent = true
+//        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : backgroundColor ?? .white]
         
         return true
     }

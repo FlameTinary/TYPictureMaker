@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
 
 class TYTextEditController : TYOprationEditController {
     
@@ -43,9 +43,9 @@ class TYTextEditController : TYOprationEditController {
         // 将富文本样式的 placeholder 应用到 UITextField
         field.attributedPlaceholder = attributedPlaceholder
         
-        _ = field.rx.text.takeUntil(self.rx.deallocated).subscribe(onNext: { [weak self] text in
-            self?.text = text
-        })
+//        _ = field.rx.text.takeUntil(self.rx.deallocated).subscribe(onNext: { [weak self] text in
+//            self?.text = text
+//        })
         return field
     }()
     
@@ -55,17 +55,17 @@ class TYTextEditController : TYOprationEditController {
         btn.setTitleColor(normalTextColor, for: .normal)
         btn.backgroundColor = selectColor
         btn.layer.cornerRadius = 15
-        _ = btn.rx.tap.takeUntil(rx.deallocated).subscribe(onNext: { [weak self] _ in
-            // 将文字添加到文字贴纸上
-            guard let text = self?.text, text.count > 0 else { return }
-            
-            let textStickerView = TYTextStickerView(text: text)
-            textStickerView.width = 150
-            textStickerView.height = 44
-            textStickerView.center = self?.editView.center ?? CGPoint(x: 0, y: 0)
-            self?.editView.addSubview(textStickerView)
-            
-        })
+//        _ = btn.rx.tap.takeUntil(rx.deallocated).subscribe(onNext: { [weak self] _ in
+//            // 将文字添加到文字贴纸上
+//            guard let text = self?.text, text.count > 0 else { return }
+//            
+//            let textStickerView = TYTextStickerView(text: text)
+//            textStickerView.width = 150
+//            textStickerView.height = 44
+//            textStickerView.center = self?.editView.center ?? CGPoint(x: 0, y: 0)
+//            self?.editView.addSubview(textStickerView)
+//            
+//        })
         return btn
     }()
     

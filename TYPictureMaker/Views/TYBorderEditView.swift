@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
 
 class TYBorderEditView : TYBaseView {
     
@@ -27,9 +27,9 @@ class TYBorderEditView : TYBaseView {
         }
     }
     
-    var pictureObserver : Observable<Float>!
-    var imageBorderObserver : Observable<Float>!
-    var imageCornerRadioObserver : Observable<Float>!
+//    var pictureObserver : Observable<Float>!
+//    var imageBorderObserver : Observable<Float>!
+//    var imageCornerRadioObserver : Observable<Float>!
     
     private lazy var pictureSliderView : TYTextSliderView = {
         let v = TYTextSliderView()
@@ -64,9 +64,9 @@ class TYBorderEditView : TYBaseView {
     }()
     override init() {
         super.init()
-        pictureObserver = pictureSliderView.sliderObserver
-        imageBorderObserver = imageSliderView.sliderObserver
-        imageCornerRadioObserver = imageRadioSliderView.sliderObserver
+//        pictureObserver = pictureSliderView.sliderObserver
+//        imageBorderObserver = imageSliderView.sliderObserver
+//        imageCornerRadioObserver = imageRadioSliderView.sliderObserver
     }
     
     required init?(coder: NSCoder) {

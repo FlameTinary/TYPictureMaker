@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
 
 class DestinationViewController: UIViewController {
     
@@ -18,11 +18,11 @@ class DestinationViewController: UIViewController {
         let btn = UIButton(type: .custom)
         btn.setTitle("back", for: .normal)
         btn.setTitleColor(.blue, for: .normal)
-        _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
-            self?.dismiss(animated: true, completion: {
-                self?.passViewClosure?(self!.sourceView!)
-            })
-        }
+//        _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
+//            self?.dismiss(animated: true, completion: {
+//                self?.passViewClosure?(self!.sourceView!)
+//            })
+//        }
         return btn
     }()
     

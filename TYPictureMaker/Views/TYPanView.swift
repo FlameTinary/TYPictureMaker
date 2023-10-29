@@ -6,8 +6,8 @@
 //  可拖动的视图
 
 import UIKit
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
 
 class TYPanView : UIView {
     
@@ -23,9 +23,9 @@ class TYPanView : UIView {
         btn.backgroundColor = .black
         btn.layer.cornerRadius = 10
         btn.layer.masksToBounds = true
-        _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe(onNext: { [weak self] _ in
-            self?.removeFromSuperview()
-        })
+//        _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe(onNext: { [weak self] _ in
+//            self?.removeFromSuperview()
+//        })
         addSubview(btn)
         return btn
     }()

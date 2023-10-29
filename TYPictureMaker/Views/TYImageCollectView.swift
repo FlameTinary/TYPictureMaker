@@ -6,10 +6,10 @@
 //  图片收集视图
 
 import UIKit
-import ZLPhotoBrowser
-
-import RxSwift
-import RxCocoa
+//import ZLPhotoBrowser
+//
+//import RxSwift
+//import RxCocoa
 
 class TYImageCollectView : TYBaseView {
     
@@ -36,17 +36,17 @@ class TYImageCollectView : TYBaseView {
         imageView.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer()
         imageView.addGestureRecognizer(gesture)
-        _ = gesture.rx.event.takeUntil(self.rx.deallocated).bind(onNext: {gesture in
-            // 打开相册
-            let ps = ZLPhotoPreviewSheet()
-            ps.selectImageBlock = { [weak self] results, isOriginal in
-                self?.image = results.map{$0.image}.first
-                
-            }
-            if let sender = self.parentViewController {
-                ps.showPreview(animate: true, sender: sender)
-            }
-        })
+//        _ = gesture.rx.event.takeUntil(self.rx.deallocated).bind(onNext: {gesture in
+//            // 打开相册
+//            let ps = ZLPhotoPreviewSheet()
+//            ps.selectImageBlock = { [weak self] results, isOriginal in
+//                self?.image = results.map{$0.image}.first
+//                
+//            }
+//            if let sender = self.parentViewController {
+//                ps.showPreview(animate: true, sender: sender)
+//            }
+//        })
         return imageView
     }()
     

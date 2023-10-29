@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
 
 class SourceViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
@@ -20,9 +20,9 @@ class SourceViewController: UIViewController, UIViewControllerTransitioningDeleg
         let btn = UIButton(type: .custom)
         btn.setTitle("转场动画", for: .normal)
         btn.setTitleColor(.red, for: .normal)
-        _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
-            self!.presentDestinationViewController()
-        }
+//        _ = btn.rx.tap.takeUntil(self.rx.deallocated).subscribe {[weak self] event in
+//            self!.presentDestinationViewController()
+//        }
         return btn
     }()
     override func viewDidLoad() {
