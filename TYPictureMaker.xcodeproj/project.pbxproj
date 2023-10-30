@@ -17,6 +17,7 @@
 		084422332A2EF487008C4C2D /* TYTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084422322A2EF487008C4C2D /* TYTemplateViewController.swift */; };
 		084422372A303DE9008C4C2D /* TYWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084422362A303DE9008C4C2D /* TYWaterfallLayout.swift */; };
 		084422392A306D58008C4C2D /* TemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084422382A306D58008C4C2D /* TemplateCell.swift */; };
+		08506C902AEF56FF00B1C325 /* TYDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08506C8F2AEF56FF00B1C325 /* TYDeviceModel.swift */; };
 		085AF1B32AED326700B051C8 /* TYColorBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085AF1B22AED326700B051C8 /* TYColorBtn.swift */; };
 		08632A352A24C1E40010CC67 /* IrregularQuadrilateralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08632A342A24C1E40010CC67 /* IrregularQuadrilateralView.swift */; };
 		08632A372A24C2690010CC67 /* CircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08632A362A24C2690010CC67 /* CircularView.swift */; };
@@ -87,6 +88,7 @@
 		084422322A2EF487008C4C2D /* TYTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYTemplateViewController.swift; sourceTree = "<group>"; };
 		084422362A303DE9008C4C2D /* TYWaterfallLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYWaterfallLayout.swift; sourceTree = "<group>"; };
 		084422382A306D58008C4C2D /* TemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCell.swift; sourceTree = "<group>"; };
+		08506C8F2AEF56FF00B1C325 /* TYDeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYDeviceModel.swift; sourceTree = "<group>"; };
 		085AF1B22AED326700B051C8 /* TYColorBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYColorBtn.swift; sourceTree = "<group>"; };
 		08632A342A24C1E40010CC67 /* IrregularQuadrilateralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IrregularQuadrilateralView.swift; sourceTree = "<group>"; };
 		08632A362A24C2690010CC67 /* CircularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularView.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				0809BD922A2C40A000682888 /* TYFilterManager.swift */,
 				084422362A303DE9008C4C2D /* TYWaterfallLayout.swift */,
 				08AAA5BF2AEE9D4400ECF5C7 /* TYViewControllerExtention.swift */,
+				08506C8F2AEF56FF00B1C325 /* TYDeviceModel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				088727A92A1B8D4800F77D81 /* TYBorderEditView.swift in Sources */,
 				088727B02A1C9EB200F77D81 /* TYBorderCornerModel.swift in Sources */,
 				0870C2F82A14E64800AC1793 /* TYProportionCell.swift in Sources */,
+				08506C902AEF56FF00B1C325 /* TYDeviceModel.swift in Sources */,
 				081CD87F2A1EFEE000A6A0F8 /* TYFilterEditController.swift in Sources */,
 				08DE9B312A260109006332EF /* SourceViewController.swift in Sources */,
 				08F5A6DD2A206C9400200D6E /* TYStickerEditController.swift in Sources */,

@@ -12,7 +12,8 @@ class TYMainViewController: TYBaseViewController  {
     
     private lazy var imageView : UIImageView = {
         let imageview = UIImageView()
-        imageview.contentMode = .scaleAspectFit
+        imageview.contentMode = .scaleAspectFill
+        imageview.image = UIImage(named: "testImg")
         return imageview
     }()
     
@@ -24,6 +25,8 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var pingtuBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.tag = 1
+        btn.backgroundColor = .yellow
+        btn.layer.cornerRadius = 16.0
         btn.setTitle("快速拼图", for: .normal)
         btn.setTitleColor(accentColor, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
@@ -33,6 +36,8 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var transformBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.tag = 2
+        btn.backgroundColor = .green
+        btn.layer.cornerRadius = 16.0
         btn.setTitle("九宫格切图", for: .normal)
         btn.setTitleColor(accentColor, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
@@ -42,6 +47,8 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var combineBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.tag = 3
+        btn.backgroundColor = .blue
+        btn.layer.cornerRadius = 16.0
         btn.setTitle("拼长图", for: .normal)
         btn.setTitleColor(accentColor, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
@@ -50,6 +57,8 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var templateBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.tag = 4
+        btn.backgroundColor = .brown
+        btn.layer.cornerRadius = 16.0
         btn.setTitle("模版", for: .normal)
         btn.setTitleColor(accentColor, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
@@ -64,6 +73,12 @@ class TYMainViewController: TYBaseViewController  {
     }
     
     override func setupSubviews() {
+        
+        let deviceModel = TYDeviceModel()
+        let btnW = 200 * deviceModel.getAdaptationScale()
+        let btnH = btnW * 0.5
+        let btnOffset = btnW * 0.5 + 20
+        
         view.addSubview(imageView)
         view.addSubview(pingtuBtn)
         view.addSubview(transformBtn)
@@ -71,33 +86,38 @@ class TYMainViewController: TYBaseViewController  {
         view.addSubview(templateBtn)
     
         pingtuBtn.snp.makeConstraints { make in
-            make.center.equalTo(view)
-            make.width.equalTo(200)
-            make.height.equalTo(100)
+            make.centerY.equalTo(view).offset(50)
+            make.left.equalTo(view).offset(20)
+            make.right.equalTo(transformBtn.snp.left).offset(-10)
+            make.height.equalTo(pingtuBtn.snp.width).multipliedBy(0.5)
+            
         }
         
         transformBtn.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(100)
-            make.size.equalTo(CGSize(width: 100, height: 44))
+            make.centerY.equalTo(view).offset(50)
+            make.right.equalTo(view).offset(-20)
+            make.width.equalTo(pingtuBtn.snp.width)
+            make.height.equalTo(transformBtn.snp.width).multipliedBy(0.5)
         }
         
         combineBtn.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(50)
-            make.size.equalTo(CGSize(width: 100, height: 44))
+            make.top.equalTo(pingtuBtn.snp.bottom).offset(10)
+            make.left.equalTo(pingtuBtn.snp.left)
+            make.size.equalTo(pingtuBtn)
         }
         
         templateBtn.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(150)
-            make.size.equalTo(CGSize(width: 100, height: 44))
+            make.right.equalTo(transformBtn.snp.right)
+            make.top.equalTo(combineBtn)
+            make.size.equalTo(combineBtn)
         }
         
         imageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(100)
-            make.size.equalTo(CGSize(width: 200, height: 200))
+            let navH = deviceModel.getNavH()
+            let statusH = deviceModel.getStatusBarH()
+            make.left.right.equalTo(view)
+            make.top.equalTo(navH + statusH)
+            make.height.equalTo(imageView.snp.width).multipliedBy(0.5)
         }
 
     }
