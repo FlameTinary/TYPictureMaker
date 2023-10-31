@@ -12,8 +12,12 @@ import RxCocoa
 
 class TYCombineImagesViewController: TYBaseViewController {
 
-    // 图片数组
-    private var image: UIImage?
+//MARK: 属性定义
+    // 传入的原始图片数组
+    var originalImages : [UIImage]
+    
+    // 拼接后的图片
+    private var combinedImage: UIImage?
 
     // 创建 UIScrollView
     private lazy var scrollView : UIScrollView = {
@@ -41,7 +45,7 @@ class TYCombineImagesViewController: TYBaseViewController {
         saveButton.layer.cornerRadius = 4.0
         _ = saveButton.rx.tap.takeUntil(rx.deallocated).subscribe { [weak self] _ in
 
-            guard let self = self, let image = self.image else {return}
+            guard let self = self, let image = self.combinedImage else {return}
             // 保存图片到相册
             self.photoSave(image: image)
         }
@@ -58,8 +62,18 @@ class TYCombineImagesViewController: TYBaseViewController {
         
     }()
     
+    //MARK: 初始化方法
+    init(originalImages: [UIImage]) {
+        self.originalImages = originalImages
+        super.init(nibName: nil, bundle: nil)
+    }
     
-
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    //MARK: 生命周期方法
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = backgroundColor
@@ -67,21 +81,19 @@ class TYCombineImagesViewController: TYBaseViewController {
         navigationItem.rightBarButtonItem = barButtonItem
         view.addSubview(scrollView)
         
-        // 打开相册
-        self.pickImages {[weak self] images, asset, isOriginal in
-            // 将图片拼接为一张长图
-            guard let self = self, let combinedImage = self.combineImagesVertically(images) else { return }
-            self.image = combinedImage
+        if let image = self.combineImagesVertically(self.originalImages) {
             // 计算图片宽高
-            let imageRadio = combinedImage.size.width / combinedImage.size.height
+            let imageRadio = image.size.width / image.size.height
             let imageViewW = self.view.width
             let imageViewH = imageViewW / imageRadio
             
             // 显示拼接后的图片
-            self.combinedImageView.image = combinedImage
+            self.combinedImageView.image = image
             self.combinedImageView.frame = CGRect(x: 0, y: 0, width: imageViewW, height: imageViewH)
             self.scrollView.contentSize = self.combinedImageView.bounds.size
             self.scrollView.addSubview(self.combinedImageView)
+            
+            self.combinedImage = image
         }
     }
     

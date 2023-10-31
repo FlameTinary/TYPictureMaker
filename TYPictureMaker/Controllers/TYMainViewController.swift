@@ -135,7 +135,10 @@ class TYMainViewController: TYBaseViewController  {
                 
             }
         case 3: // 跳转拼长图
-            self.navigationController?.pushViewController(TYCombineImagesViewController(), animated: true)
+            self.pickImages { results, asset, isOriginal in
+                let combineImagesVC = TYCombineImagesViewController(originalImages: results)
+                self.navigationController?.pushViewController(combineImagesVC, animated: true)
+            }
         case 4: // 跳转模板
             self.navigationController?.pushViewController(TYTemplateViewController(), animated: true)
         default:
