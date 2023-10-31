@@ -97,7 +97,8 @@ class TYCombineImagesViewController: TYBaseViewController {
         }
     }
     
-    func combineImagesVertically(_ images: [UIImage]) -> UIImage? {
+//MARK: 图片拼接方法
+    private func combineImagesVertically(_ images: [UIImage]) -> UIImage? {
         guard !images.isEmpty else { return nil }
 
         // 计算拼接后的图片的总高度和最小宽度

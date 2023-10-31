@@ -11,18 +11,11 @@ import RxSwift
 import RxCocoa
 
 class TYNinePiecesController: TYBaseViewController {
+//MARK: 属性定义
     var collectionView: UICollectionView!
     var originalImage : UIImage
     var pieceImages: [UIImage] = [] // 存储分割后的图片
     
-    init(originImage: UIImage) {
-        self.originalImage = originImage
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     private lazy var barButtonItem : UIBarButtonItem = {
         
         // 创建一个按钮
@@ -55,6 +48,19 @@ class TYNinePiecesController: TYBaseViewController {
         
     }()
     
+    
+//MARK: 初始化方法
+    init(originImage: UIImage) {
+        self.originalImage = originImage
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+
+//MARK: 生命周期方法
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = backgroundColor
@@ -107,6 +113,8 @@ class TYNinePiecesController: TYBaseViewController {
     }
 }
 
+
+//MARK: collectionView datasource & delegate
 extension TYNinePiecesController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pieceImages.count
@@ -123,6 +131,8 @@ extension TYNinePiecesController: UICollectionViewDataSource {
     }
 }
 
+
+//MARK: 图片分割方法分类
 extension TYNinePiecesController {
     func splitImageIntoNinePieces(image: UIImage?) -> [UIImage]? {
         guard let image = image else { return nil }
