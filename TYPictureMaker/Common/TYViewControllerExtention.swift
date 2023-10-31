@@ -18,7 +18,7 @@ extension UIViewController {
     func pickImages(callback: ( ([UIImage], [PHAsset], Bool) -> Void )?) {
         let ps = ZLPhotoPreviewSheet()
         ps.selectImageBlock = callback
-        ps.showPhotoLibrary(sender: self)
+        ps.showPreview(animate: true, sender: self)
     }
     
     

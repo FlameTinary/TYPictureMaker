@@ -75,9 +75,6 @@ class TYMainViewController: TYBaseViewController  {
     override func setupSubviews() {
         
         let deviceModel = TYDeviceModel()
-        let btnW = 200 * deviceModel.getAdaptationScale()
-        let btnH = btnW * 0.5
-        let btnOffset = btnW * 0.5 + 20
         
         view.addSubview(imageView)
         view.addSubview(pingtuBtn)
@@ -130,7 +127,13 @@ class TYMainViewController: TYBaseViewController  {
                 self.navigationController?.pushViewController(psVC, animated: true)
             }
         case 2: // 跳转九宫格
-            self.navigationController?.pushViewController(TYNinePiecesController(), animated: true)
+            self.pickImages { results, asset, isOriginal in
+                if let image = results.first {
+                    let ninepiecesVC = TYNinePiecesController(originImage: image)
+                    self.navigationController?.pushViewController(ninepiecesVC, animated: true)
+                }
+                
+            }
         case 3: // 跳转拼长图
             self.navigationController?.pushViewController(TYCombineImagesViewController(), animated: true)
         case 4: // 跳转模板

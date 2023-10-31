@@ -6,15 +6,23 @@
 //
 
 import UIKit
-//import ZLPhotoBrowser
+import ZLPhotoBrowser
 import RxSwift
 import RxCocoa
 
 class TYNinePiecesController: TYBaseViewController {
     var collectionView: UICollectionView!
-    
+    var originalImage : UIImage
     var pieceImages: [UIImage] = [] // 存储分割后的图片
     
+    init(originImage: UIImage) {
+        self.originalImage = originImage
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     private lazy var barButtonItem : UIBarButtonItem = {
         
         // 创建一个按钮
@@ -51,14 +59,9 @@ class TYNinePiecesController: TYBaseViewController {
         super.viewDidLoad()
         view.backgroundColor = backgroundColor
         
-        // 打开相册
-        self.pickImages {[weak self] images, asset, isOriginal in
-            guard let self = self,
-                  let originalImage = images.first,
-                  let images = self.splitImageIntoNinePieces(image: originalImage) else {return}
-            
+        // 制作九宫格图片
+        if let images = self.splitImageIntoNinePieces(image: self.originalImage) {
             self.pieceImages = images
-            
             let imgW = originalImage.size.width
             let imgH = originalImage.size.height
             let radio = imgW / imgH
