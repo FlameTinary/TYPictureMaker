@@ -25,10 +25,10 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var pingtuBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.tag = 1
-        btn.backgroundColor = .yellow
+        btn.backgroundColor = UIColor(hexString: "#FF9966")
         btn.layer.cornerRadius = 16.0
         btn.setTitle("快速拼图", for: .normal)
-        btn.setTitleColor(accentColor, for: .normal)
+        btn.setTitleColor(normalTextColor, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
         return btn
     }()
@@ -36,10 +36,10 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var transformBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.tag = 2
-        btn.backgroundColor = .green
+        btn.backgroundColor = UIColor(hexString: "#CCFF99")
         btn.layer.cornerRadius = 16.0
         btn.setTitle("九宫格切图", for: .normal)
-        btn.setTitleColor(accentColor, for: .normal)
+        btn.setTitleColor(normalTextColor, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
         return btn
     }()
@@ -47,20 +47,20 @@ class TYMainViewController: TYBaseViewController  {
     private lazy var combineBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.tag = 3
-        btn.backgroundColor = .blue
+        btn.backgroundColor = UIColor(hexString: "#99CC99")
         btn.layer.cornerRadius = 16.0
         btn.setTitle("拼长图", for: .normal)
-        btn.setTitleColor(accentColor, for: .normal)
+        btn.setTitleColor(normalTextColor, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
         return btn
     }()
     private lazy var templateBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.tag = 4
-        btn.backgroundColor = .brown
+        btn.backgroundColor = UIColor(hexString: "#99CCFF")
         btn.layer.cornerRadius = 16.0
         btn.setTitle("模版", for: .normal)
-        btn.setTitleColor(accentColor, for: .normal)
+        btn.setTitleColor(normalTextColor, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
         return btn
     }()
