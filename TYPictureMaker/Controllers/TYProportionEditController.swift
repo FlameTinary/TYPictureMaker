@@ -12,12 +12,16 @@ class TYProportionEditController : TYOprationEditController {
     private let cellId = "proportionCellId"
 
     private lazy var proportionScrollView : UICollectionView = {
+        
+        let deviceModel = TYDeviceModel()
+        let scale = deviceModel.getAdaptationScale()
+        let itemW = 60*scale
 
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 70, height: 44)
+        layout.itemSize = CGSize(width: itemW, height: itemW*0.5)
 
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.showsVerticalScrollIndicator = false
@@ -31,14 +35,19 @@ class TYProportionEditController : TYOprationEditController {
     }()
     
     override func setupSubviews() {
+        let deviceModel = TYDeviceModel()
+        let scale = deviceModel.getAdaptationScale()
+        aleatHeight = 90*scale
         super.setupSubviews()
-
         alertView.addSubview(proportionScrollView)
-
         proportionScrollView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalToSuperview().offset(28)
-            make.bottom.equalTo(-proportionScrollView.safeBottom)
+            if proportionScrollView.safeBottom == 0 {
+                make.bottom.equalTo(-20)
+            }else {
+                make.bottom.equalTo(-proportionScrollView.safeBottom)
+            }
         }
     }
     

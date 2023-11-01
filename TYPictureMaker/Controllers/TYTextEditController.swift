@@ -69,6 +69,7 @@ class TYTextEditController : TYOprationEditController {
     }()
     
     override func setupSubviews() {
+        aleatHeight = 120
         super.setupSubviews()
         
         alertView.addSubview(textFiled)

@@ -34,13 +34,18 @@ class TYStickerEditController : TYOprationEditController {
     }()
 
     override func setupSubviews() {
+        aleatHeight = 100
         super.setupSubviews()
         alertView.addSubview(stickerCollectionView)
 
         stickerCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(28)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(-stickerCollectionView.safeBottom)
+            if stickerCollectionView.safeBottom == 0 {
+                make.bottom.equalTo(-20)
+            }else {
+                make.bottom.equalTo(-stickerCollectionView.safeBottom)
+            }
         }
 
     }

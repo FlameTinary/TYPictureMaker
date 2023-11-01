@@ -59,6 +59,7 @@ class TYFilterEditController : TYOprationEditController {
     }
 
     override func setupSubviews() {
+        aleatHeight = 130
         super.setupSubviews()
         alertView.addSubview(filterScrollView)
 //        alertView.addSubview(intensitySlider)
@@ -66,7 +67,11 @@ class TYFilterEditController : TYOprationEditController {
         filterScrollView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(28)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(-filterScrollView.safeBottom)
+            if filterScrollView.safeBottom == 0 {
+                make.bottom.equalTo(-20)
+            }else {
+                make.bottom.equalTo(-filterScrollView.safeBottom)
+            }
         }
 
 //        intensitySlider.snp.makeConstraints { make in

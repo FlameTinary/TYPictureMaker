@@ -55,6 +55,7 @@ class TYPictureBackgroundEditController : TYOprationEditController {
     }()
 
     override func setupSubviews() {
+        aleatHeight = 100
         super.setupSubviews()
 
         alertView.addSubview(addPicBtn)
@@ -70,7 +71,11 @@ class TYPictureBackgroundEditController : TYOprationEditController {
             make.top.equalToSuperview().offset(28)
             make.left.equalTo(addPicBtn.snp_rightMargin).offset(10)
             make.right.equalTo(-10)
-            make.bottom.equalTo(-colorScrollView.safeBottom)
+            if colorScrollView.safeBottom == 0 {
+                make.bottom.equalTo(-20)
+            }else {
+                make.bottom.equalTo(-colorScrollView.safeBottom)
+            }
         }
     }
     

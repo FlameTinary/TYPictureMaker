@@ -11,11 +11,11 @@ import UIKit
 
 class TYBorderEditController: TYOprationEditController {
 
-    override var aleatHeight: CGFloat {
-        get {
-            return 200
-        }
-    }
+//    override var aleatHeight: CGFloat {
+//        get {
+//            return 200
+//        }
+//    }
     
     private lazy var borderEditView : TYBorderEditView = {
         let v = TYBorderEditView()
@@ -51,6 +51,7 @@ class TYBorderEditController: TYOprationEditController {
     }()
     
     override func setupSubviews() {
+        aleatHeight = 200
         super.setupSubviews()
         alertView.addSubview(borderEditView)
         borderEditView.snp.makeConstraints { make in

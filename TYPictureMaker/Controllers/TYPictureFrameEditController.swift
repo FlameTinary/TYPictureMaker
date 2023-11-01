@@ -33,6 +33,7 @@ class TYPictureFrameEditController : TYOprationEditController {
     }()
 
     override func setupSubviews() {
+        aleatHeight = 100
         super.setupSubviews()
 
         alertView.addSubview(frameScrollView)
@@ -40,7 +41,11 @@ class TYPictureFrameEditController : TYOprationEditController {
         frameScrollView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(28)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(-frameScrollView.safeBottom)
+            if frameScrollView.safeBottom == 0 {
+                make.bottom.equalTo(-frameScrollView.safeBottom)
+            } else {
+                make.bottom.equalTo(-20)
+            }
         }
     }
 }

@@ -16,11 +16,11 @@ class TYPictureStitchController: TYOprationEditController {
     
 //    var images : [UIImage]
     
-    override var aleatHeight: CGFloat {
-        get {
-            return 100
-        }
-    }
+//    override var aleatHeight: CGFloat {
+//        get {
+//            return 100
+//        }
+//    }
     
     // 选中的贴纸数组
     private var stickerNames : [String] = []
@@ -49,10 +49,10 @@ class TYPictureStitchController: TYOprationEditController {
     }()
     
     override func viewDidLoad() {
+        aleatHeight = 100
         super.viewDidLoad()
         alertView.isShowCloseBtn = false
 //        setupNotification()
-        
         // 保存按钮
         let saveButton = UIButton(type: .custom)
         saveButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)

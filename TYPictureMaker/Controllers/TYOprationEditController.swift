@@ -11,6 +11,7 @@ import SnapKit
 class TYOprationEditController : TYBaseViewController {
     
     var editInfo : TYEditInfo
+    var aleatHeight : CGFloat = 150
     
     lazy var editView : TYBaseEditView = {
         let editView = editInfo.layout.toEditView(images: editInfo.filter != .none ? editInfo.filterImages : editInfo.images)
@@ -24,11 +25,11 @@ class TYOprationEditController : TYBaseViewController {
         return editView
     }()
     
-    var aleatHeight : CGFloat {
-        get {
-            return 150
-        }
-    }
+//    var aleatHeight : CGFloat {
+//        get {
+//            return 150
+//        }
+//    }
     
     lazy var alertView : TYOprationAlertView = {
         let view = TYOprationAlertView()
