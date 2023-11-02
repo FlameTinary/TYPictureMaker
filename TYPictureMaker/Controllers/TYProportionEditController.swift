@@ -35,23 +35,23 @@ class TYProportionEditController : TYOprationEditController {
     }()
     
     override func setupSubviews() {
-        let deviceModel = TYDeviceModel()
-        let scale = deviceModel.getAdaptationScale()
-        aleatHeight = 90*scale
+        let layout = proportionScrollView.collectionViewLayout as! UICollectionViewFlowLayout
+        let itemSize = layout.itemSize
+        aleartCountentHeight = itemSize.height + 16
+                
         super.setupSubviews()
         alertView.addSubview(proportionScrollView)
         proportionScrollView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(28)
-            if proportionScrollView.safeBottom == 0 {
-                make.bottom.equalTo(-20)
-            }else {
-                make.bottom.equalTo(-proportionScrollView.safeBottom)
-            }
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(-proportionScrollView.safeBottom)
         }
     }
     
 }
+
+
+
+
 
 // collection view delegate & data source
 extension TYProportionEditController: UICollectionViewDelegate & UICollectionViewDataSource {
@@ -85,6 +85,7 @@ extension TYProportionEditController: UICollectionViewDelegate & UICollectionVie
         UIView.animate(withDuration: 0.25, delay: 0, options: [.overrideInheritedDuration, .overrideInheritedOptions, .layoutSubviews]) {
             self.editView.size = CGSize(width: editViewW, height: editViewH)
             self.editView.centerX = self.view.centerX
+            self.editView.centerY = self.view.centerY - 50
         }
         
     }

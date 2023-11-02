@@ -51,13 +51,12 @@ class TYBorderEditController: TYOprationEditController {
     }()
     
     override func setupSubviews() {
-        aleatHeight = 200
+        aleartCountentHeight = 144
         super.setupSubviews()
         alertView.addSubview(borderEditView)
         borderEditView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.top.left.right.equalToSuperview()
             make.bottom.equalTo(-borderEditView.safeBottom)
-            make.top.equalToSuperview().offset(28)
         }
     }
     

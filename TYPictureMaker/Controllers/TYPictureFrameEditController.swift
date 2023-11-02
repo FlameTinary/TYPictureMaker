@@ -25,7 +25,7 @@ class TYPictureFrameEditController : TYOprationEditController {
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
         view.backgroundColor = .clear
-        view.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        view.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         view.register(TYLayoutEditCell.self, forCellWithReuseIdentifier: cellId)
         view.dataSource = self
         view.delegate = self
@@ -33,19 +33,19 @@ class TYPictureFrameEditController : TYOprationEditController {
     }()
 
     override func setupSubviews() {
-        aleatHeight = 100
+        // 计算aleartCountentHeight的高度
+        let layout = frameScrollView.collectionViewLayout as! UICollectionViewFlowLayout
+        let itemSize = layout.itemSize
+        aleartCountentHeight = itemSize.height + 16
+        
         super.setupSubviews()
 
         alertView.addSubview(frameScrollView)
 
         frameScrollView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(28)
+            make.top.equalToSuperview()
             make.left.right.equalToSuperview()
-            if frameScrollView.safeBottom == 0 {
-                make.bottom.equalTo(-frameScrollView.safeBottom)
-            } else {
-                make.bottom.equalTo(-20)
-            }
+            make.bottom.equalTo(-frameScrollView.safeBottom)
         }
     }
 }

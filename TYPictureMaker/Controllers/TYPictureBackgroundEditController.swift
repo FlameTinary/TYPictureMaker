@@ -55,27 +55,27 @@ class TYPictureBackgroundEditController : TYOprationEditController {
     }()
 
     override func setupSubviews() {
-        aleatHeight = 100
+        // 计算aleartCountentHeight的高度
+        let layout = colorScrollView.collectionViewLayout as! UICollectionViewFlowLayout
+        let itemSize = layout.itemSize
+        aleartCountentHeight = itemSize.height + 16
+        
         super.setupSubviews()
 
         alertView.addSubview(addPicBtn)
         alertView.addSubview(colorScrollView)
 
         addPicBtn.snp.makeConstraints { make in
+            make.top.equalToSuperview()
             make.left.equalToSuperview().offset(10)
             make.width.equalTo(40)
-            make.top.equalToSuperview().offset(28)
             make.bottom.equalTo(-colorScrollView.safeBottom)
         }
         colorScrollView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(28)
-            make.left.equalTo(addPicBtn.snp_rightMargin).offset(10)
+            make.top.equalToSuperview()
+            make.left.equalTo(addPicBtn.snp.right).offset(10)
             make.right.equalTo(-10)
-            if colorScrollView.safeBottom == 0 {
-                make.bottom.equalTo(-20)
-            }else {
-                make.bottom.equalTo(-colorScrollView.safeBottom)
-            }
+            make.bottom.equalTo(-colorScrollView.safeBottom)
         }
     }
     

@@ -86,23 +86,23 @@ class TYBorderEditView : TYBaseView {
     override func setupSubviews() {
         pictureSliderView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-16)
-            make.height.equalTo(44)
+            make.height.equalTo(40)
         }
         
         imageSliderView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
-            make.top.equalTo(pictureSliderView.snp_bottomMargin).offset(10)
+            make.top.equalTo(pictureSliderView.snp.bottom).offset(8)
             make.right.equalToSuperview().offset(-16)
-            make.height.equalTo(44)
+            make.height.equalTo(40)
         }
         
         imageRadioSliderView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
-            make.top.equalTo(imageSliderView.snp_bottomMargin).offset(10)
+            make.top.equalTo(imageSliderView.snp.bottom).offset(8)
             make.right.equalToSuperview().offset(-16)
-            make.height.equalTo(44)
+            make.height.equalTo(40)
         }
     }
     

@@ -25,7 +25,7 @@ class TYStickerEditController : TYOprationEditController {
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
         view.backgroundColor = .clear
-        view.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        view.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         view.register(TYLayoutEditCell.self, forCellWithReuseIdentifier: cellId)
         view.dataSource = self
         view.delegate = self
@@ -34,18 +34,18 @@ class TYStickerEditController : TYOprationEditController {
     }()
 
     override func setupSubviews() {
-        aleatHeight = 100
+        // 计算aleartCountentHeight的高度
+        let layout = stickerCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let itemSize = layout.itemSize
+        aleartCountentHeight = itemSize.height + 16
+        
         super.setupSubviews()
         alertView.addSubview(stickerCollectionView)
 
         stickerCollectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(28)
+            make.top.equalToSuperview()
             make.left.right.equalToSuperview()
-            if stickerCollectionView.safeBottom == 0 {
-                make.bottom.equalTo(-20)
-            }else {
-                make.bottom.equalTo(-stickerCollectionView.safeBottom)
-            }
+            make.bottom.equalTo(-stickerCollectionView.safeBottom)
         }
 
     }

@@ -11,7 +11,7 @@ import SnapKit
 class TYOprationEditController : TYBaseViewController {
     
     var editInfo : TYEditInfo
-    var aleatHeight : CGFloat = 150
+    var aleartCountentHeight : CGFloat = 0
     
     lazy var editView : TYBaseEditView = {
         let editView = editInfo.layout.toEditView(images: editInfo.filter != .none ? editInfo.filterImages : editInfo.images)
@@ -25,19 +25,13 @@ class TYOprationEditController : TYBaseViewController {
         return editView
     }()
     
-//    var aleatHeight : CGFloat {
-//        get {
-//            return 150
-//        }
-//    }
-    
     lazy var alertView : TYOprationAlertView = {
         let view = TYOprationAlertView()
-        view.closeBtnDidClick = {sender in
-            self.hiddenAlertView { isFinished in
-                self.dismiss(animated: true)
-            }
-        }
+//        view.closeBtnDidClick = {sender in
+//            self.hiddenAlertView { isFinished in
+//                self.dismiss(animated: true)
+//            }
+//        }
         return view
     }()
     
@@ -57,13 +51,15 @@ class TYOprationEditController : TYBaseViewController {
     }
     
     override func setupSubviews() {
+        // 计算aleart的实际高度
+        let aleartH = aleartCountentHeight + view.safeBottom
         view.addSubview(editView)
         view.addSubview(alertView)
         
         alertView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.height.equalTo(aleatHeight)
-            make.bottom.equalTo(aleatHeight)
+            make.height.equalTo(aleartH)
+            make.bottom.equalTo(aleartH)
         }
         
     }
@@ -79,6 +75,16 @@ class TYOprationEditController : TYBaseViewController {
 
     
 }
+
+
+extension TYOprationEditController {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.hiddenAlertView { isFinished in
+            self.dismiss(animated: true)
+        }
+    }
+}
+
 
 extension TYOprationEditController {
     

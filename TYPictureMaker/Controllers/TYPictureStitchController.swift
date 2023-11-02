@@ -14,14 +14,6 @@ import SnapKit
 
 class TYPictureStitchController: TYOprationEditController {
     
-//    var images : [UIImage]
-    
-//    override var aleatHeight: CGFloat {
-//        get {
-//            return 100
-//        }
-//    }
-    
     // 选中的贴纸数组
     private var stickerNames : [String] = []
     
@@ -33,11 +25,17 @@ class TYPictureStitchController: TYOprationEditController {
     
     // 底部操作列表
     private lazy var oprationListView : UICollectionView = {
+        
+        let deviceModel = TYDeviceModel()
+        let scale = deviceModel.getAdaptationScale()
+        let itemW = 80*scale
+        let itemH = itemW * 0.7
+        
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 80, height: 50)
+        layout.itemSize = CGSize(width: itemW, height: itemH)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -49,10 +47,7 @@ class TYPictureStitchController: TYOprationEditController {
     }()
     
     override func viewDidLoad() {
-        aleatHeight = 100
         super.viewDidLoad()
-        alertView.isShowCloseBtn = false
-//        setupNotification()
         // 保存按钮
         let saveButton = UIButton(type: .custom)
         saveButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
@@ -90,6 +85,11 @@ class TYPictureStitchController: TYOprationEditController {
     }
     
     override func setupSubviews() {
+        // 计算aleartCountentHeight的高度
+        let layout = oprationListView.collectionViewLayout as! UICollectionViewFlowLayout
+        let itemSize = layout.itemSize
+        aleartCountentHeight = itemSize.height + 16
+        
         super.setupSubviews()
         alertView.addSubview(oprationListView)
 
@@ -97,7 +97,6 @@ class TYPictureStitchController: TYOprationEditController {
             make.left.right.top.equalToSuperview()
             make.bottom.equalTo(alertView).offset(-oprationListView.safeBottom)
         }
-
     }
     
     @objc func saveClick() {
@@ -109,6 +108,14 @@ class TYPictureStitchController: TYOprationEditController {
     }
 
 }
+
+
+extension TYPictureStitchController {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("截断点击")
+    }
+}
+
 
 // collection view delegate & data source
 extension TYPictureStitchController: UICollectionViewDelegate & UICollectionViewDataSource {

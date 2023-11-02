@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -9,13 +11,5 @@
 		<key>UISceneConfigurations</key>
 		<dict/>
 	</dict>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This app wants to take microphone.</string>
-	<key>CFBundleAllowMixedLocalizations</key>
-	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>This app wants to take pictures.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app wants to use your photos.</string>
 </dict>
 </plist>

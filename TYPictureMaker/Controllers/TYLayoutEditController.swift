@@ -6,6 +6,7 @@
 //  布局控制器
 
 import UIKit
+import SnapKit
 //import RxSwift
 //import RxCocoa
 
@@ -36,22 +37,25 @@ class TYLayoutEditController : TYOprationEditController {
         return view
     }()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        layoutScrollView.reloadData()
+    }
+    
     override func setupSubviews() {
-        aleatHeight = 100
-        super.setupSubviews()
-        
         setupThumbnails()
 
+        let layout = layoutScrollView.collectionViewLayout as! UICollectionViewFlowLayout
+        let itemSize = layout.itemSize
+        aleartCountentHeight = itemSize.height + 20
+        
+        super.setupSubviews()
+        
         alertView.addSubview(layoutScrollView)
-
         layoutScrollView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(28)
+            make.top.equalToSuperview()
             make.left.right.equalToSuperview()
-            if layoutScrollView.safeBottom == 0 {
-                make.bottom.equalTo(-20)
-            } else {
-                make.bottom.equalTo(-layoutScrollView.safeBottom)
-            }
+            make.bottom.equalTo(-layoutScrollView.safeBottom)
         }
     }
 }

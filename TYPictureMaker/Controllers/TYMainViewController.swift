@@ -12,7 +12,7 @@ class TYMainViewController: TYBaseViewController  {
     
     private lazy var imageView : UIImageView = {
         let imageview = UIImageView()
-        imageview.contentMode = .scaleAspectFill
+        imageview.contentMode = .scaleAspectFit
         imageview.image = UIImage(named: "testImg")
         return imageview
     }()

@@ -29,7 +29,7 @@ class TYFilterEditController : TYOprationEditController {
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
         view.backgroundColor = .clear
-        view.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 5)
+        view.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         view.register(TYImageAndTextCell.self, forCellWithReuseIdentifier: cellId)
         view.dataSource = self
         view.delegate = self
@@ -52,26 +52,20 @@ class TYFilterEditController : TYOprationEditController {
 //        return slider
 //    }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        setupFilterImages()
-        
-    }
-
     override func setupSubviews() {
-        aleatHeight = 130
+        // 计算aleartCountentHeight的高度
+        let layout = filterScrollView.collectionViewLayout as! UICollectionViewFlowLayout
+        let itemSize = layout.itemSize
+        aleartCountentHeight = itemSize.height + 16
+        
         super.setupSubviews()
         alertView.addSubview(filterScrollView)
 //        alertView.addSubview(intensitySlider)
 
         filterScrollView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(28)
+            make.top.equalToSuperview().offset(8)
             make.left.right.equalToSuperview()
-            if filterScrollView.safeBottom == 0 {
-                make.bottom.equalTo(-20)
-            }else {
-                make.bottom.equalTo(-filterScrollView.safeBottom)
-            }
+            make.bottom.equalTo(-filterScrollView.safeBottom)
         }
 
 //        intensitySlider.snp.makeConstraints { make in

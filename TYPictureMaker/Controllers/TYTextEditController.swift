@@ -69,22 +69,26 @@ class TYTextEditController : TYOprationEditController {
     }()
     
     override func setupSubviews() {
-        aleatHeight = 120
+        let txtFH : CGFloat = 44
+        let confirmBtnH : CGFloat = 30
+        let margin : CGFloat = 8
+        
+        aleartCountentHeight = txtFH + confirmBtnH + margin * 3
         super.setupSubviews()
         
         alertView.addSubview(textFiled)
         alertView.addSubview(confirmBtn)
         
         textFiled.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(28)
+            make.top.equalToSuperview().offset(margin)
             make.left.equalToSuperview().offset(10)
             make.right.equalToSuperview().offset(-10)
-            make.height.equalTo(44)
+            make.height.equalTo(txtFH)
         }
         
         confirmBtn.snp.makeConstraints { make in
-            make.top.equalTo(textFiled.snp_bottomMargin).offset(20)
-            make.size.equalTo(CGSize(width: 100, height: 30))
+            make.top.equalTo(textFiled.snp.bottom).offset(margin)
+            make.size.equalTo(CGSize(width: 100, height: confirmBtnH))
             make.centerX.equalToSuperview()
         }
     }
