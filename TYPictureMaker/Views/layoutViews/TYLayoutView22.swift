@@ -24,7 +24,7 @@ class TYLayoutView22 : TYBaseEditView {
     }
     
     private lazy var mainCollectView : TYImageCollectView = {
-        let view = TYImageCollectView(with: images?.first)
+        let view = TYImageCollectView(with: images?.first,shape: .rectangle)
         return view
     }()
     
@@ -35,11 +35,7 @@ class TYLayoutView22 : TYBaseEditView {
                 image = imgs[1]
             }
         }
-        
-        
-        let view = TYImageCollectView(with: image)
-        view.shape = .circle
-        view.padding = 5.0
+        let view = TYImageCollectView(with: image,shape: .circle,padding: imagePandding)
         return view
     }()
     

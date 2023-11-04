@@ -110,7 +110,7 @@ class TYDeviceModel {
         case 394:
             // 适配 iPhone 14, iPhone 15
             scale = 1.16
-        case 435:
+        case 430:
             // 适配 iPhone 14 Pro Max, iPhone 15 Pro Max
             scale = 1.28
         default:

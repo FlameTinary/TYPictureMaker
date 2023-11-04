@@ -7,5 +7,5 @@
 
 import Foundation
 enum TYShapes {
-    case none, circle, custom([CGPoint])
+    case none,rectangle, circle, custom([CGPoint])
 }

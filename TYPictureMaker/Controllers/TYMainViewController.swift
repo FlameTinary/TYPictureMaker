@@ -10,11 +10,20 @@ import SnapKit
 
 class TYMainViewController: TYBaseViewController  {
     
-    private lazy var imageView : UIImageView = {
-        let imageview = UIImageView()
-        imageview.contentMode = .scaleAspectFit
-        imageview.image = UIImage(named: "testImg")
-        return imageview
+//    private lazy var imageView : UIImageView = {
+//        let imageview = UIImageView()
+//        imageview.contentMode = .scaleAspectFit
+//        imageview.image = UIImage(named: "testImg")
+//        return imageview
+//    }()
+    
+    private lazy var imgScrollView : TYImageCollectView = {
+        let imgScrollView = TYImageCollectView()
+//        imgScrollView.image = UIImage(named: "testImg")
+        imgScrollView.padding = 5
+//
+        imgScrollView.shape = .rectangle
+        return imgScrollView
     }()
     
     private lazy var panView : TYImageStickerView = {
@@ -76,7 +85,8 @@ class TYMainViewController: TYBaseViewController  {
         
         let deviceModel = TYDeviceModel()
         
-        view.addSubview(imageView)
+//        view.addSubview(imageView)
+        view.addSubview(imgScrollView)
         view.addSubview(pingtuBtn)
         view.addSubview(transformBtn)
         view.addSubview(combineBtn)
@@ -109,15 +119,51 @@ class TYMainViewController: TYBaseViewController  {
             make.size.equalTo(combineBtn)
         }
         
-        imageView.snp.makeConstraints { make in
+//        imageView.snp.makeConstraints { make in
+//            let navH = deviceModel.getNavH()
+//            let statusH = deviceModel.getStatusBarH()
+//            make.left.right.equalTo(view)
+//            make.top.equalTo(navH + statusH)
+//            make.height.equalTo(imageView.snp.width).multipliedBy(0.5)
+//        }
+        
+        imgScrollView.snp.makeConstraints { make in
             let navH = deviceModel.getNavH()
             let statusH = deviceModel.getStatusBarH()
             make.left.right.equalTo(view)
             make.top.equalTo(navH + statusH)
-            make.height.equalTo(imageView.snp.width).multipliedBy(0.5)
+            make.height.equalTo(imgScrollView.snp.width).multipliedBy(0.5)
         }
 
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        let startPoint = CGPoint(x: imgScrollView.bounds.midY, y: 0)
+//        let endPoint = CGPoint(x: imgScrollView.bounds.midY, y: imgScrollView.height)
+//
+//        let radius : CGFloat = imgScrollView.bounds.midY
+//        let center = CGPoint(x: imgScrollView.bounds.midY, y: imgScrollView.bounds.midY)
+//        let path = UIBezierPath()
+//        path.addArc(withCenter: center, radius: radius, startAngle: CGFloat.pi/2, endAngle: -CGFloat.pi / 2, clockwise: true)
+//        path.addLine(to: endPoint)
+//
+//        let shapeLayer = CAShapeLayer()
+//        shapeLayer.path = path.cgPath
+//
+//        let borderLayer = CAShapeLayer()
+//        borderLayer.path = path.cgPath
+//        borderLayer.fillColor = UIColor.clear.cgColor
+//        borderLayer.strokeColor = UIColor.gray.cgColor
+//        borderLayer.lineWidth = 2.0
+//        borderLayer.lineDashPattern = [5, 5]
+//        borderLayer.lineJoin = .round
+//
+//        imgScrollView.layer.mask = shapeLayer
+//        imgScrollView.layer.addSublayer(borderLayer)
+////        imageView.layer.addSublayer(shapeLayer)
+//    }
     
     @objc private func btnClick(sender: UIButton) {
         switch sender.tag {

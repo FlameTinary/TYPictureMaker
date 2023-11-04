@@ -32,11 +32,7 @@ class TYLayoutView24 : TYBaseEditView {
     }
     
     private lazy var stackView : UIStackView = {
-        let imageViews : [TYImageCollectView]? = images?.map { image in
-            let view = TYImageCollectView(with: image)
-            view.shape = .circle
-            return view
-        }
+        let imageViews : [TYImageCollectView]? = images?.map { image in TYImageCollectView(with: image, shape: .circle, padding: imagePandding) }
         let stackView = UIStackView(arrangedSubviews: imageViews ?? [TYImageCollectView()])
         stackView.axis = axis
         stackView.alignment = .fill

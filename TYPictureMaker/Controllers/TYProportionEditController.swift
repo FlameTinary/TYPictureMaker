@@ -13,9 +13,7 @@ class TYProportionEditController : TYOprationEditController {
 
     private lazy var proportionScrollView : UICollectionView = {
         
-        let deviceModel = TYDeviceModel()
-        let scale = deviceModel.getAdaptationScale()
-        let itemW = 60*scale
+        let itemW = 60.0.scale
 
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 1

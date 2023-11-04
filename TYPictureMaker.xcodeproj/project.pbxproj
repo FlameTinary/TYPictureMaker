@@ -70,6 +70,8 @@
 		08F5A6D62A1F250000200D6E /* TYImageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F5A6D52A1F250000200D6E /* TYImageFilterView.swift */; };
 		08F5A6DD2A206C9400200D6E /* TYStickerEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F5A6DC2A206C9400200D6E /* TYStickerEditController.swift */; };
 		08FB76722A28DB4800C160B1 /* TYPanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FB76712A28DB4800C160B1 /* TYPanView.swift */; };
+		3E4BABD42AF351D0009D713C /* TYCGFloatExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4BABD32AF351D0009D713C /* TYCGFloatExtention.swift */; };
+		3E4BABD92AF35377009D713C /* TYDoubleExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4BABD82AF35377009D713C /* TYDoubleExtention.swift */; };
 		49D558BA9DDB2F6052E7CD9F /* Pods_TYPictureMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +142,8 @@
 		08F5A6D52A1F250000200D6E /* TYImageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYImageFilterView.swift; sourceTree = "<group>"; };
 		08F5A6DC2A206C9400200D6E /* TYStickerEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYStickerEditController.swift; sourceTree = "<group>"; };
 		08FB76712A28DB4800C160B1 /* TYPanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYPanView.swift; sourceTree = "<group>"; };
+		3E4BABD32AF351D0009D713C /* TYCGFloatExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYCGFloatExtention.swift; sourceTree = "<group>"; };
+		3E4BABD82AF35377009D713C /* TYDoubleExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYDoubleExtention.swift; sourceTree = "<group>"; };
 		484BF3AB2319ECA8E46487F6 /* Pods-TYPictureMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.release.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.release.xcconfig"; sourceTree = "<group>"; };
 		B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYPictureMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -252,13 +256,10 @@
 				088727B72A1DB74C00F77D81 /* TYBaseViewController.swift */,
 				088727B92A1DBA0700F77D81 /* TYBaseView.swift */,
 				08F5A6D52A1F250000200D6E /* TYImageFilterView.swift */,
-				0883FA602A21CD6F0082A402 /* TYViewExtention.swift */,
-				08B3840D2A28D7F000D55B28 /* TYColorExtention.swift */,
 				0893A9952A23A2F40075B03C /* TYEditViewProtocol.swift */,
 				08DE9B2E2A2600E2006332EF /* CustomTransitionAnimator.swift */,
 				0809BD922A2C40A000682888 /* TYFilterManager.swift */,
 				084422362A303DE9008C4C2D /* TYWaterfallLayout.swift */,
-				08AAA5BF2AEE9D4400ECF5C7 /* TYViewControllerExtention.swift */,
 				08506C8F2AEF56FF00B1C325 /* TYDeviceModel.swift */,
 			);
 			path = Common;
@@ -285,6 +286,7 @@
 		088010192A1489B100FFCA18 /* TYPictureMaker */ = {
 			isa = PBXGroup;
 			children = (
+				3E4BABD52AF3530A009D713C /* Extention */,
 				0870C3012A1B4AAB00AC1793 /* Common */,
 				0870C2EF2A14A05500AC1793 /* App */,
 				0870C2EE2A14A04C00AC1793 /* Controllers */,
@@ -324,6 +326,18 @@
 				484BF3AB2319ECA8E46487F6 /* Pods-TYPictureMaker.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		3E4BABD52AF3530A009D713C /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				0883FA602A21CD6F0082A402 /* TYViewExtention.swift */,
+				08B3840D2A28D7F000D55B28 /* TYColorExtention.swift */,
+				08AAA5BF2AEE9D4400ECF5C7 /* TYViewControllerExtention.swift */,
+				3E4BABD32AF351D0009D713C /* TYCGFloatExtention.swift */,
+				3E4BABD82AF35377009D713C /* TYDoubleExtention.swift */,
+			);
+			path = Extention;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,6 +487,7 @@
 				08DE9B312A260109006332EF /* SourceViewController.swift in Sources */,
 				08F5A6DD2A206C9400200D6E /* TYStickerEditController.swift in Sources */,
 				088727BA2A1DBA0700F77D81 /* TYBaseView.swift in Sources */,
+				3E4BABD42AF351D0009D713C /* TYCGFloatExtention.swift in Sources */,
 				088727C42A1E00A300F77D81 /* TYBackgroundCell.swift in Sources */,
 				0893A9942A239CF80075B03C /* TYBaseEditView.swift in Sources */,
 				08091D192A26016700913842 /* DestinationViewController.swift in Sources */,
@@ -495,6 +510,7 @@
 				0870C2FA2A15D52500AC1793 /* TYImageCollectView.swift in Sources */,
 				08632A372A24C2690010CC67 /* CircularView.swift in Sources */,
 				08B384102A28D8D600D55B28 /* TYConstProperty.swift in Sources */,
+				3E4BABD92AF35377009D713C /* TYDoubleExtention.swift in Sources */,
 				08DE9B2D2A259905006332EF /* TYLayoutView25.swift in Sources */,
 				08DE9B2B2A25974E006332EF /* TYLayoutView24.swift in Sources */,
 				0809BD932A2C40A000682888 /* TYFilterManager.swift in Sources */,

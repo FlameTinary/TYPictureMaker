@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
+        
         let nav = UINavigationController(rootViewController: TYMainViewController())
+//        let nav = UINavigationController(rootViewController: UIHostingController(rootView: ShowPreview()))
         self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
 

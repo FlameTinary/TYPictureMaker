@@ -13,13 +13,15 @@ class TYImageScrollView : TYBaseView {
     
     var shape : TYShapes = .none
     
-    private var shapeLayer : CAShapeLayer?
+    var shapeLayer : CAShapeLayer?
+    var borderLayer : CAShapeLayer?
     
     // 源图
     var image: UIImage? {
         didSet {
             imageView.image = image
 //            filterImage = image
+            addImgView.isHidden = image == nil ? false : true
         }
     }
     
@@ -32,6 +34,11 @@ class TYImageScrollView : TYBaseView {
             scrollView.layer.masksToBounds = true
         }
     }
+    
+    private lazy var addImgView: UIImageView = {
+        let addImgView = UIImageView(image: UIImage(named: "jiahao"))
+        return addImgView
+    }()
     
     private lazy var scrollView: UIScrollView = {
         let sv = UIScrollView(frame: bounds)
@@ -59,16 +66,23 @@ class TYImageScrollView : TYBaseView {
     
     convenience init(with image: UIImage?) {
         self.init()
-        if let img = image {
-            self.image = img
-        }
-        
+        self.image = image
+        imageView.image = image
+        addImgView.isHidden = image == nil ? false : true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func setupSubviews() {
+        super.setupSubviews()
+        addSubview(addImgView)
+        addImgView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(CGSize(width: 20, height: 20))
+        }
+    }
 //    private func setupNotification() {
 //
 //        let changeFilterNotification = Notification.Name("changeFilter")
@@ -119,16 +133,42 @@ class TYImageScrollView : TYBaseView {
         switch shape {
         case .none:
             return
+        case .rectangle:
+            borderLayer?.removeFromSuperlayer()
+            // 绘制rectangle边线
+            let startPoint = CGPoint(x: 1, y: 1)
+            let path = UIBezierPath()
+            path.move(to: startPoint)
+            path.addLine(to: CGPoint(x: width - 1, y: 1))
+            path.addLine(to: CGPoint(x: width - 1, y: height - 1))
+            path.addLine(to: CGPoint(x: 1, y: height - 1))
+            path.addLine(to: startPoint)
+
+            borderLayer = CAShapeLayer()
+            borderLayer!.path = path.cgPath
+            borderLayer!.fillColor = UIColor.clear.cgColor
+            borderLayer!.strokeColor = UIColor.lightGray.cgColor
+            borderLayer!.lineWidth = 1.0
+            borderLayer!.lineDashPattern = [5, 5]
+            layer.insertSublayer(borderLayer!, at: 0)
         case .circle:
-            // 创建一个圆形路径
+            borderLayer?.removeFromSuperlayer()
             let radius = min(bounds.width, bounds.height) / 2
             let center = CGPoint(x: bounds.midX, y: bounds.midY)
+            // 绘制边线layer
+            let borderPath = UIBezierPath(arcCenter: center, radius: radius - 1, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
+            borderLayer = CAShapeLayer()
+            borderLayer!.path = borderPath.cgPath
+            borderLayer!.fillColor = UIColor.clear.cgColor
+            borderLayer!.strokeColor = UIColor.lightGray.cgColor
+            borderLayer!.lineWidth = 1.0
+            borderLayer!.lineDashPattern = [5, 5]
+            layer.insertSublayer(borderLayer!, at: 0)
+            // 绘制圆形shape
             let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
-            
             // 创建一个形状图层，并设置路径
             shapeLayer = CAShapeLayer()
             shapeLayer!.path = path.cgPath
-            
             // 设置视图的遮罩为形状图层
             layer.mask = shapeLayer
             

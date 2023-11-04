@@ -25,27 +25,27 @@ class TYImageCollectView : TYBaseView {
     var image: UIImage? {
         didSet {
             guard let img = image else { return }
-            backImageView.isHidden = true
-            imageScrollView.isHidden = false
+//            backImageView.isHidden = true
+//            imageScrollView.isHidden = false
             imageScrollView.image = img
         }
     }
     
-    private lazy var backImageView : UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "blend"))
-        imageView.isUserInteractionEnabled = true
-        let gesture = UITapGestureRecognizer()
-        imageView.addGestureRecognizer(gesture)
-        _ = gesture.rx.event.takeUntil(self.rx.deallocated).bind(onNext: {gesture in
-            if let sender = self.parentViewController {
-                // 打开相册
-                sender.pickImages { images, asset, isOriginal in
-                    self.image = images.first
-                }
-            }
-        })
-        return imageView
-    }()
+//    private lazy var backImageView : UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.isUserInteractionEnabled = true
+//        let gesture = UITapGestureRecognizer()
+//        imageView.addGestureRecognizer(gesture)
+//        _ = gesture.rx.event.takeUntil(self.rx.deallocated).bind(onNext: {gesture in
+//            if let sender = self.parentViewController {
+//                // 打开相册
+//                sender.pickImages { images, asset, isOriginal in
+//                    self.image = images.first
+//                }
+//            }
+//        })
+//        return imageView
+//    }()
     
     var padding : CGFloat = 0 {
         didSet {
@@ -62,7 +62,7 @@ class TYImageCollectView : TYBaseView {
     }
     
     private lazy var imageScrollView : TYImageScrollView = {
-        let scrollView = TYImageScrollView(with: UIImage(named: "blend")!)
+        let scrollView = TYImageScrollView()
         scrollView.shape = shape
         return scrollView
     }()
@@ -72,31 +72,31 @@ class TYImageCollectView : TYBaseView {
         backgroundColor = .cyan
     }
     
-    convenience init(with image: UIImage?) {
+    convenience init(with image: UIImage?, shape: TYShapes = .none, padding: CGFloat = 0) {
         self.init()
-        if let img = image {
-            self.image = img
-            backImageView.isHidden = true
-            imageScrollView.isHidden = false
-            imageScrollView.image = img
-            imageScrollView.snp.makeConstraints { make in
-                make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
-            }
-        }
+        self.image = image
+        self.shape = shape
+        self.padding = padding
+//            backImageView.isHidden = true
+//        imageScrollView.isHidden = false
+        imageScrollView.image = image
+        imageScrollView.shape = shape
+        
         backgroundColor = .white
+        updateSubViews()
     }
     
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubview(backImageView)
+//        addSubview(backImageView)
         addSubview(imageScrollView)
         
-        imageScrollView.isHidden = image == nil
+//        imageScrollView.isHidden = image == nil
         
-        backImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
-        }
+//        backImageView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
+//        }
         
         imageScrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
@@ -106,9 +106,9 @@ class TYImageCollectView : TYBaseView {
     
     func updateSubViews() {
         
-        backImageView.snp.remakeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
-        }
+//        backImageView.snp.remakeConstraints { make in
+//            make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
+//        }
         imageScrollView.snp.remakeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
         }
@@ -119,6 +119,8 @@ class TYImageCollectView : TYBaseView {
         super.layoutSubviews()
         switch shape {
         case .none:
+            return
+        case .rectangle:
             return
         case .circle:
             // 创建一个圆形路径

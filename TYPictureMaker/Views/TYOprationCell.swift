@@ -44,7 +44,7 @@ class TYOprationCell: UICollectionViewCell {
         
         textLbl.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
-            make.height.greaterThanOrEqualTo(10)
+//            make.height.greaterThanOrEqualTo(10.scale)
         }
         
         iconView.snp.makeConstraints { make in

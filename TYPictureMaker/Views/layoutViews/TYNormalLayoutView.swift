@@ -17,6 +17,7 @@ class TYNormalLayoutView: TYBaseEditView {
             for (index, image) in images.enumerated(){
                 let v = stackView.arrangedSubviews[index] as! TYImageCollectView
                 v.image = image
+                v.shape = .rectangle
             }
         }
     }
@@ -51,7 +52,7 @@ class TYNormalLayoutView: TYBaseEditView {
     }
     
     private lazy var stackView : UIStackView = {
-        let imageViews : [TYImageCollectView]? = images?.map { image in TYImageCollectView(with: image)}
+        let imageViews : [TYImageCollectView]? = images?.map { image in TYImageCollectView(with: image,shape: .rectangle)}
         let stackView = UIStackView(arrangedSubviews: imageViews ?? [TYImageCollectView()])
         stackView.axis = axis
         stackView.alignment = .fill

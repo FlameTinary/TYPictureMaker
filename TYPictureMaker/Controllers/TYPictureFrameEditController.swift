@@ -14,18 +14,20 @@ class TYPictureFrameEditController : TYOprationEditController {
     private let cellId = "pictureFrameCellId"
 
     private lazy var frameScrollView : UICollectionView = {
+        
+        let scale = TYDeviceModel().getAdaptationScale()
 
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10 * scale
+        layout.minimumInteritemSpacing = 10 * scale
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 50, height: 50)
+        layout.itemSize = CGSize(width: 50*scale, height: 50*scale)
 
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
         view.backgroundColor = .clear
-        view.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        view.contentInset = UIEdgeInsets(top: 0, left: 10 * scale, bottom: 0, right: 10 * scale)
         view.register(TYLayoutEditCell.self, forCellWithReuseIdentifier: cellId)
         view.dataSource = self
         view.delegate = self

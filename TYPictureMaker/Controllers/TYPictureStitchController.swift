@@ -25,10 +25,7 @@ class TYPictureStitchController: TYOprationEditController {
     
     // 底部操作列表
     private lazy var oprationListView : UICollectionView = {
-        
-        let deviceModel = TYDeviceModel()
-        let scale = deviceModel.getAdaptationScale()
-        let itemW = 80*scale
+        let itemW = 80.0.scale
         let itemH = itemW * 0.7
         
         let layout = UICollectionViewFlowLayout()
@@ -50,7 +47,7 @@ class TYPictureStitchController: TYOprationEditController {
         super.viewDidLoad()
         // 保存按钮
         let saveButton = UIButton(type: .custom)
-        saveButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
+        saveButton.frame = CGRect(x: 0, y: 0, width: 60.scale, height: 30.scale)
         saveButton.setTitle("保存", for: .normal)
         saveButton.titleLabel?.font = normalFont
         saveButton.setTitleColor(normalTextColor, for: .normal)
@@ -59,7 +56,7 @@ class TYPictureStitchController: TYOprationEditController {
         saveButton.addTarget(self, action: #selector(saveClick), for: .touchUpInside)
 
         // 创建一个自定义视图
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 60.scale, height: 30.scale))
         customView.backgroundColor = selectColor
         customView.layer.cornerRadius = 4
         customView.addSubview(saveButton)
@@ -88,7 +85,7 @@ class TYPictureStitchController: TYOprationEditController {
         // 计算aleartCountentHeight的高度
         let layout = oprationListView.collectionViewLayout as! UICollectionViewFlowLayout
         let itemSize = layout.itemSize
-        aleartCountentHeight = itemSize.height + 16
+        aleartCountentHeight = itemSize.height + 16.scale
         
         super.setupSubviews()
         alertView.addSubview(oprationListView)
@@ -140,8 +137,8 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
             self.pickImages { images, asset, isOriginal in
                 let image : UIImage = images.first!
                 let stickView = TYImageStickerView()
-                stickView.width = 150
-                stickView.height = 150
+                stickView.width = 150.scale
+                stickView.height = 150.scale
                 stickView.centerX = self.editView.centerX
                 stickView.centerY = self.editView.centerY
                 stickView.image = image
@@ -162,12 +159,12 @@ extension TYPictureStitchController {
         let destinationVC : TYOprationEditController
         
         switch opration {
-        case .proportion:
-            destinationVC = TYProportionEditController(editInfo: editInfo)
+//        case .proportion:
+//            destinationVC = TYProportionEditController(editInfo: editInfo)
         case .layout:
             destinationVC = TYLayoutEditController(editInfo: editInfo)
-        case .border:
-            destinationVC = TYBorderEditController(editInfo: editInfo)
+//        case .border:
+//            destinationVC = TYBorderEditController(editInfo: editInfo)
         case .background:
             destinationVC = TYPictureBackgroundEditController(editInfo: editInfo)
         case .filter:
