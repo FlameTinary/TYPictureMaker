@@ -17,32 +17,32 @@ class TYLayoutView25 : TYBaseEditView {
         }
     }
     
-    override var padding: CGFloat {
-        get {
-            return 6
-        }
-        set {
-            
-        }
-    }
-    
-    override var imagePandding: CGFloat {
-        get {
-            return 0
-        }
-        set {
-            
-        }
-    }
-    
-    override var imageCornerRadio: CGFloat {
-        get {
-            return 0
-        }
-        set {
-            
-        }
-    }
+//    override var padding: CGFloat {
+//        get {
+//            return 6
+//        }
+//        set {
+//            
+//        }
+//    }
+//    
+//    override var imagePandding: CGFloat {
+//        get {
+//            return 0
+//        }
+//        set {
+//            
+//        }
+//    }
+//    
+//    override var imageCornerRadio: CGFloat {
+//        get {
+//            return 0
+//        }
+//        set {
+//            
+//        }
+//    }
     
     private lazy var mainCollectView : TYImageCollectView = {
         let view = TYImageCollectView(with: images?.first)

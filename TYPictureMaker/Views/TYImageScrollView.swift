@@ -173,9 +173,13 @@ class TYImageScrollView : TYBaseView {
             layer.mask = shapeLayer
             
         case let .custom(points):
+            borderLayer?.removeFromSuperlayer()
+            
+            
             // 创建一个不规则的四边形路径
             let path = UIBezierPath()
             for (index, point) in points.enumerated() {
+                let newPoint = CGPoint(x: point.x - 1, y: point.y - 1)
                 if index == 0 {
                     path.move(to: point)
                 } else {
@@ -183,7 +187,14 @@ class TYImageScrollView : TYBaseView {
                 }
             }
             path.close()
-            
+            // 绘制边线
+            borderLayer = CAShapeLayer()
+            borderLayer!.path = path.cgPath
+            borderLayer!.fillColor = UIColor.clear.cgColor
+            borderLayer!.strokeColor = UIColor.lightGray.cgColor
+            borderLayer!.lineWidth = 1.0
+            borderLayer!.lineDashPattern = [5, 5]
+            layer.insertSublayer(borderLayer!, at: 0)
             // 创建一个形状图层，并设置路径
             shapeLayer = CAShapeLayer()
             shapeLayer!.path = path.cgPath
