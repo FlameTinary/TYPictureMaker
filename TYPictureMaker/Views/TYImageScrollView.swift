@@ -172,32 +172,31 @@ class TYImageScrollView : TYBaseView {
             // 设置视图的遮罩为形状图层
             layer.mask = shapeLayer
             
-        case let .custom(points):
+        case let .custom(shapePath, borderPath):
             borderLayer?.removeFromSuperlayer()
             
-            
-            // 创建一个不规则的四边形路径
-            let path = UIBezierPath()
-            for (index, point) in points.enumerated() {
-                let newPoint = CGPoint(x: point.x - 1, y: point.y - 1)
-                if index == 0 {
-                    path.move(to: point)
-                } else {
-                    path.addLine(to: point)
-                }
-            }
-            path.close()
+//            // 创建一个不规则的四边形路径
+//            let path = UIBezierPath()
+//            for (index, point) in points.enumerated() {
+//                let newPoint = CGPoint(x: point.x - 1, y: point.y - 1)
+//                if index == 0 {
+//                    path.move(to: point)
+//                } else {
+//                    path.addLine(to: point)
+//                }
+//            }
+//            path.close()
             // 绘制边线
             borderLayer = CAShapeLayer()
-            borderLayer!.path = path.cgPath
+            borderLayer!.path = borderPath.cgPath
             borderLayer!.fillColor = UIColor.clear.cgColor
             borderLayer!.strokeColor = UIColor.lightGray.cgColor
-            borderLayer!.lineWidth = 1.0
+            borderLayer!.lineWidth = 0.5
             borderLayer!.lineDashPattern = [5, 5]
             layer.insertSublayer(borderLayer!, at: 0)
             // 创建一个形状图层，并设置路径
             shapeLayer = CAShapeLayer()
-            shapeLayer!.path = path.cgPath
+            shapeLayer!.path = shapePath.cgPath
             
             // 设置视图的遮罩为形状图层
             layer.mask = shapeLayer

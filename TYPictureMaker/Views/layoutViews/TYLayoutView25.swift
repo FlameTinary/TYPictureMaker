@@ -22,25 +22,25 @@ class TYLayoutView25 : TYBaseEditView {
 //            return 6
 //        }
 //        set {
-//            
+//
 //        }
 //    }
-//    
+//
 //    override var imagePandding: CGFloat {
 //        get {
 //            return 0
 //        }
 //        set {
-//            
+//
 //        }
 //    }
-//    
+//
 //    override var imageCornerRadio: CGFloat {
 //        get {
 //            return 0
 //        }
 //        set {
-//            
+//
 //        }
 //    }
     
@@ -84,13 +84,43 @@ class TYLayoutView25 : TYBaseEditView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        print(mainCollectView.frame)
+//        let mainViewBorderPath = UIBezierPath()
+//        mainViewBorderPath.move(to: CGPoint(x: 1, y: 1))
+//        mainViewBorderPath.addLine(to: CGPoint(x: contentView.bounds.maxX - (padding / 2) - 1, y: contentView.bounds.minY + 1))
+//        mainViewBorderPath.addLine(to: CGPoint(x: contentView.bounds.minX - 1, y: contentView.bounds.maxY - (padding / 2) + 1))
+//        mainViewBorderPath.addLine(to: CGPoint(x: 1, y: 1))
+//        mainViewBorderPath.close()
+        
+        let mainViewShapePath = UIBezierPath()
+        mainViewShapePath.move(to: CGPoint(x: 0, y: 0))
+        mainViewShapePath.addLine(to: CGPoint(x: contentView.bounds.maxX - (padding / 2), y: contentView.bounds.minY))
+        mainViewShapePath.addLine(to: CGPoint(x: contentView.bounds.minX, y: contentView.bounds.maxY - (padding / 2)))
+//        mainViewShapePath.addLine(to: CGPoint(x: 1, y: 1))
+        mainViewShapePath.close()
+        mainCollectView.shape = .custom(shapePath: mainViewShapePath, borderPath: mainViewShapePath)
         
         // 设置遮罩路径
-        let mainViewPoints = [CGPoint(x: 0, y: 0), CGPoint(x: contentView.bounds.maxX - (padding / 2), y: contentView.bounds.minY), CGPoint(x: contentView.bounds.minX, y: contentView.bounds.maxY - (padding / 2))]
-        mainCollectView.shape = .custom(mainViewPoints)
+//        let mainViewPoints = [CGPoint(x: 0, y: 0), CGPoint(x: contentView.bounds.maxX - (padding / 2), y: contentView.bounds.minY), CGPoint(x: contentView.bounds.minX, y: contentView.bounds.maxY - (padding / 2))]
+//        mainCollectView.shape = .custom(mainViewPoints)
         
-        let secViewPoints = [CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.minY + (padding / 2)), CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.maxY), CGPoint(x: contentView.bounds.minX + (padding / 2), y: contentView.bounds.maxY)]
-        secCollectView.shape = .custom(secViewPoints)
+//        let secViewBorderPath = UIBezierPath()
+//        secViewBorderPath.move(to: CGPoint(x: contentView.bounds.maxX - 1, y: contentView.bounds.minY + (padding / 2) + 1))
+//        secViewBorderPath.addLine(to: CGPoint(x: contentView.bounds.maxX - 1, y: contentView.bounds.maxY - 1))
+//        secViewBorderPath.addLine(to: CGPoint(x: contentView.bounds.minX + 1, y: contentView.bounds.maxY - (padding / 2) - 1))
+////        secViewBorderPath.addLine(to: CGPoint(x: 1, y: 1))
+//        secViewBorderPath.close()
+        
+        let secViewShapePath = UIBezierPath()
+        secViewShapePath.move(to: CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.minY + (padding / 2)))
+        secViewShapePath.addLine(to: CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.maxY))
+        secViewShapePath.addLine(to: CGPoint(x: contentView.bounds.minX + (padding / 2), y: contentView.bounds.maxY))
+//        secViewShapePath.addLine(to: CGPoint(x: 1, y: 1))
+        secViewShapePath.close()
+        secCollectView.shape = .custom(shapePath: secViewShapePath, borderPath: secViewShapePath)
+        
+//        let secViewPoints = [CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.minY + (padding / 2)), CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.maxY), CGPoint(x: contentView.bounds.minX + (padding / 2), y: contentView.bounds.maxY)]
+//        secCollectView.shape = .custom(secViewPoints)
         
     }
 

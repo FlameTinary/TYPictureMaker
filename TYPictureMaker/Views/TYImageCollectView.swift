@@ -134,21 +134,21 @@ class TYImageCollectView : TYBaseView {
             
             // 设置视图的遮罩为形状图层
             layer.mask = shapeLayer
-        case let .custom(points):
-            // 创建一个不规则的四边形路径
-            let path = UIBezierPath()
-            for (index, point) in points.enumerated() {
-                if index == 0 {
-                    path.move(to: point)
-                } else {
-                    path.addLine(to: point)
-                }
-            }
-            path.close()
-            
+        case let .custom(shapePath, _):
+//            // 创建一个不规则的四边形路径
+//            let path = UIBezierPath()
+//            for (index, point) in points.enumerated() {
+//                if index == 0 {
+//                    path.move(to: point)
+//                } else {
+//                    path.addLine(to: point)
+//                }
+//            }
+//            path.close()
+//
             // 创建一个形状图层，并设置路径
             shapeLayer = CAShapeLayer()
-            shapeLayer!.path = path.cgPath
+            shapeLayer!.path = shapePath.cgPath
             
             // 设置视图的遮罩为形状图层
             layer.mask = shapeLayer
