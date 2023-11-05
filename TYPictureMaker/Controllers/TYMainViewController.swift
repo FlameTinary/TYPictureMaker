@@ -17,8 +17,8 @@ class TYMainViewController: TYBaseViewController  {
 //        return imageview
 //    }()
     
-    private lazy var imgScrollView : TYLayoutView27 = {
-        let imgScrollView = TYLayoutView27(images: nil)
+    private lazy var imgScrollView : TYLayoutView28 = {
+        let imgScrollView = TYLayoutView28(images: nil)
         imgScrollView.backgroundColor = UIColor.green
 //        imgScrollView.image = UIImage(named: "testImg")
         imgScrollView.padding = 5
