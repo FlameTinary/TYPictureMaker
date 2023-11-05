@@ -72,6 +72,7 @@
 		08FB76722A28DB4800C160B1 /* TYPanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FB76712A28DB4800C160B1 /* TYPanView.swift */; };
 		3E4BABD42AF351D0009D713C /* TYCGFloatExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4BABD32AF351D0009D713C /* TYCGFloatExtention.swift */; };
 		3E4BABD92AF35377009D713C /* TYDoubleExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4BABD82AF35377009D713C /* TYDoubleExtention.swift */; };
+		3E83F64F2AF663C000FD0345 /* TYLayoutView2_6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E83F64E2AF663C000FD0345 /* TYLayoutView2_6.swift */; };
 		49D558BA9DDB2F6052E7CD9F /* Pods_TYPictureMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +145,7 @@
 		08FB76712A28DB4800C160B1 /* TYPanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYPanView.swift; sourceTree = "<group>"; };
 		3E4BABD32AF351D0009D713C /* TYCGFloatExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYCGFloatExtention.swift; sourceTree = "<group>"; };
 		3E4BABD82AF35377009D713C /* TYDoubleExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYDoubleExtention.swift; sourceTree = "<group>"; };
+		3E83F64E2AF663C000FD0345 /* TYLayoutView2_6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLayoutView2_6.swift; sourceTree = "<group>"; };
 		484BF3AB2319ECA8E46487F6 /* Pods-TYPictureMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYPictureMaker.release.xcconfig"; path = "Target Support Files/Pods-TYPictureMaker/Pods-TYPictureMaker.release.xcconfig"; sourceTree = "<group>"; };
 		B9D955D26BF82C4864B8E3BA /* Pods_TYPictureMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYPictureMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -307,6 +309,7 @@
 				08DE9B282A2594BD006332EF /* TYLayoutView23.swift */,
 				08DE9B2A2A25974E006332EF /* TYLayoutView24.swift */,
 				08DE9B2C2A259905006332EF /* TYLayoutView25.swift */,
+				3E83F64E2AF663C000FD0345 /* TYLayoutView2_6.swift */,
 			);
 			path = layoutViews;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				0809BD932A2C40A000682888 /* TYFilterManager.swift in Sources */,
 				0883FA632A21DC010082A402 /* TYTextEditController.swift in Sources */,
 				0880101B2A1489B100FFCA18 /* AppDelegate.swift in Sources */,
+				3E83F64F2AF663C000FD0345 /* TYLayoutView2_6.swift in Sources */,
 				088727B82A1DB74C00F77D81 /* TYBaseViewController.swift in Sources */,
 				0893A9962A23A2F40075B03C /* TYEditViewProtocol.swift in Sources */,
 			);

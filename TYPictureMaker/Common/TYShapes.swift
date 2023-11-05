@@ -7,5 +7,5 @@
 
 import UIKit
 enum TYShapes {
-    case none,rectangle, circle, custom(shapePath: UIBezierPath, borderPath: UIBezierPath)
+    case none,rectangle, circle, custom(shapePath: UIBezierPath)
 }

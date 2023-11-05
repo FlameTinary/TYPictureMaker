@@ -134,7 +134,7 @@ class TYImageCollectView : TYBaseView {
             
             // 设置视图的遮罩为形状图层
             layer.mask = shapeLayer
-        case let .custom(shapePath, _):
+        case let .custom(shapePath):
 //            // 创建一个不规则的四边形路径
 //            let path = UIBezierPath()
 //            for (index, point) in points.enumerated() {

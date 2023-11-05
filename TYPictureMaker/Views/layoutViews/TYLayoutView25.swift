@@ -84,7 +84,6 @@ class TYLayoutView25 : TYBaseEditView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        print(mainCollectView.frame)
 //        let mainViewBorderPath = UIBezierPath()
 //        mainViewBorderPath.move(to: CGPoint(x: 1, y: 1))
 //        mainViewBorderPath.addLine(to: CGPoint(x: contentView.bounds.maxX - (padding / 2) - 1, y: contentView.bounds.minY + 1))
@@ -98,7 +97,7 @@ class TYLayoutView25 : TYBaseEditView {
         mainViewShapePath.addLine(to: CGPoint(x: contentView.bounds.minX, y: contentView.bounds.maxY - (padding / 2)))
 //        mainViewShapePath.addLine(to: CGPoint(x: 1, y: 1))
         mainViewShapePath.close()
-        mainCollectView.shape = .custom(shapePath: mainViewShapePath, borderPath: mainViewShapePath)
+        mainCollectView.shape = .custom(shapePath: mainViewShapePath)
         
         // 设置遮罩路径
 //        let mainViewPoints = [CGPoint(x: 0, y: 0), CGPoint(x: contentView.bounds.maxX - (padding / 2), y: contentView.bounds.minY), CGPoint(x: contentView.bounds.minX, y: contentView.bounds.maxY - (padding / 2))]
@@ -117,7 +116,7 @@ class TYLayoutView25 : TYBaseEditView {
         secViewShapePath.addLine(to: CGPoint(x: contentView.bounds.minX + (padding / 2), y: contentView.bounds.maxY))
 //        secViewShapePath.addLine(to: CGPoint(x: 1, y: 1))
         secViewShapePath.close()
-        secCollectView.shape = .custom(shapePath: secViewShapePath, borderPath: secViewShapePath)
+        secCollectView.shape = .custom(shapePath: secViewShapePath)
         
 //        let secViewPoints = [CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.minY + (padding / 2)), CGPoint(x: contentView.bounds.maxX, y: contentView.bounds.maxY), CGPoint(x: contentView.bounds.minX + (padding / 2), y: contentView.bounds.maxY)]
 //        secCollectView.shape = .custom(secViewPoints)

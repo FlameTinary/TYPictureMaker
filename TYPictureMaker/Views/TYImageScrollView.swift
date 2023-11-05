@@ -172,7 +172,7 @@ class TYImageScrollView : TYBaseView {
             // 设置视图的遮罩为形状图层
             layer.mask = shapeLayer
             
-        case let .custom(shapePath, borderPath):
+        case let .custom(shapePath):
             borderLayer?.removeFromSuperlayer()
             
 //            // 创建一个不规则的四边形路径
@@ -188,10 +188,10 @@ class TYImageScrollView : TYBaseView {
 //            path.close()
             // 绘制边线
             borderLayer = CAShapeLayer()
-            borderLayer!.path = borderPath.cgPath
+            borderLayer!.path = shapePath.cgPath
             borderLayer!.fillColor = UIColor.clear.cgColor
             borderLayer!.strokeColor = UIColor.lightGray.cgColor
-            borderLayer!.lineWidth = 0.5
+            borderLayer!.lineWidth = 1.5
             borderLayer!.lineDashPattern = [5, 5]
             layer.insertSublayer(borderLayer!, at: 0)
             // 创建一个形状图层，并设置路径

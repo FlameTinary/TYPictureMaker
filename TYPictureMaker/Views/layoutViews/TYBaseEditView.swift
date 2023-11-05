@@ -102,8 +102,7 @@ class TYBaseEditView: UIView {
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
         }
         contentView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
-            make.edges.equalTo(backgroundImageView)
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
         }
     }
     

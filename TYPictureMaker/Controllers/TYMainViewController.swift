@@ -17,12 +17,13 @@ class TYMainViewController: TYBaseViewController  {
 //        return imageview
 //    }()
     
-    private lazy var imgScrollView : TYImageCollectView = {
-        let imgScrollView = TYImageCollectView()
+    private lazy var imgScrollView : TYLayoutView26 = {
+        let imgScrollView = TYLayoutView26(images: nil)
+//        imgScrollView.backgroundColor = UIColor.green
 //        imgScrollView.image = UIImage(named: "testImg")
         imgScrollView.padding = 5
 //
-        imgScrollView.shape = .rectangle
+//        imgScrollView.shape = .rectangle
         return imgScrollView
     }()
     
@@ -130,9 +131,13 @@ class TYMainViewController: TYBaseViewController  {
         imgScrollView.snp.makeConstraints { make in
             let navH = deviceModel.getNavH()
             let statusH = deviceModel.getStatusBarH()
-            make.left.right.equalTo(view)
+            let width = 200
+            let height = width
+//            make.left.right.equalTo(view)
             make.top.equalTo(navH + statusH)
-            make.height.equalTo(imgScrollView.snp.width).multipliedBy(0.5)
+//            make.height.equalTo(imgScrollView.snp.width).multipliedBy(0.5)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: width, height: height))
         }
 
     }
