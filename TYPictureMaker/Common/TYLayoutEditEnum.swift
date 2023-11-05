@@ -8,7 +8,7 @@
 import UIKit
 
 enum TYLayoutEditEnum: Int, CaseIterable {
-    case vertical = 0, horizontal, view21, view22, view23, view24, view24_1, view25, view26, view27, view28
+    case vertical = 0, horizontal, view21, view22, view23, view24, view24_1, view25, view26, view27, view28, view29
     
     // 通过枚举返回icon名称
     func iconNameFromEnum() -> String {
@@ -66,6 +66,9 @@ enum TYLayoutEditEnum: Int, CaseIterable {
         case .view28:
             let  v = TYLayoutView28(images: images)
             view = v
+        case .view29:
+            let  v = TYLayoutView29(images: images)
+            view = v
         }
         
         return view
@@ -89,7 +92,7 @@ enum TYLayoutEditEnum: Int, CaseIterable {
             return [.layout, .background, .filter, .text, .sticker, .pictureFrame, .addImage]
         case .view24_1:
             return TYOpration.allCases
-        case .view25, .view26, .view27, .view28:
+        case .view25, .view26, .view27, .view28, .view29:
             return [.layout, .background, .filter, .text, .sticker, .pictureFrame, .addImage]
         }
     }
