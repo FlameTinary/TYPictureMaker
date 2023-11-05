@@ -1,13 +1,13 @@
 //
-//  TYLayoutView2_6.swift
+//  TYLayoutView2_7.swift
 //  TYPictureMaker
 //
-//  Created by server on 2023/11/4.
+//  Created by server on 2023/11/5.
 //
 
 import UIKit
 
-class TYLayoutView26: TYBaseEditView {
+class TYLayoutView27: TYBaseEditView {
     
     override var images: [UIImage]? {
         didSet {
@@ -60,7 +60,7 @@ class TYLayoutView26: TYBaseEditView {
     }
 }
 
-extension TYLayoutView26 {
+extension TYLayoutView27 {
     // 计算左半边视图的半圆
     private func leftViewShape() -> UIBezierPath {
         // 如果长边不足短边的一倍的话，那么半径为原半径的一半
@@ -68,12 +68,12 @@ extension TYLayoutView26 {
         if max(firstCollectView.width,firstCollectView.height) < min(firstCollectView.width,firstCollectView.height) * 2 {
             radius = radius / 2
         }
-        let startPoint = CGPoint(x: firstCollectView.bounds.minX, y: firstCollectView.height / 2.0 - radius)
-        let center = CGPoint(x: firstCollectView.bounds.minX, y: firstCollectView.height / 2.0)
+        let startPoint = CGPoint(x: firstCollectView.bounds.maxX, y: firstCollectView.height / 2.0 - radius)
+        let center = CGPoint(x: firstCollectView.bounds.maxX, y: firstCollectView.height / 2.0)
         
         let startAngle : CGFloat = .pi * 3 / 2
         let endAngle : CGFloat = .pi / 2
-        let clockwise = true
+        let clockwise = false
         
         let path = UIBezierPath()
         path.move(to: startPoint)
@@ -89,12 +89,12 @@ extension TYLayoutView26 {
         if max(secCollectView.width,secCollectView.height) < min(secCollectView.width,secCollectView.height) * 2 {
             radius = radius / 2
         }
-        let startPoint = CGPoint(x: secCollectView.bounds.maxX, y: secCollectView.height / 2.0 - radius)
-        let center = CGPoint(x: secCollectView.bounds.maxX, y: secCollectView.height / 2.0)
+        let startPoint = CGPoint(x: secCollectView.bounds.minX, y: secCollectView.height / 2.0 - radius)
+        let center = CGPoint(x: secCollectView.bounds.minX, y: secCollectView.height / 2.0)
         
         let startAngle : CGFloat = .pi * 3 / 2
         let endAngle : CGFloat = .pi / 2
-        let clockwise = false
+        let clockwise = true
         
         let path = UIBezierPath()
         path.move(to: startPoint)
