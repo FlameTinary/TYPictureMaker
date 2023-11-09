@@ -20,7 +20,7 @@ class TemplateView1 : TYBaseEditView {
         return view
     }()
     private let textView : TYTextStickerView = {
-        let view = TYTextStickerView(text: "Hello world!")
+        let view = TYTextStickerView(text: "Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!")
         return view
     }()
     
@@ -35,16 +35,15 @@ class TemplateView1 : TYBaseEditView {
             make.height.equalTo(imageView.snp.width)
         }
         dividerView.snp.makeConstraints { make in
-            make.bottom.equalTo(textView.snp.top).offset(-10)
+            make.top.equalTo(imageView.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(10)
             make.height.equalTo(0.5)
             make.width.equalToSuperview().multipliedBy(0.3)
         }
         textView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(10)
-            make.height.equalTo(60)
             make.bottom.equalToSuperview().offset(-10)
-            make.width.equalTo(200)
+            make.size.equalTo(CGSize(width: 200, height: 60))
         }
     }
     

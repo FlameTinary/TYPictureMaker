@@ -25,15 +25,15 @@ class TYTextStickerView : TYPanView {
     private lazy var textLbl : UILabel = {
         let lbl = UILabel()
         lbl.text = "这里是输入的文字"
-        lbl.textAlignment = .center
+        lbl.textAlignment = .left
+        lbl.numberOfLines = 0
+        lbl.adjustsFontSizeToFitWidth = true
         return lbl
     }()
     
     init(text : String) {
         self.text = text
         super.init(frame: .zero)
-        
-        backgroundColor = .red
         
         textLbl.text = text
         addSubview(textLbl)
