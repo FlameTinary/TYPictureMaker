@@ -131,7 +131,7 @@ class TYMainViewController: TYBaseViewController  {
         imgScrollView.snp.makeConstraints { make in
             let navH = deviceModel.getNavH()
             let statusH = deviceModel.getStatusBarH()
-            let width = 200
+            let width = 100
             let height = width
 //            make.left.right.equalTo(view)
             make.top.equalTo(navH + statusH)

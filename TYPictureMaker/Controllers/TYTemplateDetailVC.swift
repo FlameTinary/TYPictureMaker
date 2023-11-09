@@ -1,36 +1,25 @@
 //
-//  TYPictureStitchController.swift
+//  TYTemplateDetailVC.swift
 //  TYPictureMaker
 //
-//  Created by Sheldon Tian on 2023/5/17.
-//  图片拼接控制器
+//  Created by server on 2023/11/7.
+//
 
 import UIKit
-import SnapKit
-//import RxSwift
-//import RxCocoa
-//import Toast_Swift
-//import ZLPhotoBrowser
+import SwiftUI
 
-class TYPictureStitchController: TYOprationEditController {
-    
-    // 选中的贴纸数组
-    private var stickerNames : [String] = []
-    
-    // rx销毁属性
-//    private var disposeBag = DisposeBag()
+class TYTemplateDetailVC : TYOprationEditController {
     
     //操作列表item
     private var oprationItem : [TYOpration]!
-    
     // 底部操作列表
     private lazy var oprationListView : UICollectionView = {
         let itemW = 80.0.scale
         let itemH = itemW * 0.7
         
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 1
-        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: itemW, height: itemH)
         
@@ -43,9 +32,8 @@ class TYPictureStitchController: TYOprationEditController {
         return collectionView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // 保存按钮
+    // 保存按钮
+    private lazy var barButtonItem : UIBarButtonItem = {
         let saveButton = UIButton(type: .custom)
         saveButton.frame = CGRect(x: 0, y: 0, width: 60.scale, height: 30.scale)
         saveButton.setTitle("保存", for: .normal)
@@ -54,7 +42,7 @@ class TYPictureStitchController: TYOprationEditController {
         saveButton.backgroundColor = UIColor(hexString: "#1296db")
         saveButton.layer.cornerRadius = 4.0
         saveButton.addTarget(self, action: #selector(saveClick), for: .touchUpInside)
-
+        
         // 创建一个自定义视图
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: 60.scale, height: 30.scale))
         customView.backgroundColor = selectColor
@@ -63,17 +51,11 @@ class TYPictureStitchController: TYOprationEditController {
 
         // 创建一个UIBarButtonItem，并将自定义视图设置为customView
         let barButtonItem = UIBarButtonItem(customView: customView)
-
-        // 设置导航栏右侧按钮
-        navigationItem.rightBarButtonItem = barButtonItem
-
-    }
+        return barButtonItem
+    }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        oprationItem = editInfo.layout.supportOpration()
-        oprationListView.reloadData()
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     override func setupSubviews() {
@@ -81,36 +63,64 @@ class TYPictureStitchController: TYOprationEditController {
         let layout = oprationListView.collectionViewLayout as! UICollectionViewFlowLayout
         let itemSize = layout.itemSize
         aleartCountentHeight = itemSize.height + 16.scale
-        
         super.setupSubviews()
+        
+        // 设置背景颜色
+        view.backgroundColor = backgroundColor
+        
+        // 设置导航栏右侧按钮
+        navigationItem.rightBarButtonItem = barButtonItem
+        
+        // 添加子视图
+//        view.addSubview(editView)
+//        view.addSubview(alertView)
         alertView.addSubview(oprationListView)
-
+//        editView.snp.makeConstraints { make in
+//            make.centerY.equalToSuperview()
+//            make.left.right.equalToSuperview()
+//            make.height.equalTo(editView.snp.width).multipliedBy(1.2)
+//        }
+//        alertView.snp.makeConstraints { make in
+//            make.bottom.equalTo(alertView.safeBottom + 80.scale)
+//            make.left.right.equalToSuperview()
+//            make.height.equalTo(alertView.safeBottom + 80.scale)
+//        }
         oprationListView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
             make.bottom.equalTo(alertView).offset(-oprationListView.safeBottom)
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        oprationItem = editInfo.template.supportOpration()
+        oprationListView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showAlertView()
+    }
+    
     @objc func saveClick() {
         // 在这里实现按钮点击后的逻辑
-        let image = editView.getImageFromView()
+        let image = editView.toImage()
 
         // 保存图片到相册
         self.photoSave(image: image)
     }
-
 }
 
-
-extension TYPictureStitchController {
+extension TYTemplateDetailVC {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("截断点击")
     }
 }
 
 
+
 //MARK: collection view delegate & data source
-extension TYPictureStitchController: UICollectionViewDelegate & UICollectionViewDataSource {
+extension TYTemplateDetailVC: UICollectionViewDelegate & UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return oprationItem.count
     }
@@ -147,12 +157,14 @@ extension TYPictureStitchController: UICollectionViewDelegate & UICollectionView
      
 }
 
+
 //MARK: 跳转操作控制器
-extension TYPictureStitchController {
+extension TYTemplateDetailVC {
     private func presentOprationController(with opration: TYOpration) {
 
+        print("open opration controller")
         let destinationVC : TYOprationEditController
-        
+
         switch opration {
 //        case .proportion:
 //            destinationVC = TYProportionEditController(editInfo: editInfo)
@@ -173,7 +185,7 @@ extension TYPictureStitchController {
         default:
             destinationVC = TYOprationEditController(editInfo: editInfo)
         }
-        
+
         destinationVC.editView = editView
         destinationVC.transitioningDelegate = self
         destinationVC.modalPresentationStyle = .fullScreen

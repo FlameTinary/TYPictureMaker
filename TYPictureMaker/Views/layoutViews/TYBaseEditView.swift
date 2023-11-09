@@ -68,7 +68,7 @@ class TYBaseEditView: UIView {
         return view
     }()
     
-    var padding : CGFloat = 4 {
+    var padding : CGFloat = 5 {
         didSet {
             contentView.snp.remakeConstraints { make in
                 make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))

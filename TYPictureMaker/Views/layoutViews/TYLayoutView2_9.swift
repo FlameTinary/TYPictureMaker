@@ -43,13 +43,13 @@ class TYLayoutView29: TYBaseEditView {
         firstCollectView.snp.makeConstraints { make in
             make.top.left.equalToSuperview().offset(padding)
             make.bottom.equalToSuperview().offset(-padding)
-            make.width.equalToSuperview().multipliedBy(0.67)
+            make.width.equalToSuperview().multipliedBy(0.7)
         }
 
         secCollectView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(padding)
             make.right.bottom.equalToSuperview().offset(-padding)
-            make.width.equalToSuperview().multipliedBy(0.67)
+            make.width.equalToSuperview().multipliedBy(0.7)
         }
     }
     
@@ -84,7 +84,7 @@ extension TYLayoutView29 {
     private func leftViewShape() -> UIBezierPath {
         let startPoint = CGPoint(x: 0, y: 0)
         let secondPoint = CGPoint(x: firstCollectView.bounds.maxX, y: 0)
-        let thirdPoint = CGPoint(x: firstCollectView.bounds.midX, y: firstCollectView.bounds.midY + 20)
+        let thirdPoint = CGPoint(x: firstCollectView.bounds.midX, y: firstCollectView.bounds.midY)
         let fourthPoint = CGPoint(x: firstCollectView.bounds.maxX, y: firstCollectView.bounds.maxY)
         let fifthPoint = CGPoint(x: firstCollectView.bounds.minX, y: firstCollectView.bounds.maxY)
         
@@ -100,11 +100,11 @@ extension TYLayoutView29 {
     
     // 计算右半边视图的半圆
     private func rightViewShape() -> UIBezierPath {
-        let startPoint = CGPoint(x: secCollectView.bounds.midX + padding * 3.5, y: secCollectView.bounds.minY)
+        let startPoint = CGPoint(x: secCollectView.width - width + padding * 3 + firstCollectView.width, y: 0)
         let secondPoint = CGPoint(x: secCollectView.bounds.maxX, y: secCollectView.bounds.minY)
         let thirdPoint = CGPoint(x: secCollectView.bounds.maxX, y: secCollectView.bounds.maxY)
-        let fourthPoint = CGPoint(x: secCollectView.bounds.midX + padding * 3.5, y: secCollectView.bounds.maxY)
-        let fifthPoint = CGPoint(x: secCollectView.bounds.minX + padding * 3.5, y: secCollectView.bounds.midY + 20)
+        let fourthPoint = CGPoint(x: secCollectView.width - width + padding * 3 + firstCollectView.width, y: secCollectView.bounds.maxY)
+        let fifthPoint = CGPoint(x: secCollectView.width - width + padding * 3 + firstCollectView.bounds.midX, y: secCollectView.bounds.midY)
         
         let path = UIBezierPath()
         path.move(to: startPoint)

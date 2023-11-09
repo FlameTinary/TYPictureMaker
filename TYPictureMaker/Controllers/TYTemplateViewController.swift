@@ -59,9 +59,11 @@ extension TYTemplateViewController : UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("点击选中了\(indexPath.item)")
         let editInfo = TYEditInfo(images: [UIImage(named: "image_01")!, UIImage(named: "image_02")!])
-        navigationController?.pushViewController(TYPictureStitchController(editInfo: editInfo), animated: true)
+        editInfo.oprateType = .template
+        editInfo.proportion = .fourToFive
+//        navigationController?.pushViewController(TYPictureStitchController(editInfo: editInfo), animated: true)
+        navigationController?.pushViewController(TYTemplateDetailVC(editInfo: editInfo), animated: true)
     }
 }
 

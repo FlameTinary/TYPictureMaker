@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum OprateType : Int {
+    case template, layout
+}
+
 class TYEditInfo {
     var images: [UIImage] = []
     
@@ -28,7 +32,11 @@ class TYEditInfo {
     var backgroundColor : TYBackgroundColorEnum = .white
     var backgroundImage : UIImage?
     
+    var oprateType: OprateType = .layout
+    
     var layout : TYLayoutEditEnum = .vertical
+    
+    var template: TYTemplateEditEnum = .template1
     
     var filter : TYFilterEnum = .none
 

@@ -66,6 +66,37 @@ extension UIView {
         }
     }
     
+    public var maxX : CGFloat {
+        get {
+            return bounds.maxX
+        }
+    }
+    public var midX : CGFloat {
+        get {
+            return bounds.midX
+        }
+    }
+    public var minX : CGFloat {
+        get {
+            return bounds.minX
+        }
+    }
+    public var maxY : CGFloat {
+        get {
+            return bounds.maxY
+        }
+    }
+    public var midY : CGFloat {
+        get {
+            return bounds.midY
+        }
+    }
+    public var minY : CGFloat {
+        get {
+            return bounds.minY
+        }
+    }
+    
     public var centerX : CGFloat {
         get {
             return center.x
@@ -129,4 +160,36 @@ extension UIView {
         makeToast(text, duration: 1.5, position: .center)
     }
 }
+
+
+//MARK: view 转图片
+extension UIView {
+    func toImage() -> UIImage {
+        // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了
+        UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale)
+        let context = UIGraphicsGetCurrentContext()
+        layer.render(in: context!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+}
+
+extension UIView {
+    static var currentVC: UIViewController? {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        var current = delegate?.window?.rootViewController
+        while (current?.presentedViewController != nil) {
+            current = current?.presentedViewController
+        }
+        if let tabbar = current as? UITabBarController, tabbar.selectedViewController != nil {
+            current = tabbar.selectedViewController
+        }
+        while let navi = current as? UINavigationController, navi.topViewController != nil {
+            current = navi.topViewController
+        }
+        return current
+    }
+}
+
 

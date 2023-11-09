@@ -70,6 +70,8 @@ class TYImageCollectView : TYBaseView {
     override init() {
         super.init()
         backgroundColor = .cyan
+        let tapGes = UITapGestureRecognizer(target: self, action: #selector(viewTap))
+        addGestureRecognizer(tapGes)
     }
     
     convenience init(with image: UIImage?, shape: TYShapes = .none, padding: CGFloat = 0) {
@@ -113,6 +115,25 @@ class TYImageCollectView : TYBaseView {
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
         }
         
+    }
+    
+    @objc private func viewTap() {
+        if image != nil {
+            let alertVC = UIAlertController(title: "是否选择新的照片", message: "是否选择新的照片", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "选择新照片", style: .default) { action in
+                UIView.currentVC?.pickImages(callback: { images, asset, isOrigin in
+                    self.image = images.first
+                })
+            }
+            alertVC.addAction(defaultAction)
+            let cancleAction = UIAlertAction(title: "取消", style: .cancel)
+            alertVC.addAction(cancleAction)
+            UIView.currentVC?.present(alertVC, animated: true)
+        } else {
+            UIView.currentVC?.pickImages(callback: { images, asset, isOrigin in
+                self.image = images.first
+            })
+        }
     }
     
     override func layoutSubviews() {

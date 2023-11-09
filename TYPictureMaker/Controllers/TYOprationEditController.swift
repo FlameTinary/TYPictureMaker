@@ -14,7 +14,12 @@ class TYOprationEditController : TYBaseViewController {
     var aleartCountentHeight : CGFloat = 0
     
     lazy var editView : TYBaseEditView = {
-        let editView = editInfo.layout.toEditView(images: editInfo.filter != .none ? editInfo.filterImages : editInfo.images)
+        var editView : TYBaseEditView
+        if editInfo.oprateType == .layout {
+            editView = editInfo.layout.toEditView(images: editInfo.filter != .none ? editInfo.filterImages : editInfo.images)
+        } else {
+            editView = editInfo.template.toEditView(images: editInfo.images)
+        }
         editView.size = CGSize(width: view.width, height: editInfo.proportion.heightFrom(width: view.width))
         editView.center = view.center
         editView.padding = CGFloat(editInfo.borderCorner.pictureBorder)
@@ -119,7 +124,7 @@ extension TYOprationEditController {
     
 }
 
-extension TYPictureStitchController : UIViewControllerTransitioningDelegate {
+extension TYOprationEditController : UIViewControllerTransitioningDelegate {
     // MARK: - UIViewControllerTransitioningDelegate
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
