@@ -28,10 +28,14 @@ class TYPanView : UIView {
     
     // 关闭按钮
     private lazy var closeBtn : UIButton = {
+        let textStyle = UIImage.SymbolConfiguration(textStyle: .subheadline)
+        let black = UIImage.SymbolConfiguration(weight: .ultraLight)
+        let combined = textStyle.applying(black)
         let btn = UIButton(type: .custom)
         btn.tag = 0
-        btn.setImage(UIImage(named: "story_maker_close"), for: .normal)
-        btn.backgroundColor = .lightGray
+        btn.setImage(UIImage(systemName: "xmark.circle",withConfiguration: combined), for: .normal)
+        btn.tintColor = .white
+        btn.backgroundColor = .clear
         btn.alpha = 0.0
         btn.layer.cornerRadius = 10
         btn.layer.masksToBounds = true
@@ -44,10 +48,16 @@ class TYPanView : UIView {
     
     // 旋转按钮
     private lazy var rotationBtn : UIButton = {
+        
+        let textStyle = UIImage.SymbolConfiguration(textStyle: .subheadline)
+        let black = UIImage.SymbolConfiguration(weight: .ultraLight)
+        let combined = textStyle.applying(black)
+        
         let btn = UIButton(type: .custom)
         btn.tag = 1
-        btn.setImage(UIImage(named: "rotation"), for: .normal)
-        btn.backgroundColor = .lightGray
+        btn.setImage(UIImage(systemName: "arrow.clockwise.circle", withConfiguration: combined), for: .normal)
+        btn.tintColor = .white
+        btn.backgroundColor = .clear
         btn.alpha = 0.0
         btn.layer.cornerRadius = 10
         btn.layer.masksToBounds = true
@@ -59,10 +69,14 @@ class TYPanView : UIView {
     
     // 修改大小按钮
     private lazy var resizeBtn : UIButton = {
+        let textStyle = UIImage.SymbolConfiguration(textStyle: .subheadline)
+        let black = UIImage.SymbolConfiguration(weight: .ultraLight)
+        let combined = textStyle.applying(black)
         let btn = UIButton(type: .custom)
         btn.tag = 2
-        btn.setImage(UIImage(named: "rotation"), for: .normal)
-        btn.backgroundColor = .lightGray
+        btn.setImage(UIImage(systemName: "arrow.down.forward.and.arrow.up.backward.circle",withConfiguration: combined), for: .normal)
+        btn.tintColor = .white
+        btn.backgroundColor = .clear
         btn.alpha = 0.0
         btn.layer.cornerRadius = 10
         btn.layer.masksToBounds = true
